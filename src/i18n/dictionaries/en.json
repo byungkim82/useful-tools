@@ -35,7 +35,29 @@
       "downloadSvg": "Download SVG",
       "copyImage": "Copy image",
       "copyFailed": "Copy isn’t supported in this browser. Use download instead.",
-      "tooLong": "Text is too long to fit in a QR code. Shorten it or lower the error-correction level."
+      "tooLong": "Text is too long to fit in a QR code. Shorten it or lower the error-correction level.",
+      "metaTitle": "Free QR Code Generator — No Sign-Up, PNG & SVG",
+      "metaDescription": "Turn any URL or text into a QR code and download it as PNG or SVG. Free, no sign-up, generated right in your browser — nothing you type is sent to a server. Adjust error correction, size, and colors.",
+      "howToTitle": "How to use",
+      "howTo": [
+        "Enter the URL or text you want to turn into a QR code.",
+        "Adjust the error-correction level, size, margin, or colors if you like.",
+        "Download it as a PNG or SVG, or copy the image."
+      ],
+      "featuresTitle": "About this tool",
+      "features": [
+        "Free with no sign-up — the codes you create never expire.",
+        "Save as PNG or vector SVG (SVG is best for print).",
+        "Everything runs in your browser — nothing you type is sent to a server."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        { "q": "Do I need an account?", "a": "No. You can create and download QR codes right away, with no sign-up or login." },
+        { "q": "Do the QR codes expire?", "a": "No. These are static QR codes — the data lives inside the image itself, so they keep working forever." },
+        { "q": "Can I download an SVG?", "a": "Yes. Both PNG and SVG are free to download. For print, SVG is recommended because it scales to any size without losing quality." },
+        { "q": "Is my data sent to a server?", "a": "No. The QR code is generated in your browser, and the text or URL you enter is never sent to a server." },
+        { "q": "Can I use it for print?", "a": "Yes. Download an SVG so it stays sharp at any size. For printing, aim for at least 2×2 cm and 300 DPI." }
+      ]
     }
   }
 }

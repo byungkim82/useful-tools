@@ -19,8 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const dict = await getDictionary(locale);
   const t = dict.tools[slug as keyof Dictionary['tools']];
   return {
-    title: t.title,
-    description: t.description,
+    // `absolute` skips the parent "%s · <site>" template so the keyword-tuned title isn't padded past
+    // the SERP truncation length. H1 keeps the short `t.title`.
+    title: { absolute: t.metaTitle },
+    description: t.metaDescription,
     alternates: {
       canonical: `/${locale}/tools/${slug}/`,
       languages: { ko: `/ko/tools/${slug}/`, en: `/en/tools/${slug}/`, 'x-default': `/ko/tools/${slug}/` },
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // Re-declare type/siteName/locale — Next REPLACES the whole openGraph object on override.
     openGraph: {
       type: 'website', siteName: dict.site.title, locale: locale === 'ko' ? 'ko_KR' : 'en_US',
-      title: t.title, description: t.description, url: `${SITE_ORIGIN}/${locale}/tools/${slug}/`, images: ['/og.png'],
+      title: t.title, description: t.metaDescription, url: `${SITE_ORIGIN}/${locale}/tools/${slug}/`, images: ['/og.png'],
     },
   };
 }
@@ -39,13 +41,62 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const dict = await getDictionary(locale);
   // Single legitimate cast: `slug` is a raw URL param (string), validated by getTool() above.
   const key = slug as keyof Dictionary['tools'];
+  const t = dict.tools[key];
+  const url = `${SITE_ORIGIN}/${locale}/tools/${slug}/`;
+  // Crawlable structured data. The tool DOM is ssr:false, so without this the static HTML is thin.
+  // FAQPage mirrors the visible FAQ below (Google requires the Q&A to be on-page).
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org', '@type': 'WebApplication',
+      name: t.title, description: t.metaDescription, url,
+      applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      inLanguage: locale === 'ko' ? 'ko-KR' : 'en-US',
+    },
+    {
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: t.faq.map((f) => ({
+        '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ];
   return (
     <main>
-      <h1 className="text-2xl font-bold">{dict.tools[key].title}</h1>
-      <p className="mt-1 text-neutral-500">{dict.tools[key].description}</p>
+      {/* JSON-LD escapes `<` so page content can never break out of the script tag. */}
+      <script type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
+      <h1 className="text-2xl font-bold">{t.title}</h1>
+      <p className="mt-1 text-neutral-500">{t.description}</p>
       <div className="mt-6">
-        <ToolLoader slug={slug} t={dict.tools[key]} common={dict.common} locale={locale} />
+        <ToolLoader slug={slug} t={t} common={dict.common} locale={locale} />
       </div>
+
+      {/* Static, crawlable copy: gives Google real text to rank on and feeds the FAQ schema above. */}
+      <section className="mt-12 space-y-8 text-sm leading-relaxed">
+        <div>
+          <h2 className="text-lg font-semibold">{t.howToTitle}</h2>
+          <ol className="mt-2 list-decimal space-y-1 pl-5 text-neutral-600 dark:text-neutral-400">
+            {t.howTo.map((step, i) => <li key={i}>{step}</li>)}
+          </ol>
+        </div>
+        <div>
+          <h2 className="text-lg font-semibold">{t.featuresTitle}</h2>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-neutral-600 dark:text-neutral-400">
+            {t.features.map((feat, i) => <li key={i}>{feat}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-lg font-semibold">{t.faqTitle}</h2>
+          <dl className="mt-2 space-y-3">
+            {t.faq.map((f, i) => (
+              <div key={i}>
+                <dt className="font-medium text-neutral-800 dark:text-neutral-200">{f.q}</dt>
+                <dd className="mt-1 text-neutral-600 dark:text-neutral-400">{f.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
     </main>
   );
 }
