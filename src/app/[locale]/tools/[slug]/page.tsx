@@ -5,6 +5,7 @@ import type { Dictionary } from '@/i18n/dictionaries';
 import { getDictionary } from '@/i18n/dictionaries';
 import { tools, getTool } from '@/tools/registry';
 import ToolLoader from '@/tools/ToolLoader';
+import QrTypeNav from '@/tools/qr/QrTypeNav';
 import { SITE_ORIGIN } from '@/site';
 
 export const dynamicParams = false;
@@ -43,6 +44,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   // Single legitimate cast: `slug` is a raw URL param (string), validated by getTool() above.
   const key = slug as keyof Dictionary['tools'];
   const t = dict.tools[key];
+  const group = getTool(slug)?.group;
   const url = `${SITE_ORIGIN}/${locale}/tools/${slug}/`;
   // Crawlable structured data. The tool DOM is ssr:false, so without this the static HTML is thin.
   // FAQPage mirrors the visible FAQ below (Google requires the Q&A to be on-page).
@@ -68,6 +70,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
       <h1 className="text-2xl font-bold">{t.title}</h1>
       <p className="mt-1 text-neutral-500">{t.description}</p>
+      {group && <QrTypeNav locale={locale} current={slug} group={group} />}
       <div className="mt-6">
         <ToolLoader slug={slug} t={t} common={dict.common} locale={locale} />
       </div>
