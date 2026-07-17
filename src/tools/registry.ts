@@ -31,6 +31,20 @@ export const tools: ToolMeta[] = [
     keywords: ['qr', 'qrcode', 'qr코드', '큐알', '큐알코드'],
     load: () => import('@/tools/qr/QrToolClient'),
   },
+  {
+    slug: 'wifi-qr-code',
+    category: 'generator',
+    icon: '📶',
+    keywords: ['wifi', 'wifi qr', 'qr', '와이파이', '와이파이 qr', '와이파이 큐알'],
+    load: () => import('@/tools/qr/WifiQrClient'),
+  },
+  {
+    slug: 'vcard-qr-code',
+    category: 'generator',
+    icon: '📇',
+    keywords: ['vcard', 'contact', 'qr', '명함', '연락처', 'vcard qr'],
+    load: () => import('@/tools/qr/VCardQrClient'),
+  },
 ];
 
 export function getTool(slug: string): ToolMeta | undefined {

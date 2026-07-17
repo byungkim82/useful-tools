@@ -58,6 +58,106 @@
         { "q": "Is my data sent to a server?", "a": "No. The QR code is generated in your browser, and the text or URL you enter is never sent to a server." },
         { "q": "Can I use it for print?", "a": "Yes. Download an SVG so it stays sharp at any size. For printing, aim for at least 2×2 cm and 300 DPI." }
       ]
+    },
+    "wifi-qr-code": {
+      "title": "WiFi QR Code Generator",
+      "description": "Create a QR code that connects people to your WiFi network when scanned — no typing the password.",
+      "metaTitle": "Free WiFi QR Code Generator — Instant Network Connect",
+      "metaDescription": "Make a free WiFi QR code so guests join your network by scanning — no password typing. Enter your SSID and password; the code is generated in your browser and never sent to a server. Download PNG or SVG.",
+      "ssidLabel": "Network name (SSID)",
+      "ssidPlaceholder": "MyWiFi",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Network password",
+      "encryptionLabel": "Encryption",
+      "encWpa": "WPA / WPA2 / WPA3",
+      "encWep": "WEP",
+      "encNone": "None (open network)",
+      "hiddenLabel": "Hidden network",
+      "emptyHint": "Enter your network name to see the WiFi QR code.",
+      "previewAlt": "WiFi QR code preview",
+      "ecLevel": "Error correction",
+      "ecHint": "Higher levels survive more damage but make a denser code.",
+      "size": "Size",
+      "margin": "Margin",
+      "fgColor": "Foreground",
+      "bgColor": "Background",
+      "lowContrast": "Foreground/background contrast is too low — the code may not scan.",
+      "invertedColors": "Light foreground on a dark background may fail on some scanners.",
+      "renderFailed": "Could not generate the QR code. Please check your input.",
+      "tooLong": "The details are too long to fit in a QR code. Shorten them or lower the error-correction level.",
+      "downloadPng": "Download PNG",
+      "downloadSvg": "Download SVG",
+      "copyImage": "Copy image",
+      "copyFailed": "Copy isn’t supported in this browser. Use download instead.",
+      "howToTitle": "How to use",
+      "howTo": [
+        "Enter your WiFi network name (SSID) and password.",
+        "Pick the encryption type — WPA works for almost all modern routers.",
+        "Download the code and print or display it. People scan it to connect."
+      ],
+      "featuresTitle": "About this tool",
+      "features": [
+        "People connect by scanning — no need to read out or type the password.",
+        "Free with no sign-up, and the code never expires.",
+        "Your network name and password stay in your browser and are never sent to a server."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        { "q": "How does a WiFi QR code work?", "a": "The code holds your network name, password, and encryption type. Most phone cameras read it and offer to join the network automatically." },
+        { "q": "Is my WiFi password safe?", "a": "Yes. The code is generated entirely in your browser — your SSID and password are never uploaded to a server." },
+        { "q": "Which encryption should I choose?", "a": "Choose WPA for almost all modern routers (it covers WPA, WPA2, and WPA3). Use WEP only for old networks, or None for open networks." },
+        { "q": "Does it work on iPhone and Android?", "a": "Yes. iOS 11+ and modern Android read WiFi QR codes with the built-in camera app." },
+        { "q": "Can I print it?", "a": "Yes. Download the SVG for a sharp print at any size — handy for a card on the table or a poster on the wall." }
+      ]
+    },
+    "vcard-qr-code": {
+      "title": "vCard QR Code Generator",
+      "description": "Create a QR code that saves your contact details to a phone when scanned.",
+      "metaTitle": "Free vCard QR Code Generator — Contact Card QR",
+      "metaDescription": "Make a free vCard QR code that saves your name, phone, email, and more to a phone's contacts when scanned. Generated in your browser and never sent to a server. Download PNG or SVG.",
+      "firstNameLabel": "First name",
+      "lastNameLabel": "Last name",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "orgLabel": "Organization",
+      "jobTitleLabel": "Job title",
+      "urlLabel": "Website",
+      "emptyHint": "Enter a name or phone to see the contact QR code.",
+      "previewAlt": "vCard QR code preview",
+      "ecLevel": "Error correction",
+      "ecHint": "Higher levels survive more damage but make a denser code.",
+      "size": "Size",
+      "margin": "Margin",
+      "fgColor": "Foreground",
+      "bgColor": "Background",
+      "lowContrast": "Foreground/background contrast is too low — the code may not scan.",
+      "invertedColors": "Light foreground on a dark background may fail on some scanners.",
+      "renderFailed": "Could not generate the QR code. Please check your input.",
+      "tooLong": "The details are too long to fit in a QR code. Shorten them or lower the error-correction level.",
+      "downloadPng": "Download PNG",
+      "downloadSvg": "Download SVG",
+      "copyImage": "Copy image",
+      "copyFailed": "Copy isn’t supported in this browser. Use download instead.",
+      "howToTitle": "How to use",
+      "howTo": [
+        "Fill in the contact details you want to share.",
+        "Adjust the size or colors if you like.",
+        "Download the code. Scanning it adds the contact to a phone."
+      ],
+      "featuresTitle": "About this tool",
+      "features": [
+        "Scanning saves your details straight to a phone's contacts.",
+        "Free with no sign-up, and the code never expires.",
+        "Your contact details stay in your browser and are never sent to a server."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        { "q": "What is a vCard QR code?", "a": "It's a QR code containing contact details in the vCard format. Scanning it lets a phone save the contact in one tap." },
+        { "q": "Is my information private?", "a": "Yes. The code is generated in your browser — nothing you enter is sent to a server." },
+        { "q": "Which fields should I include?", "a": "At least a name and one way to reach you (phone or email). Organization, job title, and website are optional." },
+        { "q": "Does it work on all phones?", "a": "Yes. iPhone and Android read vCard QR codes with the built-in camera and offer to create a contact." },
+        { "q": "Can I put it on a business card?", "a": "Yes. Download the SVG so it stays sharp at print size, then add it to your card or email signature." }
+      ]
     }
   }
 }
