@@ -45,6 +45,8 @@ Home grid, routes, static params, hreflang, and the sitemap all follow automatic
 - [`docs/qr-generator-improvements.md`](docs/qr-generator-improvements.md) — feature / UX enhancement plan.
 - [`docs/qr-generator-growth-seo.md`](docs/qr-generator-growth-seo.md) — search-discoverability strategy.
 - [`docs/qr-generator-seo-action-checklist.md`](docs/qr-generator-seo-action-checklist.md) — SEO action items.
+- [`docs/tool-roadmap.md`](docs/tool-roadmap.md) — next tools to add (6-locale research → ranked, consumer-first backlog).
+- [`docs/monetization-strategy.md`](docs/monetization-strategy.md) — turning multilingual traffic into revenue (short/mid/long term + AI tier).
 
 See also `AGENTS.md` — this repo pins a Next.js whose APIs may differ from training data; read the guides
 in `node_modules/next/dist/docs/` before writing framework code.
