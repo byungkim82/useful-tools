@@ -11,7 +11,11 @@
 - ✅ **#3 JSON-LD** — WebApplication + FAQPage, 전 도구 페이지.
 - ✅ **#4 thin-content** — 사용법·특징·FAQ 정적 텍스트 추가.
 - ✅ **#5 검색엔진 등록** — Google Search Console 소유확인(HTML 파일)·사이트맵·색인 요청 완료. (네이버 보류)
-- ⬜ **#6 Cloudflare Web Analytics** — 미착수(CSP `_headers`에 beacon 도메인 추가 필요).
+- ✅ **#6 Cloudflare Web Analytics** — 구현·배포 완료(2026-07-16). CSP `_headers`에 beacon 도메인 2개 허용
+  (`script-src`에 `static.cloudflareinsights.com`, `connect-src`에 `cloudflareinsights.com`) + `layout.tsx`가
+  `CF_BEACON_TOKEN`(→ `src/site.ts`) 있을 때만 `<script type="module">` beacon 주입. `solisapps.com`이 통째로
+  Cloudflare zone이라 서브도메인 개별 add가 안 돼, zone의 Web Analytics **수동 스니펫 토큰**을 재사용하고
+  대시보드에서 hostname=`tools.solisapps.com`으로 필터해 본다. 라이브 HTML·CSP 헤더로 검증 완료.
 
 아래는 원 체크리스트(참고용).
 

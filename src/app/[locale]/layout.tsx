@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { locales, isLocale, localeMeta, hreflangMap } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
-import { SITE_ORIGIN } from '@/site';
+import { SITE_ORIGIN, CF_BEACON_TOKEN } from '@/site';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 
 export function generateStaticParams() {
@@ -44,6 +44,14 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         </header>
         <div className="mx-auto max-w-3xl px-4 pb-16">{children}</div>
         <footer className="mx-auto max-w-3xl px-4 py-8 text-sm text-neutral-500">{dict.site.tagline}</footer>
+        {/* Cloudflare Web Analytics — cookieless, no personal tracking. Injected only when a token is set. */}
+        {CF_BEACON_TOKEN ? (
+          <script
+            type="module"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
+          />
+        ) : null}
       </body>
     </html>
   );

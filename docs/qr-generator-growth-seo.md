@@ -13,7 +13,8 @@
 - ✅ **Step 1** — 키워드 타이틀/메타 분리, 크롤 가능한 FAQ·사용법 텍스트(thin-content 해소), JSON-LD.
 - ✅ **Step 2** — 타입별 롱테일 랜딩 페이지 8종 + **6개 언어 다국어(hreflang)**. sitemap **60 URL**.
 - ⬜ **Step 3** — 초기 유입·백링크(Show HN·Reddit·한국 커뮤니티): 미착수.
-- ⬜ **Step 4** — 분석(Cloudflare Web Analytics): 미착수(CSP에 beacon 도메인 추가 필요).
+- 🟡 **Step 4** — 분석: **Cloudflare Web Analytics 도입·배포 완료**(2026-07-16, 쿠키리스 beacon). 실제
+  "노출/검색어/유입/CTR 보며 반복" 관찰 루프는 데이터가 쌓이면 시작. GSC(검색어) + CF(지역·레퍼러·페이지) 병행.
 - **남은 과제:** 기계번역 **네이티브 검수**, 배포/백링크, 네이버 등록.
 
 아래는 원 전략 문서(참고용, 여전히 유효).
