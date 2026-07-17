@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { locales } from '@/i18n/config';
+import { locales, hreflangMap } from '@/i18n/config';
 import { tools } from '@/tools/registry';
 import { SITE_ORIGIN } from '@/site';
 
@@ -12,12 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const locale of locales) {
     entries.push({
       url: `${SITE_ORIGIN}/${locale}/`, changeFrequency: 'weekly', priority: 1,
-      alternates: { languages: { ko: `${SITE_ORIGIN}/ko/`, en: `${SITE_ORIGIN}/en/` } },
+      alternates: { languages: hreflangMap((l) => `${SITE_ORIGIN}/${l}/`, false) },
     });
     for (const t of tools) {
       entries.push({
         url: `${SITE_ORIGIN}/${locale}/tools/${t.slug}/`, changeFrequency: 'monthly', priority: 0.8,
-        alternates: { languages: { ko: `${SITE_ORIGIN}/ko/tools/${t.slug}/`, en: `${SITE_ORIGIN}/en/tools/${t.slug}/` } },
+        alternates: { languages: hreflangMap((l) => `${SITE_ORIGIN}/${l}/tools/${t.slug}/`, false) },
       });
     }
   }

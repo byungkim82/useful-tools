@@ -1,0 +1,163 @@
+{
+  "site": {
+    "title": "Nützliche Tools",
+    "tagline": "Kostenlose Tools, die direkt in Ihrem Browser laufen. Ihre Dateien verlassen niemals Ihr Gerät."
+  },
+  "home": {
+    "heading": "Tools",
+    "subheading": "Wählen Sie ein Tool und nutzen Sie es sofort."
+  },
+  "categories": {
+    "generator": "Generator"
+  },
+  "common": {
+    "loading": "Wird geladen",
+    "copied": "Kopiert"
+  },
+  "tools": {
+    "qr": {
+      "title": "QR-Code-Generator",
+      "description": "Verwandeln Sie jeden Link oder Text in einen QR-Code und speichern Sie ihn als PNG oder SVG.",
+      "inputLabel": "URL oder Text",
+      "inputPlaceholder": "https://example.com",
+      "emptyHint": "Geben Sie oben eine URL oder einen Text ein, um Ihren QR-Code zu sehen.",
+      "previewAlt": "QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "tooLong": "Der Text ist zu lang für einen QR-Code. Kürzen Sie ihn oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "metaTitle": "Kostenloser QR-Code-Generator — ohne Anmeldung, PNG & SVG",
+      "metaDescription": "QR-Code aus URL oder Text erstellen und als PNG oder SVG herunterladen. Kostenlos, ohne Anmeldung, direkt im Browser erstellt — nichts wird an einen Server gesendet.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie die URL oder den Text ein, den Sie in einen QR-Code umwandeln möchten.",
+        "Passen Sie bei Bedarf Fehlerkorrektur, Größe, Rand oder Farben an.",
+        "Laden Sie ihn als PNG oder SVG herunter oder kopieren Sie das Bild."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Kostenlos und ohne Anmeldung — die erstellten Codes laufen nie ab.",
+        "Als PNG oder als Vektor-SVG speichern (SVG eignet sich am besten für den Druck).",
+        "Alles läuft in Ihrem Browser — nichts, was Sie eingeben, wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        { "q": "Brauche ich ein Konto?", "a": "Nein. Sie können QR-Codes sofort erstellen und herunterladen — ohne Anmeldung oder Login." },
+        { "q": "Laufen die QR-Codes ab?", "a": "Nein. Das sind statische QR-Codes — die Daten stecken im Bild selbst, deshalb funktionieren sie für immer." },
+        { "q": "Kann ich ein SVG herunterladen?", "a": "Ja. PNG und SVG lassen sich beide kostenlos herunterladen. Für den Druck empfiehlt sich SVG, da es sich ohne Qualitätsverlust auf jede Größe skalieren lässt." },
+        { "q": "Werden meine Daten an einen Server gesendet?", "a": "Nein. Der QR-Code wird in Ihrem Browser erstellt, und der eingegebene Text bzw. die URL wird niemals an einen Server gesendet." },
+        { "q": "Kann ich ihn für den Druck verwenden?", "a": "Ja. Laden Sie ein SVG herunter, damit er in jeder Größe scharf bleibt. Für den Druck sollten Sie mindestens 2×2 cm und 300 DPI anstreben." }
+      ]
+    },
+    "wifi-qr-code": {
+      "title": "WLAN-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der andere beim Scannen mit Ihrem WLAN verbindet — ganz ohne Passworteingabe.",
+      "metaTitle": "Kostenloser WLAN-QR-Code-Generator — sofort verbinden",
+      "metaDescription": "Kostenloser WLAN-QR-Code: Gäste verbinden sich per Scan — ohne Passwort einzutippen. SSID und Passwort eingeben, alles bleibt im Browser. PNG oder SVG herunterladen.",
+      "ssidLabel": "Netzwerkname (SSID)",
+      "ssidPlaceholder": "MyWiFi",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "WLAN-Passwort",
+      "encryptionLabel": "Verschlüsselung",
+      "encWpa": "WPA / WPA2 / WPA3",
+      "encWep": "WEP",
+      "encNone": "Keine (offenes Netzwerk)",
+      "hiddenLabel": "Verstecktes Netzwerk",
+      "emptyHint": "Geben Sie Ihren Netzwerknamen ein, um den WLAN-QR-Code zu sehen.",
+      "previewAlt": "WLAN-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie Ihren WLAN-Netzwerknamen (SSID) und das Passwort ein.",
+        "Wählen Sie die Verschlüsselung — WPA passt für nahezu alle modernen Router.",
+        "Laden Sie den Code herunter und drucken oder zeigen Sie ihn an. Andere scannen ihn, um sich zu verbinden."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Verbinden per Scan — niemand muss das Passwort vorlesen oder eintippen.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Netzwerkname und Passwort bleiben in Ihrem Browser und werden nie an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        { "q": "Wie funktioniert ein WLAN-QR-Code?", "a": "Der Code enthält Ihren Netzwerknamen, das Passwort und die Verschlüsselung. Die meisten Handykameras lesen ihn und bieten an, sich automatisch mit dem Netzwerk zu verbinden." },
+        { "q": "Ist mein WLAN-Passwort sicher?", "a": "Ja. Der Code wird vollständig in Ihrem Browser erstellt — SSID und Passwort werden nie auf einen Server hochgeladen." },
+        { "q": "Welche Verschlüsselung soll ich wählen?", "a": "Wählen Sie WPA für nahezu alle modernen Router (deckt WPA, WPA2 und WPA3 ab). WEP nur für alte Netzwerke, Keine für offene Netzwerke." },
+        { "q": "Funktioniert es auf iPhone und Android?", "a": "Ja. iOS 11+ und moderne Android-Geräte lesen WLAN-QR-Codes mit der integrierten Kamera-App." },
+        { "q": "Kann ich ihn drucken?", "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck in jeder Größe — praktisch für eine Karte auf dem Tisch oder ein Poster an der Wand." }
+      ]
+    },
+    "vcard-qr-code": {
+      "title": "vCard-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der Ihre Kontaktdaten beim Scannen auf einem Handy speichert.",
+      "metaTitle": "Kostenloser vCard-QR-Code-Generator — Kontakt-QR",
+      "metaDescription": "Kostenloser vCard-QR-Code, der Name, Telefon und E-Mail beim Scannen in den Kontakten speichert. Wird im Browser erstellt, nie an einen Server gesendet. PNG oder SVG.",
+      "firstNameLabel": "Vorname",
+      "lastNameLabel": "Nachname",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E-Mail",
+      "orgLabel": "Organisation",
+      "jobTitleLabel": "Position",
+      "urlLabel": "Website",
+      "emptyHint": "Geben Sie einen Namen oder eine Telefonnummer ein, um den Kontakt-QR-Code zu sehen.",
+      "previewAlt": "vCard-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Tragen Sie die Kontaktdaten ein, die Sie teilen möchten.",
+        "Passen Sie bei Bedarf Größe oder Farben an.",
+        "Laden Sie den Code herunter. Beim Scannen wird der Kontakt auf dem Handy hinzugefügt."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen werden Ihre Daten direkt in den Kontakten des Handys gespeichert.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Ihre Kontaktdaten bleiben in Ihrem Browser und werden nie an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        { "q": "Was ist ein vCard-QR-Code?", "a": "Es ist ein QR-Code, der Kontaktdaten im vCard-Format enthält. Beim Scannen kann ein Handy den Kontakt mit einem Tippen speichern." },
+        { "q": "Sind meine Informationen privat?", "a": "Ja. Der Code wird in Ihrem Browser erstellt — nichts, was Sie eingeben, wird an einen Server gesendet." },
+        { "q": "Welche Felder sollte ich angeben?", "a": "Mindestens einen Namen und eine Kontaktmöglichkeit (Telefon oder E-Mail). Organisation, Position und Website sind optional." },
+        { "q": "Funktioniert es auf allen Handys?", "a": "Ja. iPhone und Android lesen vCard-QR-Codes mit der integrierten Kamera und bieten an, einen Kontakt anzulegen." },
+        { "q": "Kann ich ihn auf eine Visitenkarte drucken?", "a": "Ja. Laden Sie das SVG herunter, damit er in Druckgröße scharf bleibt, und fügen Sie ihn Ihrer Karte oder E-Mail-Signatur hinzu." }
+      ]
+    }
+  }
+}

@@ -31,7 +31,11 @@ const html = `<!doctype html>
   <h1>페이지를 찾을 수 없습니다 · Page not found</h1>
   <p>요청하신 페이지가 존재하지 않습니다. / The page you requested doesn’t exist.</p>
   <a class="primary" href="/ko/">홈으로</a>
-  <a class="secondary" href="/en/">English home</a>
+  <a class="secondary" href="/en/">English</a>
+  <a class="secondary" href="/es/">Español</a>
+  <a class="secondary" href="/pt/">Português</a>
+  <a class="secondary" href="/ja/">日本語</a>
+  <a class="secondary" href="/de/">Deutsch</a>
 </main>
 </body>
 </html>

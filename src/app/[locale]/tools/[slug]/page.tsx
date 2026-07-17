@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { locales, isLocale } from '@/i18n/config';
+import { locales, isLocale, localeMeta, hreflangMap } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { getDictionary } from '@/i18n/dictionaries';
 import { tools, getTool } from '@/tools/registry';
@@ -25,11 +25,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t.metaDescription,
     alternates: {
       canonical: `/${locale}/tools/${slug}/`,
-      languages: { ko: `/ko/tools/${slug}/`, en: `/en/tools/${slug}/`, 'x-default': `/ko/tools/${slug}/` },
+      languages: hreflangMap((l) => `/${l}/tools/${slug}/`),
     },
     // Re-declare type/siteName/locale — Next REPLACES the whole openGraph object on override.
     openGraph: {
-      type: 'website', siteName: dict.site.title, locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      type: 'website', siteName: dict.site.title, locale: localeMeta[locale].ogLocale,
+      alternateLocale: locales.filter((l) => l !== locale).map((l) => localeMeta[l].ogLocale),
       title: t.title, description: t.metaDescription, url: `${SITE_ORIGIN}/${locale}/tools/${slug}/`, images: ['/og.png'],
     },
   };

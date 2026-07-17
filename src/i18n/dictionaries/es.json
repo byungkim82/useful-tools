@@ -1,0 +1,163 @@
+{
+  "site": {
+    "title": "Herramientas Útiles",
+    "tagline": "Herramientas gratuitas que funcionan directamente en tu navegador. Tus archivos nunca salen de tu dispositivo."
+  },
+  "home": {
+    "heading": "Herramientas",
+    "subheading": "Elige una herramienta y úsala al instante."
+  },
+  "categories": {
+    "generator": "Generador"
+  },
+  "common": {
+    "loading": "Cargando",
+    "copied": "Copiado"
+  },
+  "tools": {
+    "qr": {
+      "title": "Generador de Códigos QR",
+      "description": "Convierte cualquier enlace o texto en un código QR y guárdalo como PNG o SVG.",
+      "inputLabel": "URL o texto",
+      "inputPlaceholder": "https://ejemplo.com",
+      "emptyHint": "Introduce una URL o un texto arriba para ver tu código QR.",
+      "previewAlt": "Vista previa del código QR",
+      "ecLevel": "Corrección de errores",
+      "ecHint": "Los niveles más altos resisten más daños, pero generan un código más denso.",
+      "size": "Tamaño",
+      "margin": "Margen",
+      "fgColor": "Primer plano",
+      "bgColor": "Fondo",
+      "lowContrast": "El contraste entre primer plano y fondo es demasiado bajo: puede que el código no se escanee.",
+      "invertedColors": "Un primer plano claro sobre un fondo oscuro puede fallar en algunos escáneres.",
+      "renderFailed": "No se pudo generar el código QR. Revisa lo que has introducido.",
+      "downloadPng": "Descargar PNG",
+      "downloadSvg": "Descargar SVG",
+      "copyImage": "Copiar imagen",
+      "copyFailed": "Este navegador no admite copiar. Usa la descarga en su lugar.",
+      "tooLong": "El texto es demasiado largo para caber en un código QR. Acórtalo o baja el nivel de corrección de errores.",
+      "metaTitle": "Generador de Códigos QR Gratis — PNG y SVG",
+      "metaDescription": "Convierte cualquier URL o texto en un código QR y descárgalo como PNG o SVG. Gratis, sin registro y generado en tu navegador: nada de lo que escribes se envía a un servidor. Ajusta corrección, tamaño y colores.",
+      "howToTitle": "Cómo usarlo",
+      "howTo": [
+        "Introduce la URL o el texto que quieres convertir en un código QR.",
+        "Ajusta el nivel de corrección de errores, el tamaño, el margen o los colores si lo deseas.",
+        "Descárgalo como PNG o SVG, o copia la imagen."
+      ],
+      "featuresTitle": "Sobre esta herramienta",
+      "features": [
+        "Gratis y sin registro: los códigos que creas nunca caducan.",
+        "Guárdalo como PNG o como SVG vectorial (el SVG es ideal para impresión).",
+        "Todo funciona en tu navegador: nada de lo que escribes se envía a un servidor."
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faq": [
+        { "q": "¿Necesito una cuenta?", "a": "No. Puedes crear y descargar códigos QR al momento, sin registro ni inicio de sesión." },
+        { "q": "¿Caducan los códigos QR?", "a": "No. Son códigos QR estáticos: los datos viven dentro de la propia imagen, así que funcionan para siempre." },
+        { "q": "¿Puedo descargar un SVG?", "a": "Sí. Tanto el PNG como el SVG se descargan gratis. Para impresión se recomienda el SVG, porque se adapta a cualquier tamaño sin perder calidad." },
+        { "q": "¿Se envían mis datos a un servidor?", "a": "No. El código QR se genera en tu navegador, y el texto o la URL que introduces nunca se envía a un servidor." },
+        { "q": "¿Puedo usarlo para impresión?", "a": "Sí. Descarga un SVG para que se mantenga nítido a cualquier tamaño. Para imprimir, procura al menos 2×2 cm y 300 DPI." }
+      ]
+    },
+    "wifi-qr-code": {
+      "title": "Generador de Códigos QR de WiFi",
+      "description": "Crea un código QR que conecta a la gente a tu red WiFi al escanearlo, sin teclear la contraseña.",
+      "metaTitle": "Generador de Códigos QR WiFi Gratis — Conexión al Instante",
+      "metaDescription": "Crea un código QR de WiFi gratis para que tus invitados se conecten escaneando, sin teclear la contraseña. Introduce tu SSID y contraseña; el código se genera en tu navegador y nunca se envía a un servidor. Descarga PNG o SVG.",
+      "ssidLabel": "Nombre de la red (SSID)",
+      "ssidPlaceholder": "MyWiFi",
+      "passwordLabel": "Contraseña",
+      "passwordPlaceholder": "Contraseña de la red",
+      "encryptionLabel": "Cifrado",
+      "encWpa": "WPA / WPA2 / WPA3",
+      "encWep": "WEP",
+      "encNone": "Ninguno (red abierta)",
+      "hiddenLabel": "Red oculta",
+      "emptyHint": "Introduce el nombre de tu red para ver el código QR de WiFi.",
+      "previewAlt": "Vista previa del código QR de WiFi",
+      "ecLevel": "Corrección de errores",
+      "ecHint": "Los niveles más altos resisten más daños, pero generan un código más denso.",
+      "size": "Tamaño",
+      "margin": "Margen",
+      "fgColor": "Primer plano",
+      "bgColor": "Fondo",
+      "lowContrast": "El contraste entre primer plano y fondo es demasiado bajo: puede que el código no se escanee.",
+      "invertedColors": "Un primer plano claro sobre un fondo oscuro puede fallar en algunos escáneres.",
+      "renderFailed": "No se pudo generar el código QR. Revisa lo que has introducido.",
+      "tooLong": "Los datos son demasiado largos para caber en un código QR. Acórtalos o baja el nivel de corrección de errores.",
+      "downloadPng": "Descargar PNG",
+      "downloadSvg": "Descargar SVG",
+      "copyImage": "Copiar imagen",
+      "copyFailed": "Este navegador no admite copiar. Usa la descarga en su lugar.",
+      "howToTitle": "Cómo usarlo",
+      "howTo": [
+        "Introduce el nombre de tu red WiFi (SSID) y la contraseña.",
+        "Elige el tipo de cifrado: WPA funciona en casi todos los routers modernos.",
+        "Descarga el código e imprímelo o muéstralo. La gente lo escanea para conectarse."
+      ],
+      "featuresTitle": "Sobre esta herramienta",
+      "features": [
+        "La gente se conecta escaneando: no hace falta dictar ni teclear la contraseña.",
+        "Gratis, sin registro, y el código nunca caduca.",
+        "El nombre de tu red y la contraseña se quedan en tu navegador y nunca se envían a un servidor."
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faq": [
+        { "q": "¿Cómo funciona un código QR de WiFi?", "a": "El código contiene el nombre de tu red, la contraseña y el tipo de cifrado. La mayoría de las cámaras de móvil lo leen y ofrecen conectarse a la red automáticamente." },
+        { "q": "¿Está segura mi contraseña de WiFi?", "a": "Sí. El código se genera por completo en tu navegador: tu SSID y tu contraseña nunca se suben a un servidor." },
+        { "q": "¿Qué cifrado debo elegir?", "a": "Elige WPA para casi todos los routers modernos (cubre WPA, WPA2 y WPA3). Usa WEP solo para redes antiguas, o Ninguno para redes abiertas." },
+        { "q": "¿Funciona en iPhone y Android?", "a": "Sí. iOS 11 en adelante y las versiones modernas de Android leen códigos QR de WiFi con la app de cámara integrada." },
+        { "q": "¿Puedo imprimirlo?", "a": "Sí. Descarga el SVG para una impresión nítida a cualquier tamaño: ideal para una tarjeta sobre la mesa o un póster en la pared." }
+      ]
+    },
+    "vcard-qr-code": {
+      "title": "Generador de Códigos QR vCard",
+      "description": "Crea un código QR que guarda tus datos de contacto en un móvil al escanearlo.",
+      "metaTitle": "Generador de Códigos QR vCard Gratis — Tarjeta de Contacto",
+      "metaDescription": "Crea un código QR vCard gratis que guarda tu nombre, teléfono, correo y más en los contactos de un móvil al escanearlo. Se genera en tu navegador y nunca se envía a un servidor. Descarga PNG o SVG.",
+      "firstNameLabel": "Nombre",
+      "lastNameLabel": "Apellidos",
+      "phoneLabel": "Teléfono",
+      "emailLabel": "Correo electrónico",
+      "orgLabel": "Organización",
+      "jobTitleLabel": "Cargo",
+      "urlLabel": "Sitio web",
+      "emptyHint": "Introduce un nombre o un teléfono para ver el código QR de contacto.",
+      "previewAlt": "Vista previa del código QR vCard",
+      "ecLevel": "Corrección de errores",
+      "ecHint": "Los niveles más altos resisten más daños, pero generan un código más denso.",
+      "size": "Tamaño",
+      "margin": "Margen",
+      "fgColor": "Primer plano",
+      "bgColor": "Fondo",
+      "lowContrast": "El contraste entre primer plano y fondo es demasiado bajo: puede que el código no se escanee.",
+      "invertedColors": "Un primer plano claro sobre un fondo oscuro puede fallar en algunos escáneres.",
+      "renderFailed": "No se pudo generar el código QR. Revisa lo que has introducido.",
+      "tooLong": "Los datos son demasiado largos para caber en un código QR. Acórtalos o baja el nivel de corrección de errores.",
+      "downloadPng": "Descargar PNG",
+      "downloadSvg": "Descargar SVG",
+      "copyImage": "Copiar imagen",
+      "copyFailed": "Este navegador no admite copiar. Usa la descarga en su lugar.",
+      "howToTitle": "Cómo usarlo",
+      "howTo": [
+        "Rellena los datos de contacto que quieras compartir.",
+        "Ajusta el tamaño o los colores si lo deseas.",
+        "Descarga el código. Al escanearlo, se añade el contacto a un móvil."
+      ],
+      "featuresTitle": "Sobre esta herramienta",
+      "features": [
+        "Al escanearlo, tus datos se guardan directamente en los contactos de un móvil.",
+        "Gratis, sin registro, y el código nunca caduca.",
+        "Tus datos de contacto se quedan en tu navegador y nunca se envían a un servidor."
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faq": [
+        { "q": "¿Qué es un código QR vCard?", "a": "Es un código QR que contiene datos de contacto en formato vCard. Al escanearlo, un móvil guarda el contacto con un solo toque." },
+        { "q": "¿Es privada mi información?", "a": "Sí. El código se genera en tu navegador: nada de lo que introduces se envía a un servidor." },
+        { "q": "¿Qué campos debería incluir?", "a": "Al menos un nombre y una forma de contacto (teléfono o correo). La organización, el cargo y el sitio web son opcionales." },
+        { "q": "¿Funciona en todos los móviles?", "a": "Sí. El iPhone y Android leen los códigos QR vCard con la cámara integrada y ofrecen crear un contacto." },
+        { "q": "¿Puedo ponerlo en una tarjeta de visita?", "a": "Sí. Descarga el SVG para que se mantenga nítido al tamaño de impresión y añádelo a tu tarjeta o a tu firma de correo." }
+      ]
+    }
+  }
+}
