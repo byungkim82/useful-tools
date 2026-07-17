@@ -52,11 +52,26 @@
       ],
       "faqTitle": "Häufig gestellte Fragen",
       "faq": [
-        { "q": "Brauche ich ein Konto?", "a": "Nein. Sie können QR-Codes sofort erstellen und herunterladen — ohne Anmeldung oder Login." },
-        { "q": "Laufen die QR-Codes ab?", "a": "Nein. Das sind statische QR-Codes — die Daten stecken im Bild selbst, deshalb funktionieren sie für immer." },
-        { "q": "Kann ich ein SVG herunterladen?", "a": "Ja. PNG und SVG lassen sich beide kostenlos herunterladen. Für den Druck empfiehlt sich SVG, da es sich ohne Qualitätsverlust auf jede Größe skalieren lässt." },
-        { "q": "Werden meine Daten an einen Server gesendet?", "a": "Nein. Der QR-Code wird in Ihrem Browser erstellt, und der eingegebene Text bzw. die URL wird niemals an einen Server gesendet." },
-        { "q": "Kann ich ihn für den Druck verwenden?", "a": "Ja. Laden Sie ein SVG herunter, damit er in jeder Größe scharf bleibt. Für den Druck sollten Sie mindestens 2×2 cm und 300 DPI anstreben." }
+        {
+          "q": "Brauche ich ein Konto?",
+          "a": "Nein. Sie können QR-Codes sofort erstellen und herunterladen — ohne Anmeldung oder Login."
+        },
+        {
+          "q": "Laufen die QR-Codes ab?",
+          "a": "Nein. Das sind statische QR-Codes — die Daten stecken im Bild selbst, deshalb funktionieren sie für immer."
+        },
+        {
+          "q": "Kann ich ein SVG herunterladen?",
+          "a": "Ja. PNG und SVG lassen sich beide kostenlos herunterladen. Für den Druck empfiehlt sich SVG, da es sich ohne Qualitätsverlust auf jede Größe skalieren lässt."
+        },
+        {
+          "q": "Werden meine Daten an einen Server gesendet?",
+          "a": "Nein. Der QR-Code wird in Ihrem Browser erstellt, und der eingegebene Text bzw. die URL wird niemals an einen Server gesendet."
+        },
+        {
+          "q": "Kann ich ihn für den Druck verwenden?",
+          "a": "Ja. Laden Sie ein SVG herunter, damit er in jeder Größe scharf bleibt. Für den Druck sollten Sie mindestens 2×2 cm und 300 DPI anstreben."
+        }
       ]
     },
     "wifi-qr-code": {
@@ -103,11 +118,26 @@
       ],
       "faqTitle": "Häufig gestellte Fragen",
       "faq": [
-        { "q": "Wie funktioniert ein WLAN-QR-Code?", "a": "Der Code enthält Ihren Netzwerknamen, das Passwort und die Verschlüsselung. Die meisten Handykameras lesen ihn und bieten an, sich automatisch mit dem Netzwerk zu verbinden." },
-        { "q": "Ist mein WLAN-Passwort sicher?", "a": "Ja. Der Code wird vollständig in Ihrem Browser erstellt — SSID und Passwort werden nie auf einen Server hochgeladen." },
-        { "q": "Welche Verschlüsselung soll ich wählen?", "a": "Wählen Sie WPA für nahezu alle modernen Router (deckt WPA, WPA2 und WPA3 ab). WEP nur für alte Netzwerke, Keine für offene Netzwerke." },
-        { "q": "Funktioniert es auf iPhone und Android?", "a": "Ja. iOS 11+ und moderne Android-Geräte lesen WLAN-QR-Codes mit der integrierten Kamera-App." },
-        { "q": "Kann ich ihn drucken?", "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck in jeder Größe — praktisch für eine Karte auf dem Tisch oder ein Poster an der Wand." }
+        {
+          "q": "Wie funktioniert ein WLAN-QR-Code?",
+          "a": "Der Code enthält Ihren Netzwerknamen, das Passwort und die Verschlüsselung. Die meisten Handykameras lesen ihn und bieten an, sich automatisch mit dem Netzwerk zu verbinden."
+        },
+        {
+          "q": "Ist mein WLAN-Passwort sicher?",
+          "a": "Ja. Der Code wird vollständig in Ihrem Browser erstellt — SSID und Passwort werden nie auf einen Server hochgeladen."
+        },
+        {
+          "q": "Welche Verschlüsselung soll ich wählen?",
+          "a": "Wählen Sie WPA für nahezu alle modernen Router (deckt WPA, WPA2 und WPA3 ab). WEP nur für alte Netzwerke, Keine für offene Netzwerke."
+        },
+        {
+          "q": "Funktioniert es auf iPhone und Android?",
+          "a": "Ja. iOS 11+ und moderne Android-Geräte lesen WLAN-QR-Codes mit der integrierten Kamera-App."
+        },
+        {
+          "q": "Kann ich ihn drucken?",
+          "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck in jeder Größe — praktisch für eine Karte auf dem Tisch oder ein Poster an der Wand."
+        }
       ]
     },
     "vcard-qr-code": {
@@ -152,11 +182,388 @@
       ],
       "faqTitle": "Häufig gestellte Fragen",
       "faq": [
-        { "q": "Was ist ein vCard-QR-Code?", "a": "Es ist ein QR-Code, der Kontaktdaten im vCard-Format enthält. Beim Scannen kann ein Handy den Kontakt mit einem Tippen speichern." },
-        { "q": "Sind meine Informationen privat?", "a": "Ja. Der Code wird in Ihrem Browser erstellt — nichts, was Sie eingeben, wird an einen Server gesendet." },
-        { "q": "Welche Felder sollte ich angeben?", "a": "Mindestens einen Namen und eine Kontaktmöglichkeit (Telefon oder E-Mail). Organisation, Position und Website sind optional." },
-        { "q": "Funktioniert es auf allen Handys?", "a": "Ja. iPhone und Android lesen vCard-QR-Codes mit der integrierten Kamera und bieten an, einen Kontakt anzulegen." },
-        { "q": "Kann ich ihn auf eine Visitenkarte drucken?", "a": "Ja. Laden Sie das SVG herunter, damit er in Druckgröße scharf bleibt, und fügen Sie ihn Ihrer Karte oder E-Mail-Signatur hinzu." }
+        {
+          "q": "Was ist ein vCard-QR-Code?",
+          "a": "Es ist ein QR-Code, der Kontaktdaten im vCard-Format enthält. Beim Scannen kann ein Handy den Kontakt mit einem Tippen speichern."
+        },
+        {
+          "q": "Sind meine Informationen privat?",
+          "a": "Ja. Der Code wird in Ihrem Browser erstellt — nichts, was Sie eingeben, wird an einen Server gesendet."
+        },
+        {
+          "q": "Welche Felder sollte ich angeben?",
+          "a": "Mindestens einen Namen und eine Kontaktmöglichkeit (Telefon oder E-Mail). Organisation, Position und Website sind optional."
+        },
+        {
+          "q": "Funktioniert es auf allen Handys?",
+          "a": "Ja. iPhone und Android lesen vCard-QR-Codes mit der integrierten Kamera und bieten an, einen Kontakt anzulegen."
+        },
+        {
+          "q": "Kann ich ihn auf eine Visitenkarte drucken?",
+          "a": "Ja. Laden Sie das SVG herunter, damit er in Druckgröße scharf bleibt, und fügen Sie ihn Ihrer Karte oder E-Mail-Signatur hinzu."
+        }
+      ]
+    },
+    "email-qr-code": {
+      "title": "E-Mail-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der eine neue E-Mail öffnet — bereits ausgefüllt mit Adresse, Betreff und Nachricht.",
+      "metaTitle": "Kostenloser E-Mail-QR-Code-Generator — mailto-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen E-Mail-QR-Code, der beim Scannen eine voradressierte E-Mail öffnet — mit optionalem Betreff und Nachricht. Wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "toLabel": "Empfänger-E-Mail",
+      "toPlaceholder": "name@example.com",
+      "subjectLabel": "Betreff",
+      "bodyLabel": "Nachricht",
+      "emptyHint": "Geben Sie eine Empfänger-E-Mail ein, um den QR-Code zu sehen.",
+      "previewAlt": "E-Mail-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie die E-Mail-Adresse des Empfängers ein.",
+        "Fügen Sie optional einen Betreff und eine Nachricht hinzu.",
+        "Laden Sie den QR-Code herunter. Beim Scannen öffnet sich eine versandfertige E-Mail."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen öffnet sich eine neue E-Mail, bereits ausgefüllt mit Ihrer Adresse, dem Betreff und der Nachricht.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Alles wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein E-Mail-QR-Code?",
+          "a": "Er nutzt einen mailto-Link. Beim Scannen öffnet das Handy seine E-Mail-App mit Ihrer Adresse — und einem etwaigen Betreff oder einer Nachricht — bereits ausgefüllt."
+        },
+        {
+          "q": "Wird die E-Mail automatisch gesendet?",
+          "a": "Nein. Es wird nur ein versandfertiger Entwurf geöffnet; die Person tippt selbst auf Senden."
+        },
+        {
+          "q": "Kann ich einen Betreff und eine Nachricht hinzufügen?",
+          "a": "Ja. Beides ist optional und wird in der E-Mail vorausgefüllt, wenn jemand den Code scannt."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Kann ich ein SVG herunterladen?",
+          "a": "Ja. Sowohl PNG als auch SVG lassen sich kostenlos herunterladen; SVG eignet sich am besten für den Druck."
+        }
+      ]
+    },
+    "sms-qr-code": {
+      "title": "SMS-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der eine Textnachricht öffnet — bereits ausgefüllt mit Nummer und Nachricht.",
+      "metaTitle": "Kostenloser SMS-QR-Code-Generator — Textnachricht-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen SMS-QR-Code, der beim Scannen eine vorausgefüllte Textnachricht öffnet. Telefonnummer und Nachricht eingeben; wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "phoneLabel": "Telefonnummer",
+      "phonePlaceholder": "+1 555 123 4567",
+      "messageLabel": "Nachricht",
+      "emptyHint": "Geben Sie eine Telefonnummer ein, um den SMS-QR-Code zu sehen.",
+      "previewAlt": "SMS-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie die Telefonnummer ein, an die die SMS gehen soll.",
+        "Fügen Sie die Nachricht hinzu, die vorausgefüllt werden soll.",
+        "Laden Sie den QR-Code herunter. Beim Scannen öffnet sich eine versandfertige SMS."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen öffnet sich eine Textnachricht, bereits ausgefüllt mit Nummer und Nachricht.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein SMS-QR-Code?",
+          "a": "Er nutzt das SMSTO-Format. Beim Scannen öffnet das Handy seine Nachrichten-App mit der Nummer und der Nachricht bereits ausgefüllt."
+        },
+        {
+          "q": "Brauche ich eine Nachricht?",
+          "a": "Nein. Die Nachricht ist optional — mit nur einer Nummer öffnet das Scannen eine leere SMS an diese Nummer."
+        },
+        {
+          "q": "Wird sie automatisch gesendet?",
+          "a": "Nein. Es wird ein versandfertiger Entwurf geöffnet; die Person tippt auf Senden."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Welche Handys unterstützen es?",
+          "a": "Die meisten modernen iPhones und Android-Handys lesen SMS-QR-Codes mit der integrierten Kamera."
+        }
+      ]
+    },
+    "phone-qr-code": {
+      "title": "Telefonnummer-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der beim Scannen einen Anruf startet.",
+      "metaTitle": "Kostenloser Telefonnummer-QR-Code-Generator — Anruf-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen Telefonnummer-QR-Code, der beim Scannen einen Anruf startet. Nummer eingeben; wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "phoneLabel": "Telefonnummer",
+      "phonePlaceholder": "+1 555 123 4567",
+      "emptyHint": "Geben Sie eine Telefonnummer ein, um den QR-Code zu sehen.",
+      "previewAlt": "Telefon-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie die Telefonnummer ein, idealerweise mit Ländervorwahl.",
+        "Passen Sie bei Bedarf Größe oder Farben an.",
+        "Laden Sie den QR-Code herunter. Beim Scannen wird angeboten, die Nummer anzurufen."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen wird angeboten, Ihre Nummer mit einem Tippen zu wählen.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein Telefon-QR-Code?",
+          "a": "Er nutzt einen tel-Link. Beim Scannen bietet das Handy an, die Nummer anzurufen — ganz ohne Tippen."
+        },
+        {
+          "q": "Sollte ich die Ländervorwahl angeben?",
+          "a": "Ja, für mehr Zuverlässigkeit. Beginnen Sie mit + und der Ländervorwahl, damit es international funktioniert."
+        },
+        {
+          "q": "Ruft es automatisch an?",
+          "a": "Nein. Es öffnet die Telefon-App mit der bereitstehenden Nummer; die Person tippt auf Anrufen."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Kann ich ihn im Druck verwenden?",
+          "a": "Ja. Laden Sie das SVG herunter, damit es auf Postern, Flyern oder Schildern scharf bleibt."
+        }
+      ]
+    },
+    "whatsapp-qr-code": {
+      "title": "WhatsApp-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der einen WhatsApp-Chat öffnet — mit optional vorausgefüllter Nachricht.",
+      "metaTitle": "Kostenloser WhatsApp-QR-Code-Generator — Chat-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen WhatsApp-QR-Code, der beim Scannen einen Chat mit Ihrer Nummer öffnet — mit optional vorausgefüllter Nachricht. Wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "phoneLabel": "Telefonnummer (mit Ländervorwahl)",
+      "phonePlaceholder": "+1 555 123 4567",
+      "messageLabel": "Vorausgefüllte Nachricht",
+      "emptyHint": "Geben Sie eine Telefonnummer ein, um den WhatsApp-QR-Code zu sehen.",
+      "previewAlt": "WhatsApp-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie Ihre Telefonnummer mit Ländervorwahl ein.",
+        "Fügen Sie optional eine Nachricht zum Vorausfüllen hinzu.",
+        "Laden Sie den QR-Code herunter. Beim Scannen öffnet sich ein WhatsApp-Chat mit Ihnen."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen öffnet sich ein WhatsApp-Chat mit Ihrer Nummer, bereit zum Schreiben.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein WhatsApp-QR-Code?",
+          "a": "Er nutzt einen wa.me-Link. Beim Scannen öffnet WhatsApp einen Chat mit Ihrer Nummer und einer etwaigen vorausgefüllten Nachricht."
+        },
+        {
+          "q": "Brauche ich die Ländervorwahl?",
+          "a": "Ja. Geben Sie die vollständige Nummer mit Ländervorwahl ein (zum Beispiel +1…), damit WhatsApp sie finden kann."
+        },
+        {
+          "q": "Ist das der offizielle WhatsApp-Code?",
+          "a": "Es ist ein standardmäßiger wa.me-Link — genau das, was WhatsApp für Click-to-Chat verwendet."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Kann ich ihn im Druck verwenden?",
+          "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck auf Flyern, Speisekarten oder Schaufenstern."
+        }
+      ]
+    },
+    "location-qr-code": {
+      "title": "Standort-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der beim Scannen einen Standort auf der Karte öffnet.",
+      "metaTitle": "Kostenloser Standort-QR-Code-Generator — Karten- & GPS-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen Standort-QR-Code, der beim Scannen eine Karte an Ihren Koordinaten öffnet. Breiten- und Längengrad eingeben; wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "latLabel": "Breitengrad",
+      "lngLabel": "Längengrad",
+      "labelLabel": "Ortsname (optional)",
+      "emptyHint": "Geben Sie Breiten- und Längengrad ein, um den Standort-QR-Code zu sehen.",
+      "previewAlt": "Standort-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie den Breiten- und Längengrad des Ortes ein.",
+        "Fügen Sie optional einen Ortsnamen hinzu.",
+        "Laden Sie den QR-Code herunter. Beim Scannen öffnet sich der Standort in einer Karten-App."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen öffnen sich die Koordinaten in der Karten-App des Handys.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein Standort-QR-Code?",
+          "a": "Er nutzt einen geo-URI mit Breiten- und Längengrad. Beim Scannen öffnet das Handy den Punkt in seiner Standard-Karten-App."
+        },
+        {
+          "q": "Wo finde ich Breiten- und Längengrad?",
+          "a": "Klicken Sie in Google Maps mit der rechten Maustaste auf eine Stelle (oder tippen Sie mobil lange darauf), um deren Koordinaten zu kopieren."
+        },
+        {
+          "q": "Funktioniert es auf iPhone und Android?",
+          "a": "Ja. Beide öffnen geo-Koordinaten beim Scannen in ihrer Karten-App."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Kann ich ihn im Druck verwenden?",
+          "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck auf Schildern, Einladungen oder Schaufenstern."
+        }
+      ]
+    },
+    "event-qr-code": {
+      "title": "Termin-QR-Code-Generator",
+      "description": "Erstellen Sie einen QR-Code, der beim Scannen einen Termin zu einem Kalender hinzufügt.",
+      "metaTitle": "Kostenloser Termin-QR-Code-Generator — Kalender-QR",
+      "metaDescription": "Erstellen Sie einen kostenlosen Kalender-Termin-QR-Code, der beim Scannen einen Termin zum Kalender eines Handys hinzufügt. Titel, Zeit und Ort eingeben; wird in Ihrem Browser erstellt und nie an einen Server gesendet. PNG oder SVG herunterladen.",
+      "titleLabel": "Termintitel",
+      "startLabel": "Beginn",
+      "endLabel": "Ende",
+      "locationLabel": "Ort",
+      "descriptionLabel": "Beschreibung",
+      "emptyHint": "Geben Sie einen Termintitel oder eine Startzeit ein, um den QR-Code zu sehen.",
+      "previewAlt": "Termin-QR-Code-Vorschau",
+      "ecLevel": "Fehlerkorrektur",
+      "ecHint": "Höhere Stufen überstehen mehr Beschädigungen, machen den Code aber dichter.",
+      "size": "Größe",
+      "margin": "Rand",
+      "fgColor": "Vordergrund",
+      "bgColor": "Hintergrund",
+      "lowContrast": "Der Kontrast zwischen Vorder- und Hintergrund ist zu gering — der Code lässt sich möglicherweise nicht scannen.",
+      "invertedColors": "Heller Vordergrund auf dunklem Hintergrund funktioniert bei manchen Scannern nicht.",
+      "renderFailed": "Der QR-Code konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Eingabe.",
+      "tooLong": "Die Angaben sind zu lang für einen QR-Code. Kürzen Sie sie oder verringern Sie die Fehlerkorrektur-Stufe.",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "copyImage": "Bild kopieren",
+      "copyFailed": "Kopieren wird in diesem Browser nicht unterstützt. Nutzen Sie stattdessen den Download.",
+      "howToTitle": "So funktioniert's",
+      "howTo": [
+        "Geben Sie den Termintitel und die Startzeit ein.",
+        "Fügen Sie bei Bedarf Endzeit, Ort und Beschreibung hinzu.",
+        "Laden Sie den QR-Code herunter. Beim Scannen wird angeboten, den Termin zu einem Kalender hinzuzufügen."
+      ],
+      "featuresTitle": "Über dieses Tool",
+      "features": [
+        "Beim Scannen wird angeboten, den Termin direkt zum Kalender eines Handys hinzuzufügen.",
+        "Kostenlos und ohne Anmeldung, und der Code läuft nie ab.",
+        "Wird in Ihrem Browser erstellt — nichts wird an einen Server gesendet."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie funktioniert ein Termin-QR-Code?",
+          "a": "Er enthält den Termin im iCalendar-Format (VEVENT). Beim Scannen bietet das Handy an, ihn zum Kalender hinzuzufügen."
+        },
+        {
+          "q": "Welche Zeitzone wird verwendet?",
+          "a": "Die Zeiten werden wie eingegeben gespeichert (lokale, schwebende Zeit), sodass sie in jedem Kalender, der sie öffnet, gleich erscheinen."
+        },
+        {
+          "q": "Funktioniert es auf iPhone und Android?",
+          "a": "Ja. Beide lesen Termin-QR-Codes und bieten an, einen Kalendereintrag zu erstellen."
+        },
+        {
+          "q": "Ist es kostenlos?",
+          "a": "Ja — kostenlos, ohne Anmeldung, und der Code läuft nie ab."
+        },
+        {
+          "q": "Kann ich ihn auf Einladungen verwenden?",
+          "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck auf Einladungen, Postern oder Tickets."
+        }
       ]
     }
   }

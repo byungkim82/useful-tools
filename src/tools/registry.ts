@@ -45,6 +45,48 @@ export const tools: ToolMeta[] = [
     keywords: ['vcard', 'contact', 'qr', '명함', '연락처', 'vcard qr'],
     load: () => import('@/tools/qr/VCardQrClient'),
   },
+  {
+    slug: 'email-qr-code',
+    category: 'generator',
+    icon: '✉️',
+    keywords: ['email', 'mailto', 'qr', '이메일', '메일', '이메일 qr'],
+    load: () => import('@/tools/qr/EmailQrClient'),
+  },
+  {
+    slug: 'sms-qr-code',
+    category: 'generator',
+    icon: '💬',
+    keywords: ['sms', 'text', 'message', 'qr', '문자', '문자메시지'],
+    load: () => import('@/tools/qr/SmsQrClient'),
+  },
+  {
+    slug: 'phone-qr-code',
+    category: 'generator',
+    icon: '📞',
+    keywords: ['phone', 'call', 'tel', 'qr', '전화', '전화번호'],
+    load: () => import('@/tools/qr/PhoneQrClient'),
+  },
+  {
+    slug: 'whatsapp-qr-code',
+    category: 'generator',
+    icon: '🟢',
+    keywords: ['whatsapp', 'wa', 'chat', 'qr', '왓츠앱'],
+    load: () => import('@/tools/qr/WhatsAppQrClient'),
+  },
+  {
+    slug: 'location-qr-code',
+    category: 'generator',
+    icon: '📍',
+    keywords: ['location', 'geo', 'map', 'gps', 'qr', '위치', '지도'],
+    load: () => import('@/tools/qr/LocationQrClient'),
+  },
+  {
+    slug: 'event-qr-code',
+    category: 'generator',
+    icon: '📅',
+    keywords: ['event', 'calendar', 'ics', 'qr', '이벤트', '캘린더', '일정'],
+    load: () => import('@/tools/qr/EventQrClient'),
+  },
 ];
 
 export function getTool(slug: string): ToolMeta | undefined {

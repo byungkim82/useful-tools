@@ -52,3 +52,61 @@ export function buildVCardPayload(v: VCardInput): string {
 
 export const vcardHasData = (v: VCardInput): boolean =>
   [v.firstName, v.lastName, v.phone, v.email, v.org, v.jobTitle, v.url].some((s) => s.trim().length > 0);
+
+// --- Email (mailto, RFC 6068): subject/body are URL-encoded query params ---
+export type EmailInput = { to: string; subject: string; body: string };
+export function buildEmailPayload({ to, subject, body }: EmailInput): string {
+  const params: string[] = [];
+  if (subject.trim()) params.push(`subject=${encodeURIComponent(subject)}`);
+  if (body.trim()) params.push(`body=${encodeURIComponent(body)}`);
+  return `mailto:${to.trim()}${params.length ? '?' + params.join('&') : ''}`;
+}
+
+// --- SMS (SMSTO — the most widely-supported variant) ---
+export type SmsInput = { phone: string; message: string };
+export function buildSmsPayload({ phone, message }: SmsInput): string {
+  return message.trim() ? `SMSTO:${phone.trim()}:${message}` : `SMSTO:${phone.trim()}`;
+}
+
+// --- Phone (tel, RFC 3966) ---
+export function buildPhonePayload(phone: string): string {
+  return `tel:${phone.trim()}`;
+}
+
+// --- WhatsApp (wa.me): number must be digits only, text URL-encoded ---
+export type WhatsAppInput = { phone: string; message: string };
+export function buildWhatsAppPayload({ phone, message }: WhatsAppInput): string {
+  const digits = phone.replace(/\D/g, '');
+  return `https://wa.me/${digits}${message.trim() ? '?text=' + encodeURIComponent(message) : ''}`;
+}
+
+// --- Geolocation (geo:, RFC 5870) ---
+export type GeoInput = { lat: string; lng: string; label: string };
+export function buildGeoPayload({ lat, lng, label }: GeoInput): string {
+  const base = `geo:${lat.trim()},${lng.trim()}`;
+  return label.trim() ? `${base}?q=${encodeURIComponent(label.trim())}` : base;
+}
+
+// --- Calendar event (iCalendar VEVENT, RFC 5545) ---
+export type EventInput = { title: string; location: string; description: string; start: string; end: string };
+const escICS = (s: string): string => s.replace(/([\\;,])/g, '\\$1').replace(/\n/g, '\\n');
+// datetime-local "2026-09-01T09:00" → floating local iCal stamp "20260901T090000".
+export function toICalDate(v: string): string {
+  if (!v) return '';
+  const [d, t = ''] = v.split('T');
+  const date = d.replace(/-/g, '');
+  const time = (t.replace(/:/g, '') + '000000').slice(0, 6);
+  return `${date}T${time}`;
+}
+export function buildEventPayload({ title, location, description, start, end }: EventInput): string {
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'BEGIN:VEVENT'];
+  if (title.trim()) lines.push(`SUMMARY:${escICS(title.trim())}`);
+  const s = toICalDate(start), e = toICalDate(end);
+  if (s) lines.push(`DTSTART:${s}`);
+  if (e) lines.push(`DTEND:${e}`);
+  if (location.trim()) lines.push(`LOCATION:${escICS(location.trim())}`);
+  if (description.trim()) lines.push(`DESCRIPTION:${escICS(description.trim())}`);
+  lines.push('END:VEVENT', 'END:VCALENDAR');
+  return lines.join('\n');
+}
+export const eventHasData = (e: EventInput): boolean => e.title.trim().length > 0 || e.start.trim().length > 0;

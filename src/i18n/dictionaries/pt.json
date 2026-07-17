@@ -52,11 +52,26 @@
       ],
       "faqTitle": "Perguntas frequentes",
       "faq": [
-        { "q": "Preciso de uma conta?", "a": "Não. Você cria e baixa QR Codes na hora, sem cadastro nem login." },
-        { "q": "Os QR Codes expiram?", "a": "Não. São QR Codes estáticos — os dados ficam na própria imagem, então eles funcionam para sempre." },
-        { "q": "Posso baixar em SVG?", "a": "Sim. Tanto o PNG quanto o SVG são grátis para baixar. Para impressão, o SVG é o mais indicado, porque se adapta a qualquer tamanho sem perder qualidade." },
-        { "q": "Meus dados são enviados para um servidor?", "a": "Não. O QR Code é gerado no seu navegador, e o texto ou a URL que você digita nunca vai para um servidor." },
-        { "q": "Posso usar para impressão?", "a": "Sim. Baixe o SVG para manter a nitidez em qualquer tamanho. Para imprimir, use pelo menos 2×2 cm e 300 DPI." }
+        {
+          "q": "Preciso de uma conta?",
+          "a": "Não. Você cria e baixa QR Codes na hora, sem cadastro nem login."
+        },
+        {
+          "q": "Os QR Codes expiram?",
+          "a": "Não. São QR Codes estáticos — os dados ficam na própria imagem, então eles funcionam para sempre."
+        },
+        {
+          "q": "Posso baixar em SVG?",
+          "a": "Sim. Tanto o PNG quanto o SVG são grátis para baixar. Para impressão, o SVG é o mais indicado, porque se adapta a qualquer tamanho sem perder qualidade."
+        },
+        {
+          "q": "Meus dados são enviados para um servidor?",
+          "a": "Não. O QR Code é gerado no seu navegador, e o texto ou a URL que você digita nunca vai para um servidor."
+        },
+        {
+          "q": "Posso usar para impressão?",
+          "a": "Sim. Baixe o SVG para manter a nitidez em qualquer tamanho. Para imprimir, use pelo menos 2×2 cm e 300 DPI."
+        }
       ]
     },
     "wifi-qr-code": {
@@ -103,11 +118,26 @@
       ],
       "faqTitle": "Perguntas frequentes",
       "faq": [
-        { "q": "Como funciona um QR Code de WiFi?", "a": "O código guarda o nome da rede, a senha e o tipo de criptografia. A maioria das câmeras de celular lê o código e oferece entrar na rede automaticamente." },
-        { "q": "Minha senha do WiFi está segura?", "a": "Sim. O código é gerado inteiramente no seu navegador — o SSID e a senha nunca são enviados para um servidor." },
-        { "q": "Qual criptografia devo escolher?", "a": "Escolha WPA para quase todos os roteadores modernos (cobre WPA, WPA2 e WPA3). Use WEP apenas em redes antigas, ou Nenhuma para redes abertas." },
-        { "q": "Funciona no iPhone e no Android?", "a": "Sim. iOS 11+ e as versões modernas do Android leem QR Codes de WiFi com o próprio app de câmera." },
-        { "q": "Posso imprimir?", "a": "Sim. Baixe o SVG para uma impressão nítida em qualquer tamanho — ótimo para um cartão na mesa ou um cartaz na parede." }
+        {
+          "q": "Como funciona um QR Code de WiFi?",
+          "a": "O código guarda o nome da rede, a senha e o tipo de criptografia. A maioria das câmeras de celular lê o código e oferece entrar na rede automaticamente."
+        },
+        {
+          "q": "Minha senha do WiFi está segura?",
+          "a": "Sim. O código é gerado inteiramente no seu navegador — o SSID e a senha nunca são enviados para um servidor."
+        },
+        {
+          "q": "Qual criptografia devo escolher?",
+          "a": "Escolha WPA para quase todos os roteadores modernos (cobre WPA, WPA2 e WPA3). Use WEP apenas em redes antigas, ou Nenhuma para redes abertas."
+        },
+        {
+          "q": "Funciona no iPhone e no Android?",
+          "a": "Sim. iOS 11+ e as versões modernas do Android leem QR Codes de WiFi com o próprio app de câmera."
+        },
+        {
+          "q": "Posso imprimir?",
+          "a": "Sim. Baixe o SVG para uma impressão nítida em qualquer tamanho — ótimo para um cartão na mesa ou um cartaz na parede."
+        }
       ]
     },
     "vcard-qr-code": {
@@ -152,11 +182,388 @@
       ],
       "faqTitle": "Perguntas frequentes",
       "faq": [
-        { "q": "O que é um QR Code vCard?", "a": "É um QR Code com dados de contato no formato vCard. Ao escanear, o celular salva o contato com um toque." },
-        { "q": "Minhas informações são privadas?", "a": "Sim. O código é gerado no seu navegador — nada do que você preenche vai para um servidor." },
-        { "q": "Quais campos devo incluir?", "a": "No mínimo, um nome e uma forma de contato (telefone ou e-mail). Empresa, cargo e site são opcionais." },
-        { "q": "Funciona em todos os celulares?", "a": "Sim. iPhone e Android leem QR Codes vCard com a própria câmera e oferecem criar o contato." },
-        { "q": "Posso colocar em um cartão de visita?", "a": "Sim. Baixe o SVG para manter a nitidez no tamanho de impressão e adicione ao seu cartão ou à assinatura de e-mail." }
+        {
+          "q": "O que é um QR Code vCard?",
+          "a": "É um QR Code com dados de contato no formato vCard. Ao escanear, o celular salva o contato com um toque."
+        },
+        {
+          "q": "Minhas informações são privadas?",
+          "a": "Sim. O código é gerado no seu navegador — nada do que você preenche vai para um servidor."
+        },
+        {
+          "q": "Quais campos devo incluir?",
+          "a": "No mínimo, um nome e uma forma de contato (telefone ou e-mail). Empresa, cargo e site são opcionais."
+        },
+        {
+          "q": "Funciona em todos os celulares?",
+          "a": "Sim. iPhone e Android leem QR Codes vCard com a própria câmera e oferecem criar o contato."
+        },
+        {
+          "q": "Posso colocar em um cartão de visita?",
+          "a": "Sim. Baixe o SVG para manter a nitidez no tamanho de impressão e adicione ao seu cartão ou à assinatura de e-mail."
+        }
+      ]
+    },
+    "email-qr-code": {
+      "title": "Gerador de QR Code de E-mail",
+      "description": "Crie um QR Code que abre um novo e-mail — já preenchido com o endereço, o assunto e a mensagem.",
+      "metaTitle": "Gerador de QR Code de E-mail Grátis — QR mailto",
+      "metaDescription": "Crie um QR Code de e-mail grátis que abre um e-mail com o destinatário já preenchido ao escanear, com assunto e mensagem opcionais. Gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "toLabel": "E-mail do destinatário",
+      "toPlaceholder": "name@example.com",
+      "subjectLabel": "Assunto",
+      "bodyLabel": "Mensagem",
+      "emptyHint": "Digite o e-mail do destinatário para ver o QR Code.",
+      "previewAlt": "Prévia do QR Code de e-mail",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite o endereço de e-mail do destinatário.",
+        "Adicione um assunto e uma mensagem, se quiser.",
+        "Baixe o QR Code. Ao escanear, um e-mail pronto para enviar é aberto."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, um novo e-mail é aberto já preenchido com o endereço, o assunto e a mensagem.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Tudo é gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de e-mail?",
+          "a": "Ele usa um link mailto. Ao escanear, o celular abre o app de e-mail com o endereço — e qualquer assunto ou mensagem — já preenchidos."
+        },
+        {
+          "q": "Ele envia o e-mail automaticamente?",
+          "a": "Não. Ele apenas abre um rascunho pronto para enviar; a pessoa toca em enviar."
+        },
+        {
+          "q": "Posso adicionar assunto e mensagem?",
+          "a": "Sim. Ambos são opcionais e ficam preenchidos no e-mail quando alguém escaneia o código."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Posso baixar em SVG?",
+          "a": "Sim. Tanto o PNG quanto o SVG são grátis para baixar; o SVG é o melhor para impressão."
+        }
+      ]
+    },
+    "sms-qr-code": {
+      "title": "Gerador de QR Code de SMS",
+      "description": "Crie um QR Code que abre uma mensagem de texto — já preenchida com o número e a mensagem.",
+      "metaTitle": "Gerador de QR Code de SMS Grátis — QR de Mensagem de Texto",
+      "metaDescription": "Crie um QR Code de SMS grátis que abre uma mensagem de texto já preenchida ao escanear. Informe um número de telefone e a mensagem; gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "phoneLabel": "Número de telefone",
+      "phonePlaceholder": "+1 555 123 4567",
+      "messageLabel": "Mensagem",
+      "emptyHint": "Digite um número de telefone para ver o QR Code de SMS.",
+      "previewAlt": "Prévia do QR Code de SMS",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite o número de telefone para o qual enviar a mensagem.",
+        "Adicione a mensagem que você quer deixar preenchida.",
+        "Baixe o QR Code. Ao escanear, uma mensagem pronta para enviar é aberta."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, uma mensagem de texto é aberta já preenchida com o número e a mensagem.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de SMS?",
+          "a": "Ele usa o formato SMSTO. Ao escanear, o celular abre o app de mensagens com o número e a mensagem já preenchidos."
+        },
+        {
+          "q": "Preciso de uma mensagem?",
+          "a": "Não. A mensagem é opcional — só com o número, ao escanear abre uma mensagem em branco para esse número."
+        },
+        {
+          "q": "Ele envia automaticamente?",
+          "a": "Não. Ele abre um rascunho pronto para enviar; a pessoa toca em enviar."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Quais celulares são compatíveis?",
+          "a": "A maioria dos iPhones e celulares Android modernos lê QR Codes de SMS com a própria câmera."
+        }
+      ]
+    },
+    "phone-qr-code": {
+      "title": "Gerador de QR Code de Telefone",
+      "description": "Crie um QR Code que inicia uma ligação ao escanear.",
+      "metaTitle": "Gerador de QR Code de Telefone Grátis — QR de Ligação",
+      "metaDescription": "Crie um QR Code de telefone grátis que inicia uma ligação ao escanear. Informe um número; gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "phoneLabel": "Número de telefone",
+      "phonePlaceholder": "+1 555 123 4567",
+      "emptyHint": "Digite um número de telefone para ver o QR Code.",
+      "previewAlt": "Prévia do QR Code de telefone",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite o número de telefone, de preferência com o código do país.",
+        "Ajuste o tamanho ou as cores, se quiser.",
+        "Baixe o QR Code. Ao escanear, o celular oferece ligar para o número."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, o celular oferece discar seu número com um toque.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de telefone?",
+          "a": "Ele usa um link tel. Ao escanear, o celular oferece ligar para o número — sem precisar digitar."
+        },
+        {
+          "q": "Devo incluir o código do país?",
+          "a": "Sim, para maior confiabilidade. Comece com + e o código do país para funcionar internacionalmente."
+        },
+        {
+          "q": "Ele liga automaticamente?",
+          "a": "Não. Ele abre o discador com o número pronto; a pessoa toca em ligar."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Posso usar para impressão?",
+          "a": "Sim. Baixe o SVG para manter a nitidez em cartazes, panfletos ou placas."
+        }
+      ]
+    },
+    "whatsapp-qr-code": {
+      "title": "Gerador de QR Code de WhatsApp",
+      "description": "Crie um QR Code que abre uma conversa no WhatsApp — com uma mensagem opcional já preenchida.",
+      "metaTitle": "Gerador de QR Code de WhatsApp Grátis — QR de Conversa",
+      "metaDescription": "Crie um QR Code de WhatsApp grátis que abre uma conversa com o seu número ao escanear, com uma mensagem opcional já preenchida. Gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "phoneLabel": "Número de telefone (com código do país)",
+      "phonePlaceholder": "+1 555 123 4567",
+      "messageLabel": "Mensagem já preenchida",
+      "emptyHint": "Digite um número de telefone para ver o QR Code do WhatsApp.",
+      "previewAlt": "Prévia do QR Code do WhatsApp",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite seu número de telefone com o código do país.",
+        "Adicione uma mensagem opcional para deixar preenchida.",
+        "Baixe o QR Code. Ao escanear, uma conversa no WhatsApp com você é aberta."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, uma conversa no WhatsApp com o seu número é aberta, pronta para mandar mensagem.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de WhatsApp?",
+          "a": "Ele usa um link wa.me. Ao escanear, o WhatsApp abre uma conversa com o seu número e qualquer mensagem já preenchida."
+        },
+        {
+          "q": "Preciso do código do país?",
+          "a": "Sim. Digite o número completo com o código do país (por exemplo +1…) para o WhatsApp encontrá-lo."
+        },
+        {
+          "q": "Este é o código oficial do WhatsApp?",
+          "a": "É um link wa.me padrão — exatamente o que o WhatsApp usa para o clique para conversar."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Posso usar para impressão?",
+          "a": "Sim. Baixe o SVG para uma impressão nítida em panfletos, cardápios ou vitrines."
+        }
+      ]
+    },
+    "location-qr-code": {
+      "title": "Gerador de QR Code de Localização",
+      "description": "Crie um QR Code que abre uma localização no mapa ao escanear.",
+      "metaTitle": "Gerador de QR Code de Localização Grátis — QR de Mapa e GPS",
+      "metaDescription": "Crie um QR Code de localização grátis que abre um mapa nas suas coordenadas ao escanear. Informe a latitude e a longitude; gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "latLabel": "Latitude",
+      "lngLabel": "Longitude",
+      "labelLabel": "Nome do local (opcional)",
+      "emptyHint": "Digite a latitude e a longitude para ver o QR Code de localização.",
+      "previewAlt": "Prévia do QR Code de localização",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite a latitude e a longitude do local.",
+        "Adicione um nome do local, se quiser.",
+        "Baixe o QR Code. Ao escanear, a localização é aberta em um app de mapas."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, as coordenadas são abertas no app de mapas do celular.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de localização?",
+          "a": "Ele usa um URI geo com latitude e longitude. Ao escanear, o celular abre o ponto no app de mapas padrão."
+        },
+        {
+          "q": "Onde encontro a latitude e a longitude?",
+          "a": "No Google Maps, clique com o botão direito em um ponto (ou toque e segure no celular) para copiar as coordenadas."
+        },
+        {
+          "q": "Funciona no iPhone e no Android?",
+          "a": "Sim. Ambos abrem as coordenadas geo no app de mapas ao escanear."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Posso usar para impressão?",
+          "a": "Sim. Baixe o SVG para uma impressão nítida em placas, convites ou vitrines."
+        }
+      ]
+    },
+    "event-qr-code": {
+      "title": "Gerador de QR Code de Evento",
+      "description": "Crie um QR Code que adiciona um evento ao calendário ao escanear.",
+      "metaTitle": "Gerador de QR Code de Evento Grátis — QR de Calendário",
+      "metaDescription": "Crie um QR Code de evento de calendário grátis que adiciona um evento ao calendário do celular ao escanear. Informe o título, o horário e o local; gerado no seu navegador e nunca enviado para um servidor. Baixe em PNG ou SVG.",
+      "titleLabel": "Título do evento",
+      "startLabel": "Início",
+      "endLabel": "Término",
+      "locationLabel": "Local",
+      "descriptionLabel": "Descrição",
+      "emptyHint": "Digite um título do evento ou o horário de início para ver o QR Code.",
+      "previewAlt": "Prévia do QR Code de evento",
+      "ecLevel": "Correção de erros",
+      "ecHint": "Níveis mais altos resistem a mais danos, mas deixam o código mais denso.",
+      "size": "Tamanho",
+      "margin": "Margem",
+      "fgColor": "Primeiro plano",
+      "bgColor": "Fundo",
+      "lowContrast": "O contraste entre primeiro plano e fundo está baixo demais — o código pode não ser lido.",
+      "invertedColors": "Primeiro plano claro sobre fundo escuro pode falhar em alguns leitores.",
+      "renderFailed": "Não foi possível gerar o QR Code. Verifique os dados informados.",
+      "tooLong": "As informações são longas demais para caber em um QR Code. Reduza-as ou diminua o nível de correção de erros.",
+      "downloadPng": "Baixar PNG",
+      "downloadSvg": "Baixar SVG",
+      "copyImage": "Copiar imagem",
+      "copyFailed": "Este navegador não permite copiar. Use o download.",
+      "howToTitle": "Como usar",
+      "howTo": [
+        "Digite o título do evento e o horário de início.",
+        "Adicione o horário de término, o local e a descrição, se quiser.",
+        "Baixe o QR Code. Ao escanear, o celular oferece adicionar o evento a um calendário."
+      ],
+      "featuresTitle": "Sobre esta ferramenta",
+      "features": [
+        "Ao escanear, o celular oferece adicionar o evento direto ao calendário.",
+        "Grátis, sem cadastro, e o código nunca expira.",
+        "Gerado no seu navegador — nada é enviado para um servidor."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como funciona um QR Code de evento?",
+          "a": "Ele guarda o evento no formato iCalendar (VEVENT). Ao escanear, o celular oferece adicioná-lo ao calendário."
+        },
+        {
+          "q": "Qual fuso horário ele usa?",
+          "a": "Os horários são salvos como você digitou (horário local flutuante), então aparecem iguais em qualquer calendário que os abrir."
+        },
+        {
+          "q": "Funciona no iPhone e no Android?",
+          "a": "Sim. Ambos leem QR Codes de evento e oferecem criar uma entrada no calendário."
+        },
+        {
+          "q": "É grátis?",
+          "a": "Sim — grátis, sem cadastro, e o código nunca expira."
+        },
+        {
+          "q": "Posso usar em convites?",
+          "a": "Sim. Baixe o SVG para uma impressão nítida em convites, cartazes ou ingressos."
+        }
       ]
     }
   }
