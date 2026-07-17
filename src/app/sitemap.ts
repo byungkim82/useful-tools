@@ -1,0 +1,25 @@
+import type { MetadataRoute } from 'next';
+import { locales } from '@/i18n/config';
+import { tools } from '@/tools/registry';
+import { SITE_ORIGIN } from '@/site';
+
+export const dynamic = 'force-static'; // REQUIRED under output:'export' or the build fails.
+
+// No lastModified: a single build-time timestamp on every URL tells Google "everything changed on
+// every deploy," which is a false signal. Omitting it is more honest than a shared fake date.
+export default function sitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  for (const locale of locales) {
+    entries.push({
+      url: `${SITE_ORIGIN}/${locale}/`, changeFrequency: 'weekly', priority: 1,
+      alternates: { languages: { ko: `${SITE_ORIGIN}/ko/`, en: `${SITE_ORIGIN}/en/` } },
+    });
+    for (const t of tools) {
+      entries.push({
+        url: `${SITE_ORIGIN}/${locale}/tools/${t.slug}/`, changeFrequency: 'monthly', priority: 0.8,
+        alternates: { languages: { ko: `${SITE_ORIGIN}/ko/tools/${t.slug}/`, en: `${SITE_ORIGIN}/en/tools/${t.slug}/` } },
+      });
+    }
+  }
+  return entries;
+}

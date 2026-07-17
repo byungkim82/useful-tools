@@ -1,0 +1,41 @@
+{
+  "site": {
+    "title": "유용한 도구 모음",
+    "tagline": "브라우저에서 바로 쓰는 무료 도구. 파일이 서버로 업로드되지 않습니다."
+  },
+  "home": {
+    "heading": "도구 모음",
+    "subheading": "필요한 도구를 골라 바로 사용하세요."
+  },
+  "categories": {
+    "generator": "생성기"
+  },
+  "common": {
+    "loading": "불러오는 중",
+    "copied": "복사됨"
+  },
+  "tools": {
+    "qr": {
+      "title": "QR 코드 생성기",
+      "description": "링크·텍스트를 QR 코드로 즉시 변환하고 PNG·SVG로 저장하세요.",
+      "inputLabel": "URL 또는 텍스트",
+      "inputPlaceholder": "https://example.com",
+      "emptyHint": "위에 URL이나 텍스트를 입력하면 QR 코드가 나타납니다.",
+      "previewAlt": "QR 코드 미리보기",
+      "ecLevel": "오류 복원 수준",
+      "ecHint": "높을수록 손상에 강하지만 코드가 더 복잡해집니다.",
+      "size": "크기",
+      "margin": "여백",
+      "fgColor": "전경색",
+      "bgColor": "배경색",
+      "lowContrast": "전경색과 배경색 대비가 낮아 스캔이 안 될 수 있습니다.",
+      "invertedColors": "밝은 전경 / 어두운 배경은 일부 스캐너에서 인식되지 않을 수 있습니다.",
+      "renderFailed": "QR 코드를 생성하지 못했습니다. 입력을 확인해 주세요.",
+      "downloadPng": "PNG 다운로드",
+      "downloadSvg": "SVG 다운로드",
+      "copyImage": "이미지 복사",
+      "copyFailed": "이 브라우저에서는 복사가 지원되지 않습니다. 다운로드를 사용하세요.",
+      "tooLong": "텍스트가 너무 길어 QR 코드에 담을 수 없습니다. 내용을 줄이거나 오류 복원 수준을 낮추세요."
+    }
+  }
+}

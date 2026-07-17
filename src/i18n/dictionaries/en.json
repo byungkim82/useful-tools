@@ -1,0 +1,41 @@
+{
+  "site": {
+    "title": "Useful Tools",
+    "tagline": "Free tools that run right in your browser. Your files never leave your device."
+  },
+  "home": {
+    "heading": "Tools",
+    "subheading": "Pick a tool and use it instantly."
+  },
+  "categories": {
+    "generator": "Generator"
+  },
+  "common": {
+    "loading": "Loading",
+    "copied": "Copied"
+  },
+  "tools": {
+    "qr": {
+      "title": "QR Code Generator",
+      "description": "Turn any link or text into a QR code and save it as PNG or SVG.",
+      "inputLabel": "URL or text",
+      "inputPlaceholder": "https://example.com",
+      "emptyHint": "Enter a URL or text above to see your QR code.",
+      "previewAlt": "QR code preview",
+      "ecLevel": "Error correction",
+      "ecHint": "Higher levels survive more damage but make a denser code.",
+      "size": "Size",
+      "margin": "Margin",
+      "fgColor": "Foreground",
+      "bgColor": "Background",
+      "lowContrast": "Foreground/background contrast is too low — the code may not scan.",
+      "invertedColors": "Light foreground on a dark background may fail on some scanners.",
+      "renderFailed": "Could not generate the QR code. Please check your input.",
+      "downloadPng": "Download PNG",
+      "downloadSvg": "Download SVG",
+      "copyImage": "Copy image",
+      "copyFailed": "Copy isn’t supported in this browser. Use download instead.",
+      "tooLong": "Text is too long to fit in a QR code. Shorten it or lower the error-correction level."
+    }
+  }
+}
