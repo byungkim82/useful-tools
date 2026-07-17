@@ -1,22 +1,29 @@
 # `useful-tools` — QR Generator (v1) + Static Tool-Suite Scaffold
 
-> **Rev 4 — IMPLEMENTED & VERIFIED.** This is no longer a spec to build; the code is in the repo and is
-> the source of truth. This document records the architecture, the decisions (and the ones that were
-> wrong in earlier revs), and the actual verification log. Build: `pnpm build` · test: `pnpm test` ·
-> preview: `pnpm preview` (wrangler) · deploy: `pnpm deploy`.
+> **Rev 5 — QR SUITE, LIVE.** No longer a spec; the code is in the repo, deployed at
+> **https://tools.solisapps.com**, and is the source of truth. The first tool grew into a QR
+> **content-type suite**: 9 generators (URL/text · WiFi · vCard · email · SMS · phone · WhatsApp ·
+> location · event) across **6 locales** (ko · en · es · pt-BR · ja · de), all sharing one render engine.
+> This document records the architecture, the hard-won decisions, and the verification log. Build:
+> `pnpm build` · test: `pnpm test` · preview: `pnpm run preview` · deploy: **`pnpm run deploy`** (NOT
+> `pnpm deploy` — pnpm's workspace builtin shadows the script). See CHANGELOG rev 5 for the deltas.
 
 ---
 
 ## 1. Goal
 
-A suite of small, search-discovered, 100% client-side browser tools ($0 server). This milestone is the
-reusable scaffold (tool registry, ko/en i18n, home grid, `/tools/[slug]`, sitemap/robots, branded 404,
-Cloudflare deploy) plus the first tool: a **QR code generator** (text/URL → PNG/SVG, EC level, size,
-margin, fg/bg color, copy, contrast+polarity warning).
+A suite of small, search-discovered, 100% client-side browser tools ($0 server). The reusable scaffold
+(tool registry, i18n, home grid, `/tools/[slug]`, sitemap/robots, branded 404, Cloudflare deploy) now
+hosts a **QR content-type suite**: 9 generators that all reuse one render core (`qr-core.tsx`) and differ
+only by their input form + payload builder (`content-payloads.ts`, pure + unit-tested). Every type is its
+own SEO landing page (`/tools/wifi-qr-code/` …); the home grid shows one grouped card and each tool page
+carries a localized type switcher (`QrTypeNav`).
 
-Adding tool N is **3 edits** (verified at N=2): a `registry.ts` entry (with its `load` thunk), a
-`tools.<slug>` block in `ko.json`/`en.json`, and a client component. Grid, route, static params, and
-sitemap follow automatically.
+Adding a QR content type: a pure payload builder (+ test), a small client feeding `QrCodeTool`, a
+`registry.ts` entry (`group:'qr'`), a `QrTypeNav` label line, and a `tools.<slug>` block in **every**
+locale JSON. Adding a locale: a `config.ts` entry (+ `localeMeta`), a `dictionaries.ts` import, and a full
+translated JSON (structurally identical to the rest). Grid, routes, static params, hreflang, and sitemap
+follow automatically.
 
 ## 2. Stack
 
@@ -28,17 +35,18 @@ dictionary i18n · `qrcode` (node-qrcode) · Vitest.
 
 ```
 public/_redirects            "/  /ko/  302"  (edge root redirect)
-public/og.png                static OG image (TODO: ship a real 1200×630)
+public/og.png                1200×630 OG image (shipped; embeds a scannable QR of the site)
+public/google*.html          Google Search Console HTML-file verification token
 scripts/build-404.mjs        post-build: overwrites out/404.html with a branded KO page
 src/site.ts                  SITE_ORIGIN (single domain source)
 next.config.ts               output:'export', images.unoptimized, trailingSlash
 wrangler.jsonc               assets ./out, not_found_handling "404-page"
-src/i18n/                    config.ts (locales) · dictionaries.ts (getDictionary, Dictionary type) · dictionaries/{ko,en}.json
+src/i18n/                    config.ts (locales + localeMeta + hreflangMap) · dictionaries.ts · dictionaries/{ko,en,es,pt,ja,de}.json
 src/app/[locale]/            layout.tsx (SOLE root layout, <html lang>, OG) · page.tsx (grid) · tools/[slug]/page.tsx
 src/app/{sitemap,robots}.ts  both export `dynamic = 'force-static'`
 src/components/              ToolGrid.tsx · LocaleSwitcher.tsx
 src/tools/                   registry.ts (mapped type) · ToolLoader.tsx (dynamic ssr:false + context spinner)
-src/tools/qr/                qr-payload.ts (pure) · qr-payload.test.ts · QrToolClient.tsx (client island)
+src/tools/qr/                qr-payload.ts + qr-core.tsx (shared render engine) · content-payloads.ts (+ tests) · QrTypeNav.tsx · 9 *QrClient.tsx (one per type)
 ```
 There is **no `src/app/layout.tsx`** — `[locale]/layout.tsx` is the sole root layout, so `<html lang>`
 is baked per locale. `/` has no Next page; the edge `_redirects` rule serves it.
@@ -81,7 +89,8 @@ is baked per locale. `/` has no Next page; the edge `_redirects` rule serves it.
 ```
 pnpm lint     → clean (0 problems)
 pnpm test     → Test Files 1 passed (1) · Tests 5 passed (5)   # capacity test throws a REAL qrcode error
-pnpm build    → ✓ Compiled · TypeScript passed · 9 routes · "branded out/404.html written"
+pnpm build    → ✓ Compiled · TS passed · 9 tools × 6 locales = 54 tool pages + 6 homes · sitemap 60 URLs · branded 404
+              (rev-4 details below are the ko/en baseline; rev 5 adds es/pt/ja/de + 8 content types — see CHANGELOG)
 
 out/  → ko/index.html, en/index.html, ko|en/tools/qr/index.html, sitemap.xml, robots.txt,
         404.html, _redirects ALL present · NO out/index.html
@@ -105,12 +114,14 @@ N=2 (add a 'compress' tool): build OK, 4 tool routes; mis-wiring load→wrong co
 **Still manual (browser only):** live debounced preview, size slider CSS-scaling the preview, EC toggle,
 PNG/SVG download, iOS-Safari clipboard copy. Run `pnpm dev` or `pnpm preview` and exercise `/ko/tools/qr`.
 
-## 6. Before launch
+## 6. Launch status (done — see rev 5)
 
-- Set the real domain in `src/site.ts` (used by layout/sitemap/robots and OG).
-- Ship a real `public/og.png` (1200×630). Dynamic `opengraph-image.tsx` (`ImageResponse`) is unverified
-  under `output:'export'` — verify before adopting.
-- `wrangler deploy` (first run: `wrangler login`). Pure static: no Worker invocation billed.
+- ✅ Real domain in `src/site.ts` (`https://tools.solisapps.com`); site is **live** on Cloudflare.
+- ✅ Real `public/og.png` (1200×630) shipped; social/link previews render. (A static PNG is used; the
+  dynamic `opengraph-image.tsx` / `ImageResponse` route was never needed.)
+- ✅ Deployed via `pnpm run deploy` (wrangler authenticated). Pure static: no Worker invocation billed.
+- ✅ Google Search Console verified (HTML-file token) + sitemap submitted + indexing requested. Naver
+  Search Advisor deferred (no account). Still open: native review of the translations; distribution.
 - Future dynamic tool (URL shortener / FX): add `"main"` + `assets.binding:"ASSETS"` to `wrangler.jsonc`;
   the Worker handles `/api/*` and falls through to `env.ASSETS.fetch(request)`.
 
@@ -139,4 +150,19 @@ Next 16 async `params` (await everywhere) · Safari clipboard = Promise into `Cl
   `aria-live` (stable button name); `result`-object effect (no synchronous `setState` in effect body);
   removed sitemap `lastModified`; corrected the `ssr:false` understanding (verified via DOM marker, not a
   serialized prop). Everything lint/test/build/runtime-verified in-repo.
+- **rev 4 → 5 (QR suite, live):** extracted the render engine into **`qr-core.tsx`** (`QrCodeTool` owns
+  options/debounce/preview/download; each tool passes a payload string + its input form) — the URL tool
+  was refactored onto it with no behavior change (ec-level DOM marker still absent from static HTML).
+  Added **8 content types** (WiFi, vCard, email, SMS, phone, WhatsApp, location, event) as pure
+  unit-tested builders in `content-payloads.ts` (WiFi escaping order, vCard/VEVENT envelopes,
+  datetime→iCal) + one client each; every type is its own SEO landing page. Added **4 locales**
+  (es, pt-BR, ja, de); generalized hreflang / `<html lang>` / OG-locale off a `localeMeta` map +
+  `hreflangMap()`; all 6 locale JSONs are structurally identical (enforced by the `Dictionary` union +
+  a check script). On-page SEO on every tool page: keyword `metaTitle`/`metaDescription`
+  (`title:{absolute}`), crawlable how-to/features/FAQ copy, and `WebApplication`+`FAQPage` JSON-LD. Home
+  grid shows **one grouped card** (`group`/`primary` on registry, `homeTools()`); each tool page has a
+  localized **`QrTypeNav`** switcher (server links → internal linking preserved). Shipped `og.png` (real,
+  embeds a scannable QR) + GSC verification file. Now **9 tools × 6 locales = 54 tool pages, sitemap 60
+  URLs**, deployed live. Gotcha recorded: deploy with **`pnpm run deploy`**, not `pnpm deploy`
+  (workspace builtin shadows the script).
 ```

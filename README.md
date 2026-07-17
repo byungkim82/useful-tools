@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Useful Tools
 
-## Getting Started
+Small, search-discovered, **100% client-side** browser tools with **no backend** ($0 server) and no
+sign-up — nothing you type leaves your device. Live at **https://tools.solisapps.com**.
 
-First, run the development server:
+The first (and so far only) tool is a **QR code suite**: 9 generators sharing one render engine, each its
+own SEO landing page, in 6 languages.
+
+| | |
+|---|---|
+| **Tools** | QR: URL/text · WiFi · vCard · email · SMS · phone · WhatsApp · location · event |
+| **Locales** | 한국어 · English · Español · Português (BR) · 日本語 · Deutsch (hreflang) |
+| **Stack** | Next.js (App Router) · TypeScript · Tailwind v4 · `qrcode` · Vitest |
+| **Hosting** | static export (`output: 'export'`) → Cloudflare Workers Static Assets |
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev        # dev server (http://localhost:3000, redirects to /ko/)
+pnpm test       # Vitest (pure payload/render logic)
+pnpm lint       # ESLint
+pnpm build      # static export → out/ (also writes a branded out/404.html)
+pnpm run preview   # build + wrangler dev over ./out   ⚠️ NOT `pnpm preview`
+pnpm run deploy    # build + wrangler deploy           ⚠️ NOT `pnpm deploy`
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Gotcha:** this is a pnpm workspace, so bare `pnpm deploy` / `pnpm preview` resolve to pnpm's built-in
+> commands (and fail). Always use `pnpm run deploy` / `pnpm run preview`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Add a tool
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **New QR content type:** a pure payload builder (+ test) in `src/tools/qr/content-payloads.ts`, a small
+  client component feeding `QrCodeTool` (`src/tools/qr/qr-core.tsx`), a `registry.ts` entry with
+  `group: 'qr'`, a label line in `QrTypeNav.tsx`, and a `tools.<slug>` block in **every** locale JSON.
+- **New locale:** add it to `src/i18n/config.ts` (`locales` + `localeMeta`) and `dictionaries.ts`, then add
+  a full translated `dictionaries/<locale>.json` — **structurally identical** to the others (the
+  `Dictionary` type enforces it; `scripts`-style check compares all locale JSONs).
 
-## Learn More
+Home grid, routes, static params, hreflang, and the sitemap all follow automatically.
 
-To learn more about Next.js, take a look at the following resources:
+## Docs
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [`docs/qr-generator-implementation.md`](docs/qr-generator-implementation.md) — architecture, decisions,
+  and verification log (source of truth = the code).
+- [`docs/qr-generator-improvements.md`](docs/qr-generator-improvements.md) — feature / UX enhancement plan.
+- [`docs/qr-generator-growth-seo.md`](docs/qr-generator-growth-seo.md) — search-discoverability strategy.
+- [`docs/qr-generator-seo-action-checklist.md`](docs/qr-generator-seo-action-checklist.md) — SEO action items.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See also `AGENTS.md` — this repo pins a Next.js whose APIs may differ from training data; read the guides
+in `node_modules/next/dist/docs/` before writing framework code.

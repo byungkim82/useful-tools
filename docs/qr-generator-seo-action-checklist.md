@@ -4,6 +4,19 @@
 > 체크리스트**. 각 항목에 *목표 · 왜 · 건드릴 파일 · 구현 노트 · 검증*을 적었다. **아직 아무것도 구현하지
 > 않았다** — 실행 승인 시 착수. 2026-07 기준 실제 코드/설정을 검증한 상태를 전제로 한다.
 
+## 진행 현황 (2026-07-16) — 대부분 실행 완료
+
+- ✅ **#1 og.png** — 생성·배포(라이브 200, 스캔되는 QR 임베드).
+- ✅ **#2 키워드 타이틀/메타** — `title:{absolute}` + `metaTitle`/`metaDescription`로 전 도구·전 언어 구현.
+- ✅ **#3 JSON-LD** — WebApplication + FAQPage, 전 도구 페이지.
+- ✅ **#4 thin-content** — 사용법·특징·FAQ 정적 텍스트 추가.
+- ✅ **#5 검색엔진 등록** — Google Search Console 소유확인(HTML 파일)·사이트맵·색인 요청 완료. (네이버 보류)
+- ⬜ **#6 Cloudflare Web Analytics** — 미착수(CSP `_headers`에 beacon 도메인 추가 필요).
+
+아래는 원 체크리스트(참고용).
+
+---
+
 ## 착수 전 공통 주의 (이 repo 관례)
 - **`AGENTS.md`:** "This is NOT the Next.js you know" — 코드 작성 전 `node_modules/next/dist/docs/`의 해당
   가이드(metadata, static export)를 먼저 읽을 것.
