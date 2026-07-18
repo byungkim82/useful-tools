@@ -42,6 +42,7 @@ Home grid, routes, static params, hreflang, and the sitemap all follow automatic
 
 ## Docs
 
+- [`docs/implementation-status.md`](docs/implementation-status.md) — snapshot of what's built and live today (both suites, i18n, analytics, hosting, verification).
 - [`docs/qr-generator-implementation.md`](docs/qr-generator-implementation.md) — architecture, decisions,
   and verification log (source of truth = the code).
 - [`docs/qr-generator-improvements.md`](docs/qr-generator-improvements.md) — feature / UX enhancement plan.
