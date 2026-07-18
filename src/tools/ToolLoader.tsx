@@ -33,7 +33,7 @@ export default function ToolLoader({ slug, t, common, locale }: { slug: string }
   if (!Tool) return null;
   return (
     <LoadingLabelContext.Provider value={common.loading}>
-      <Tool t={t} common={common} locale={locale} />
+      <Tool slug={slug} t={t} common={common} locale={locale} />
     </LoadingLabelContext.Provider>
   );
 }

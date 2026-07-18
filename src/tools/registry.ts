@@ -5,6 +5,7 @@ import type { Locale } from '@/i18n/config';
 type Slug = keyof Dictionary['tools'];
 
 export type ToolProps<S extends Slug = Slug> = {
+  slug: string; // raw URL slug — lets a shared component (e.g. the converter) pick its variant
   t: Dictionary['tools'][S];
   common: Dictionary['common'];
   locale: Locale;
