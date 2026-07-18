@@ -59,7 +59,11 @@ export default function QueueItem({
             </span>
           )}
           {(job.status === 'queued' || job.status === 'pending') && <span>{labels.queued}</span>}
-          {job.status === 'error' && <span className="font-medium text-red-600">{labels.failed}</span>}
+          {job.status === 'error' && (
+            <span className="font-medium text-red-600" title={job.error}>
+              {labels.failed}
+            </span>
+          )}
           {job.status === 'canceled' && <span>{labels.canceled}</span>}
         </div>
         {job.status === 'done' && job.downscaled && (

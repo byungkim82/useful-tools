@@ -10,6 +10,7 @@ import {
   defaultFormatForSlug,
   isImageSlug,
   MAX_CANVAS_EDGE,
+  safeMaxArea,
 } from './compress-math';
 import {
   reducer,
@@ -20,6 +21,7 @@ import {
   type QueueState,
 } from './queue-reducer';
 import { crc32, zipStore, uniqueName } from './zip-store';
+import { withTimeout } from './async-util';
 
 describe('formatBytes', () => {
   it('bytes / KB / MB / GB with decimal units', () => {
@@ -157,6 +159,30 @@ describe('planDimensions', () => {
     const r = planDimensions(10000, 1, { mode: 'maxDimension', maxDimension: 100 });
     expect(r.width).toBe(100);
     expect(r.height).toBeGreaterThanOrEqual(1);
+  });
+  it('clamps by total area (not just edge) and flags downscaled', () => {
+    // 8000×4000 = 32MP, within the 8192 edge but over a 16.7M area cap → area clamp kicks in.
+    const r = planDimensions(8000, 4000, { mode: 'none' }, 8192, 16_777_216);
+    expect(r.width * r.height).toBeLessThanOrEqual(16_777_216);
+    expect(r.downscaled).toBe(true);
+    expect(r.width / r.height).toBeCloseTo(2, 2); // aspect preserved
+  });
+  it('area clamp is a no-op when under the cap', () => {
+    const r = planDimensions(3000, 2000, { mode: 'none' }, 8192, 16_777_216); // 6MP < 16.7M
+    expect(r).toEqual({ width: 3000, height: 2000, downscaled: false });
+  });
+});
+
+describe('safeMaxArea', () => {
+  it('mobile gets the most conservative cap', () => {
+    expect(safeMaxArea({ mobile: true })).toBe(16_777_216);
+  });
+  it('low-memory desktop is capped below full desktop', () => {
+    expect(safeMaxArea({ deviceMemory: 4 })).toBe(33_554_432);
+    expect(safeMaxArea({ deviceMemory: 16 })).toBe(MAX_CANVAS_EDGE * MAX_CANVAS_EDGE);
+  });
+  it('default desktop is edge-governed (8192²)', () => {
+    expect(safeMaxArea()).toBe(MAX_CANVAS_EDGE * MAX_CANVAS_EDGE);
   });
 });
 
@@ -331,5 +357,18 @@ describe('uniqueName', () => {
     expect(uniqueName('photo-min.webp', used)).toBe('photo-min.webp');
     expect(uniqueName('photo-min.webp', used)).toBe('photo-min (2).webp');
     expect(uniqueName('photo-min.webp', used)).toBe('photo-min (3).webp');
+  });
+});
+
+describe('withTimeout', () => {
+  it('passes through a value that settles in time', async () => {
+    await expect(withTimeout(Promise.resolve(42), 1000)).resolves.toBe(42);
+  });
+  it('rejects with "timed out" when the promise hangs', async () => {
+    const never = new Promise<number>(() => {});
+    await expect(withTimeout(never, 20)).rejects.toThrow(/timed out/);
+  });
+  it('propagates the original rejection when it settles first', async () => {
+    await expect(withTimeout(Promise.reject(new Error('boom')), 1000)).rejects.toThrow('boom');
   });
 });

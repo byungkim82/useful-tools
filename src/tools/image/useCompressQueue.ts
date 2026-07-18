@@ -14,11 +14,17 @@ import { CompressRunner } from './runner';
 import {
   outputFilename,
   presetQuality,
+  safeMaxArea,
   type FormatChoice,
   type Preset,
   type ResizeSettings,
 } from './compress-math';
 import { zipStore, uniqueName } from './zip-store';
+import { withTimeout } from './async-util';
+
+// A single image that hasn't finished in this long is treated as a hang → visible failure, not an
+// infinite spinner. Generous so even a huge image on a slow device finishes well under it.
+const JOB_TIMEOUT_MS = 45_000;
 
 export type Settings = {
   preset: Preset;
@@ -107,9 +113,9 @@ export function useCompressQueue() {
       quality: presetQuality(settings.preset, settings.quality),
       format: settings.format,
       resize: settings.resize,
+      maxArea: safeMaxArea(hintsRef.current), // device-safe output area cap (iOS/low-memory guard)
     };
-    getRunner()
-      .compress(file, req)
+    withTimeout(getRunner().compress(file, req), JOB_TIMEOUT_MS)
       .then((r) => {
         startedRef.current.delete(id);
         if (!filesRef.current.has(id)) return; // canceled/removed while encoding

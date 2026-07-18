@@ -29,6 +29,18 @@ export const PRESET_QUALITY: Record<Exclude<Preset, 'custom'>, number> = {
 // (planDimensions reports `downscaled`), never silently.
 export const MAX_CANVAS_EDGE = 8192;
 
+/**
+ * A safe maximum output AREA (in pixels) for the device. Browsers cap canvas by total area, not just
+ * edge — iOS Safari historically ~16.7M px (4096²) — and constrained devices run out of memory sooner.
+ * Clamping by area (not only edge) prevents a silently-blank canvas on those platforms: better a
+ * downscale + badge than a broken output. Desktop returns a high cap so the edge limit governs there.
+ */
+export function safeMaxArea(hints: { mobile?: boolean; deviceMemory?: number } = {}): number {
+  if (hints.mobile) return 16_777_216; // 4096² — conservative for iOS Safari / phones
+  if (hints.deviceMemory !== undefined && hints.deviceMemory <= 4) return 33_554_432; // ~5792², low-memory desktop
+  return MAX_CANVAS_EDGE * MAX_CANVAS_EDGE; // 8192² — desktop is effectively edge-governed
+}
+
 export const MIME: Record<OutputFormat, string> = {
   jpeg: 'image/jpeg',
   webp: 'image/webp',
@@ -119,6 +131,7 @@ export function planDimensions(
   srcH: number,
   resize: ResizeSettings,
   maxEdge = MAX_CANVAS_EDGE,
+  maxArea = Infinity,
 ): ResizePlan {
   let w = srcW;
   let h = srcH;
@@ -168,6 +181,13 @@ export function planDimensions(
   const longest = Math.max(w, h);
   if (longest > maxEdge) {
     const f = maxEdge / longest;
+    w *= f;
+    h *= f;
+    downscaled = true;
+  }
+  // Clamp by total AREA too (platform canvas-area limit / memory), after the edge clamp.
+  if (Number.isFinite(maxArea) && w * h > maxArea) {
+    const f = Math.sqrt(maxArea / (w * h));
     w *= f;
     h *= f;
     downscaled = true;
