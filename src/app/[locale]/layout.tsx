@@ -46,8 +46,11 @@ export default async function LocaleLayout({ children, params }: { children: Rea
         <footer className="mx-auto max-w-3xl px-4 py-8 text-sm text-neutral-500">{dict.site.tagline}</footer>
         {/* Cloudflare Web Analytics — cookieless, no personal tracking. Injected only when a token is set. */}
         {CF_BEACON_TOKEN ? (
+          // `defer` is redundant on a type="module" script (modules defer by spec) but satisfies the
+          // no-sync-scripts lint rule, which only looks for the async/defer attribute.
           <script
             type="module"
+            defer
             src="https://static.cloudflareinsights.com/beacon.min.js"
             data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
           />
