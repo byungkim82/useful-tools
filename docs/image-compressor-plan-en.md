@@ -5,6 +5,30 @@
 > decision record with rationale and verification logs lives in `image-compressor-implementation-plan.md`.
 > Korean version: `image-compressor-plan-ko.md`.
 
+> ## 🔧 As-built (2026-07-18)
+> **v1 is implemented and deployed.** The body below is the pre-build plan; the ways the actual build
+> **diverged from it** are called out here first. The source of truth for the current state is
+> `implementation-status.md` §1.3 (code is the final truth).
+> 1. **[Important] Worker bundling correction:** static export + Turbopack does **NOT** bundle a worker that
+>    has module imports — it copies the source `.ts` as a static asset (unrunnable raw TS + wrong `.ts` MIME).
+>    **The build spike gave a false positive on A1 because it used a self-contained echo `.js` worker.** The
+>    real worker is **bundled by esbuild into `public/workers/compress.js`** (the plan's A2 line) and served
+>    same-origin as `.js` (`text/javascript`). So §3's "A1 verified / no worker CSP needed" is **wrong about
+>    A1** (though no `worker-src` is indeed needed — same-origin is covered by `default-src 'self'`).
+> 2. **UX = an explicit Compress button:** not compress-on-drop. Files wait in a queue → adjust settings →
+>    press Compress. Loud completion summary; a "Skipped N" notice for non-image drops.
+> 3. **EXIF is always stripped:** the "keep EXIF" toggle is **cut from v1** (double-rotation risk + the
+>    canvas re-encode always drops metadata anyway). Deferred to v1.1.
+> 4. **WebP feature-detect bug fixed:** OffscreenCanvas can't `convertToBlob` without a rendering context, so
+>    the probe now calls `getContext` first (otherwise every WebP silently downgraded to JPEG, breaking
+>    `compress-webp`).
+> 5. **Silent-failure guards shipped in v1:** **area clamp** (`safeMaxArea`), **output verification** (blank-
+>    canvas detection), and a **45s job timeout** — originally v1.1-flavoured, pulled forward.
+> 6. **CSP as planned:** only `img-src blob:` added (no `worker-src`).
+> 7. **Dependency change:** ZIP uses a **self-contained store-only ZIP + CRC32** (zero runtime deps,
+>    unit-testable) instead of the planned fflate. A build-time **esbuild devDependency** was added to
+>    bundle the worker.
+
 ---
 
 ## 1. In one sentence

@@ -42,7 +42,7 @@
 
 | # | 도구 | 수요 / 편중 시장 | 라이브러리(번들) | 경쟁 | 해자 | 노력 |
 |---|---|---|---|---|---|---|
-| 1 | **이미지 압축/리사이즈** (목표 KB/MB 지정) | 압도적·전 시장. BR/PT·JA 편중(WhatsApp·이메일 첨부) | browser-image-compression(경량, canvas+WebWorker, maxSizeMB, EXIF 보존) 또는 jSquash(Squoosh 코덱) | 높음, but 대부분 **서버 업로드형** | ✅강 | 중 |
+| 1 | **✅ 이미지 압축/리사이즈** — **v1 구현·배포 완료**(자체 Canvas 워커, 목표 KB/MB는 v1.1). 상세: `implementation-status.md` §1.3 | 압도적·전 시장. BR/PT·JA 편중(WhatsApp·이메일 첨부) | ~~browser-image-compression / jSquash~~ → **자체 Canvas 워커**(esbuild→public 번들, 순수 store-only ZIP) | 높음, but 대부분 **서버 업로드형** | ✅강 | 중 |
 | 2 | **HEIC→JPG 변환** | 높음·전 시장, **JA·DE 편중**(아이폰 기본 포맷) | heic2any(→JPG/PNG/GIF) 또는 libheif-wasm. ⚠️**jSquash엔 HEIC 없음** | 현지 경쟁자 有, but **배치 한도·데스크톱앱 유도** 갭 | ✅강 | 중 |
 | 3 | **PDF 합치기/분할/회전/페이지삭제·추출** | 성숙·**6개 로케일 전부**. 미세연산 **개별 검색됨**(rotate, delete pages를 따로 검색) | pdf-lib(브라우저=Node 동일, edit/merge/split 가능) | iLovePDF/PDF24 지배 but **전부 업로드** | ✅강(DE 최강) | 중 |
 | 4 | **이미지 ↔ PDF** (이미지→PDF, PDF→이미지) | 서류 제출(비자·학교·관공서). 병합 워크플로에 번들됨 | pdf-lib / pdf.js | 갭 동일 | ✅강 | 중 |

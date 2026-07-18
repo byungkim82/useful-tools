@@ -4,6 +4,26 @@
 > 생략했다. 근거 데이터는 `image-compressor-research.md`, 모든 결정과 그 이유·검증 로그는
 > `image-compressor-implementation-plan.md`에 있다. 영어본: `image-compressor-plan-en.md`.
 
+> ## 🔧 구현 반영 (As-built · 2026-07-18)
+> **v1이 구현·배포되어 라이브다.** 아래 본문은 착수 전 계획이며, **실제 구현이 계획과 달라진 지점**을 여기서
+> 먼저 밝힌다. 현재 상태의 진실은 `implementation-status.md` §1.3 (코드가 최종 진실).
+> 1. **[중요] 워커 번들링 정정:** static export + Turbopack은 **import가 있는 워커를 번들하지 않고** 소스 `.ts`를
+>    정적 에셋으로 복사만 한다 → 원본 TS라 실행 불가 + `.ts` MIME. **스파이크가 self-contained echo `.js`라 A1을
+>    거짓 통과시켰던 지점.** 실제 워커는 **esbuild로 `public/workers/compress.js`에 번들**(계획의 A2 계열)해
+>    same-origin `.js`(`text/javascript`)로 서빙한다. → §3의 "A1 채택 / 워커 CSP 불필요" 중 **A1 채택은 사실과 다름**
+>    (단, worker-src 불필요·same-origin은 맞음, `default-src 'self'`가 커버).
+> 2. **UX = 명시적 [압축 시작] 버튼:** 드롭 즉시 변환이 아니라 **대기열 → 설정 → 버튼**(사용자 피드백). 완료 요약
+>    강조, 비이미지 드롭은 "건너뜀" 안내.
+> 3. **EXIF = 항상 제거로 확정:** "EXIF 유지" 토글은 **v1에서 제외**(이중회전 리스크 + canvas 재인코딩이 항상 메타
+>    제거가 전제). → v1.1로 보류.
+> 4. **WebP feature-detect 버그 수정:** OffscreenCanvas는 렌더링 컨텍스트 없이 `convertToBlob` 불가 → 프로브에
+>    `getContext` 추가(안 하면 WebP가 전부 JPEG로 **조용히 다운그레이드**, `compress-webp`가 깨졌던 지점).
+> 5. **조용한-실패 방어를 v1에 구현:** **면적 클램프**(`safeMaxArea`) · **출력 검증**(빈 캔버스 감지) · **잡
+>    타임아웃(45s)**. 원래 v1.1 성격이었으나 앞당김.
+> 6. **CSP는 계획대로:** `img-src blob:` 하나만 추가(worker-src 불필요).
+> 7. **의존성 변화:** ZIP은 계획의 fflate 대신 **자체 store-only ZIP + CRC32**(런타임 의존성 0, 유닛테스트 가능).
+>    대신 워커 번들용 **esbuild를 devDependency로 추가**(빌드타임 전용).
+
 ---
 
 ## 1. 한 문장 요약

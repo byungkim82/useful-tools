@@ -11,6 +11,25 @@
 
 ---
 
+> ## 🔧 구현 반영 (As-built · 2026-07-18) — 이 문서는 이제 "착수 전"이 아니다
+> **v1이 구현·배포되어 라이브다.** 본문(및 아래 rev 배너)은 착수 전 판단이며, **착수 후 실제로 달라진 결정**을
+> 여기서 먼저 정정한다. 현재 상태의 진실은 `implementation-status.md` §1.3, 최종 진실은 코드.
+> - **[정정·중요] 워커 = A1 아님, esbuild→public 번들(A2 계열).** §11 P0-a / §12 #1 / D9의 "✅ A1 통과, A1 채택"은
+>   **거짓 양성**이었다 — 스파이크가 self-contained echo `.js`였을 뿐, **import가 있는 실제 워커는 static export +
+>   Turbopack이 번들하지 않고 소스 `.ts`를 `out/_next/static/media/`에 그대로 복사**한다(원본 TS라 파싱 불가 +
+>   `.ts` MIME). 실제로는 **`scripts/build-worker.mjs`(esbuild)가 `compress.worker.ts`를 self-contained
+>   `public/workers/compress.js`로 번들** → export가 `out/workers/`로 복사(same-origin `text/javascript`). `runner.ts`가
+>   워커/메인스레드 폴백 처리. **worker-src 불필요·same-origin은 계획대로 맞음.**
+> - **[정정] "keep EXIF 토글"은 v1에서 제외** → 항상 제거(이중회전 리스크). §1 표의 v1 IN에서 빠짐, v1.1로.
+> - **[정정] UX = 즉시 압축 아님 → 명시적 [압축 시작] 버튼** + 완료 요약 강조 + 비이미지 "건너뜀" 안내(사용자 피드백).
+> - **[추가] WebP feature-detect 버그 수정:** OffscreenCanvas는 컨텍스트 없이 `convertToBlob` 불가 → 프로브에
+>   `getContext` 추가(안 하면 전부 JPEG로 조용히 다운그레이드).
+> - **[앞당김] 조용한-실패 방어를 v1에 구현:** 면적 클램프(`safeMaxArea`, 변+면적 클램프) · 출력 검증(빈 캔버스
+>   감지, 균일 이미지 예외) · 잡 타임아웃(45s). (원래 v1.1 성격.)
+> - 나머지(컨버터 동형, Canvas 우선, ZIP=자체 store-only+CRC32, 3 slug×6로케일, `img-src blob:`)는 계획대로 구현.
+
+---
+
 > ## 🔎 rev — 시니어 아키텍트 리뷰 반영 (2026-07-18)
 > 착수 전 이 계획을 코드베이스·Next 16 문서에 대해 공격적으로 리뷰하고 아래를 반영했다. **미반영 원안은 §부록 뒤가
 > 아니라 이 배너가 최종 결정이다.**
