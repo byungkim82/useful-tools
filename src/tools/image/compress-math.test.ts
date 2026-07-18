@@ -165,14 +165,19 @@ describe('planDimensions', () => {
 const f = (id: string, size = 1000) => ({ id, name: `${id}.jpg`, size, type: 'image/jpeg' });
 const withJobs = (...files: ReturnType<typeof f>[]): QueueState =>
   reducer(initialState, { type: 'add', files });
+// add + startAll → jobs are 'queued' (submitted for compression).
+const submitted = (...files: ReturnType<typeof f>[]): QueueState =>
+  reducer(withJobs(...files), { type: 'startAll' });
 
 describe('queue reducer', () => {
-  it('add appends queued jobs', () => {
+  it('add appends pending jobs; startAll submits them to queued', () => {
     const s = withJobs(f('a'), f('b'));
-    expect(s.jobs.map((j) => j.status)).toEqual(['queued', 'queued']);
+    expect(s.jobs.map((j) => j.status)).toEqual(['pending', 'pending']);
+    const q = reducer(s, { type: 'startAll' });
+    expect(q.jobs.map((j) => j.status)).toEqual(['queued', 'queued']);
   });
   it('happy path queued → processing → done carries the result', () => {
-    let s = withJobs(f('a'));
+    let s = submitted(f('a'));
     s = reducer(s, { type: 'start', id: 'a' });
     expect(s.jobs[0].status).toBe('processing');
     s = reducer(s, {
@@ -185,7 +190,7 @@ describe('queue reducer', () => {
     expect(s.jobs[0].outFormat).toBe('webp');
   });
   it('fail only applies to a processing job', () => {
-    let s = withJobs(f('a'));
+    let s = submitted(f('a'));
     s = reducer(s, { type: 'fail', id: 'a', error: 'boom' }); // still queued → ignored
     expect(s.jobs[0].status).toBe('queued');
     s = reducer(s, { type: 'start', id: 'a' });
@@ -194,7 +199,7 @@ describe('queue reducer', () => {
     expect(s.jobs[0].error).toBe('boom');
   });
   it('succeed does NOT resurrect a canceled job', () => {
-    let s = withJobs(f('a'));
+    let s = submitted(f('a'));
     s = reducer(s, { type: 'start', id: 'a' });
     s = reducer(s, { type: 'cancel', id: 'a' });
     expect(s.jobs[0].status).toBe('canceled');
@@ -206,7 +211,7 @@ describe('queue reducer', () => {
     expect(s.jobs[0].status).toBe('canceled'); // guard held
   });
   it('cancelAll cancels queued+processing but leaves done alone', () => {
-    let s = withJobs(f('a'), f('b'), f('c'));
+    let s = submitted(f('a'), f('b'), f('c'));
     s = reducer(s, { type: 'start', id: 'a' });
     s = reducer(s, {
       type: 'succeed',
@@ -225,7 +230,7 @@ describe('queue reducer', () => {
     expect(s.jobs).toEqual([]);
   });
   it('requeue resets a done job to a clean queued state', () => {
-    let s = withJobs(f('a'), f('b'));
+    let s = submitted(f('a'), f('b'));
     s = reducer(s, { type: 'start', id: 'a' });
     s = reducer(s, {
       type: 'succeed',
@@ -261,7 +266,7 @@ describe('decideConcurrency', () => {
 
 describe('nextRunnable + queueStats', () => {
   it('fills open slots from the queue head', () => {
-    let s = withJobs(f('a'), f('b'), f('c'), f('d'));
+    let s = submitted(f('a'), f('b'), f('c'), f('d'));
     expect(nextRunnable(s, 2)).toEqual(['a', 'b']);
     s = reducer(s, { type: 'start', id: 'a' });
     expect(nextRunnable(s, 2)).toEqual(['b']); // one slot left
@@ -269,7 +274,7 @@ describe('nextRunnable + queueStats', () => {
     expect(nextRunnable(s, 2)).toEqual([]); // full
   });
   it('queueStats sums done jobs only', () => {
-    let s = withJobs(f('a', 1000), f('b', 2000));
+    let s = submitted(f('a', 1000), f('b', 2000));
     s = reducer(s, { type: 'start', id: 'a' });
     s = reducer(s, {
       type: 'succeed',

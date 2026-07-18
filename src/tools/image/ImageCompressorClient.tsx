@@ -10,9 +10,10 @@ import DropZone from './components/DropZone';
 import SettingsPanel from './components/SettingsPanel';
 import QueueItem from './components/QueueItem';
 
-// Island root for all three image slugs (image-compressor / compress-jpg / compress-webp). Reads the
-// slug to pick the default output format, then assembles the dropzone, global settings, queue, and
-// action bar. Loaded via next/dynamic({ ssr:false }), so this DOM never appears in the static HTML.
+// Island root for all three image slugs. Flow: drop images (they wait as "pending") → adjust the global
+// settings → press Compress. Nothing is processed until the user asks, and the result state is made
+// explicit so a finished compression is impossible to miss. Loaded ssr:false, so this DOM is not in the
+// static HTML.
 export default function ImageCompressorClient({ slug, locale }: ToolProps) {
   const labels = LABELS[locale as Locale] ?? LABELS.en;
 
@@ -24,79 +25,62 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
   };
   const [settings, setSettings] = useState<Settings>(initial);
   const [applied, setApplied] = useState<Settings>(initial);
+  const [notice, setNotice] = useState<string | null>(null);
 
-  const { jobs, stats, addFiles, recompressAll, remove, clear, downloadZip, downloadOne } =
+  const { jobs, stats, addFiles, compressAll, recompressAll, remove, clear, downloadZip, downloadOne } =
     useCompressQueue();
 
+  const c = { pending: 0, queued: 0, processing: 0, done: 0, error: 0, canceled: 0 };
+  for (const j of jobs) c[j.status]++;
+  const inFlight = c.queued + c.processing;
+  const isProcessing = inFlight > 0;
+  const finished = c.done + c.error;
+  const runTotal = finished + inFlight;
   const hasJobs = jobs.length > 0;
-  const dirty = hasJobs && JSON.stringify(settings) !== JSON.stringify(applied);
-  const doneCount = stats.done;
-  const totalPct =
-    stats.originalBytes > 0 ? percentSaved(stats.originalBytes, stats.outputBytes) : 0;
+  const dirty = c.done > 0 && !isProcessing && c.pending === 0 && JSON.stringify(settings) !== JSON.stringify(applied);
+  const totalPct = stats.originalBytes > 0 ? percentSaved(stats.originalBytes, stats.outputBytes) : 0;
 
   const onFiles = (files: File[]) => {
-    addFiles(files, settings);
-    setApplied(settings);
+    const { rejected } = addFiles(files, settings);
+    setNotice(rejected > 0 ? labels.skipped.replace('{n}', String(rejected)) : null);
   };
-  const onApply = () => {
+  const onCompress = () => {
+    compressAll(settings);
+    setApplied(settings);
+    setNotice(null);
+  };
+  const onRecompress = () => {
     recompressAll(settings);
     setApplied(settings);
   };
 
+  // The single primary action: Compress pending → Re-compress after a change → progress while running.
+  let primary: { label: string; onClick?: () => void; disabled?: boolean } | null = null;
+  if (isProcessing) primary = { label: `${labels.compressing} ${c.done}/${runTotal}`, disabled: true };
+  else if (c.pending > 0) primary = { label: `${labels.compress} (${c.pending})`, onClick: onCompress };
+  else if (dirty) primary = { label: labels.recompress, onClick: onRecompress };
+
   return (
     <div className="space-y-6">
       <DropZone labels={labels} onFiles={onFiles} hasJobs={hasJobs} />
+      {notice && (
+        <p role="status" className="rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+          {notice}
+        </p>
+      )}
 
       <div className="grid gap-6 md:grid-cols-[minmax(0,20rem)_1fr]">
-        <SettingsPanel
-          settings={settings}
-          onChange={setSettings}
-          labels={labels}
-          showApply={dirty}
-          onApply={onApply}
-        />
+        <SettingsPanel settings={settings} onChange={setSettings} labels={labels} />
 
         <div>
           {hasJobs ? (
             <>
               <h2 className="text-sm font-semibold">{labels.results}</h2>
-
               <ul className="mt-1 divide-y divide-neutral-200 dark:divide-neutral-800">
                 {jobs.map((job) => (
                   <QueueItem key={job.id} job={job} labels={labels} onDownload={downloadOne} onRemove={remove} />
                 ))}
               </ul>
-
-              {/* Action bar: total savings + download-all + clear. */}
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 pt-4 dark:border-neutral-800">
-                <p className="text-sm text-neutral-600 dark:text-neutral-400" aria-live="polite">
-                  {doneCount > 0 && (
-                    <>
-                      <span className="font-medium">{labels.total}:</span> {formatBytes(stats.originalBytes)}{' '}
-                      <span aria-hidden="true">→</span>{' '}
-                      <span className="font-medium text-neutral-900 dark:text-neutral-100">
-                        {formatBytes(stats.outputBytes)}
-                      </span>{' '}
-                      <span className="text-green-700 dark:text-green-400">
-                        (-{totalPct}% {labels.savedSuffix})
-                      </span>
-                    </>
-                  )}
-                </p>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={downloadZip}
-                    disabled={doneCount === 0}
-                    className="btn-primary"
-                  >
-                    {labels.downloadZip}
-                  </button>
-                  <button type="button" onClick={clear} className="btn-secondary">
-                    {labels.clearAll}
-                  </button>
-                </div>
-              </div>
             </>
           ) : (
             <div
@@ -108,6 +92,59 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
           )}
         </div>
       </div>
+
+      {/* Prominent action bar: the primary Compress/Re-compress button + completion summary + ZIP. */}
+      {hasJobs && (
+        <div className="sticky bottom-0 space-y-3 border-t border-neutral-200 bg-white/90 py-4 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
+          {primary && (
+            <button
+              type="button"
+              onClick={primary.onClick}
+              disabled={primary.disabled}
+              aria-live="polite"
+              className="btn-primary flex w-full items-center justify-center gap-2 py-3 text-base"
+            >
+              {primary.disabled && (
+                <span
+                  aria-hidden="true"
+                  className="h-4 w-4 animate-spin rounded-full border-2 border-neutral-400 border-t-transparent dark:border-neutral-600 dark:border-t-transparent"
+                />
+              )}
+              {primary.label}
+            </button>
+          )}
+
+          {c.done > 0 && (
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-sm text-neutral-700 dark:text-neutral-300" aria-live="polite">
+                <span className="font-semibold text-green-700 dark:text-green-400">
+                  ✓ {labels.done} {c.done}/{jobs.length - c.canceled}
+                </span>
+                {' · '}
+                {formatBytes(stats.originalBytes)} <span aria-hidden="true">→</span>{' '}
+                <span className="font-medium">{formatBytes(stats.outputBytes)}</span>{' '}
+                <span className="text-green-700 dark:text-green-400">(-{totalPct}% {labels.savedSuffix})</span>
+              </p>
+              <div className="flex gap-2">
+                <button type="button" onClick={downloadZip} className="btn-primary">
+                  {labels.downloadZip}
+                </button>
+                <button type="button" onClick={clear} className="btn-secondary">
+                  {labels.clearAll}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {c.done === 0 && (
+            <div className="flex justify-end">
+              <button type="button" onClick={clear} className="btn-secondary">
+                {labels.clearAll}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

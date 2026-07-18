@@ -158,6 +158,12 @@ export function useCompressQueue() {
     return { rejected: files.length - accepted.length };
   }, []);
 
+  // Submit all pending jobs for compression with the current settings (the "Compress" button).
+  const compressAll = useCallback((settings: Settings) => {
+    settingsRef.current = settings;
+    dispatch({ type: 'startAll' });
+  }, []);
+
   const recompressAll = useCallback((settings: Settings) => {
     settingsRef.current = settings;
     const ids = jobsRef.current.filter((j) => j.status !== 'queued').map((j) => j.id);
@@ -215,7 +221,7 @@ export function useCompressQueue() {
   const jobs: ViewJob[] = state.jobs;
   const stats = queueStats(state);
 
-  return { jobs, stats, addFiles, recompressAll, remove, clear, cancelAll, downloadZip, downloadOne };
+  return { jobs, stats, addFiles, compressAll, recompressAll, remove, clear, cancelAll, downloadZip, downloadOne };
 }
 
 function triggerDownload(href: string, filename: string) {

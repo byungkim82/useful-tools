@@ -4,7 +4,9 @@
 
 import type { OutputFormat } from './compress-math';
 
-export type JobStatus = 'queued' | 'processing' | 'done' | 'error' | 'canceled';
+// 'pending' = added but NOT yet submitted for compression (waiting for the user to press Compress).
+// 'queued'  = submitted, waiting for a free concurrency slot. The scheduler only runs 'queued'.
+export type JobStatus = 'pending' | 'queued' | 'processing' | 'done' | 'error' | 'canceled';
 
 export type Job = {
   id: string;
@@ -39,6 +41,7 @@ export type JobResult = {
 
 export type Action =
   | { type: 'add'; files: NewFile[] }
+  | { type: 'startAll' }
   | { type: 'start'; id: string }
   | { type: 'succeed'; id: string; result: JobResult }
   | { type: 'fail'; id: string; error: string }
@@ -50,14 +53,18 @@ export type Action =
 
 export const initialState: QueueState = { jobs: [] };
 
-const ACTIVE = (s: JobStatus) => s === 'queued' || s === 'processing';
+const ACTIVE = (s: JobStatus) => s === 'pending' || s === 'queued' || s === 'processing';
 
 export function reducer(state: QueueState, action: Action): QueueState {
   switch (action.type) {
     case 'add':
+      // Newly added files wait as 'pending' — the user presses Compress to submit them.
       return {
-        jobs: [...state.jobs, ...action.files.map((f) => ({ ...f, status: 'queued' as const }))],
+        jobs: [...state.jobs, ...action.files.map((f) => ({ ...f, status: 'pending' as const }))],
       };
+    case 'startAll':
+      // Submit every pending job for compression (the "Compress" button).
+      return { jobs: state.jobs.map((j) => (j.status === 'pending' ? { ...j, status: 'queued' } : j)) };
     case 'start':
       return mapJob(state, action.id, (j) => (j.status === 'queued' ? { ...j, status: 'processing' } : j));
     case 'succeed':
@@ -131,8 +138,10 @@ export function nextRunnable(state: QueueState, concurrency: number): string[] {
 
 export type QueueStats = {
   total: number;
+  pending: number; // added, not yet submitted
   done: number;
   processing: number;
+  active: number; // queued + processing (a compression run is in flight)
   originalBytes: number; // summed over DONE jobs only
   outputBytes: number;
 };
@@ -141,8 +150,10 @@ export type QueueStats = {
 export function queueStats(state: QueueState): QueueStats {
   let originalBytes = 0;
   let outputBytes = 0;
+  let pending = 0;
   let done = 0;
   let processing = 0;
+  let active = 0;
   for (const j of state.jobs) {
     if (j.status === 'done') {
       done++;
@@ -150,7 +161,12 @@ export function queueStats(state: QueueState): QueueStats {
       outputBytes += j.outSize ?? 0;
     } else if (j.status === 'processing') {
       processing++;
+      active++;
+    } else if (j.status === 'queued') {
+      active++;
+    } else if (j.status === 'pending') {
+      pending++;
     }
   }
-  return { total: state.jobs.length, done, processing, originalBytes, outputBytes };
+  return { total: state.jobs.length, pending, done, processing, active, originalBytes, outputBytes };
 }

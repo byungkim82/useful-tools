@@ -17,14 +17,10 @@ export default function SettingsPanel({
   settings,
   onChange,
   labels,
-  showApply,
-  onApply,
 }: {
   settings: Settings;
   onChange: (s: Settings) => void;
   labels: LabelSet;
-  showApply: boolean;
-  onApply: () => void;
 }) {
   const quality = presetQuality(settings.preset, settings.quality);
   const { resize } = settings;
@@ -165,12 +161,6 @@ export default function SettingsPanel({
             {labels.lockAspect}
           </label>
         </div>
-      )}
-
-      {showApply && (
-        <button type="button" onClick={onApply} className="btn-primary w-full">
-          {labels.apply}
-        </button>
       )}
     </div>
   );

@@ -32,6 +32,10 @@ export type LabelSet = {
   height: string;
   lockAspect: string;
   apply: string;
+  compress: string; // primary "Compress" button (a count is appended in the UI)
+  recompress: string; // re-run all after a settings change
+  done: string; // "Done" — used in the completion summary
+  skipped: string; // notice for skipped non-image files; contains a {n} placeholder
   // queue / results
   results: string;
   original: string;
@@ -79,6 +83,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: '세로',
     lockAspect: '비율 유지',
     apply: '설정 적용',
+    compress: '압축 시작',
+    recompress: '다시 압축',
+    done: '완료',
+    skipped: '이미지가 아닌 파일 {n}개는 건너뛰었습니다.',
     results: '결과',
     original: '원본',
     compressed: '압축',
@@ -121,6 +129,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: 'Height',
     lockAspect: 'Lock aspect ratio',
     apply: 'Apply settings',
+    compress: 'Compress',
+    recompress: 'Re-compress',
+    done: 'Done',
+    skipped: 'Skipped {n} non-image file(s).',
     results: 'Results',
     original: 'Original',
     compressed: 'Compressed',
@@ -163,6 +175,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: 'Alto',
     lockAspect: 'Mantener proporción',
     apply: 'Aplicar ajustes',
+    compress: 'Comprimir',
+    recompress: 'Volver a comprimir',
+    done: 'Listo',
+    skipped: 'Se omitieron {n} archivo(s) que no son imágenes.',
     results: 'Resultados',
     original: 'Original',
     compressed: 'Comprimido',
@@ -205,6 +221,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: 'Altura',
     lockAspect: 'Manter proporção',
     apply: 'Aplicar configurações',
+    compress: 'Comprimir',
+    recompress: 'Comprimir novamente',
+    done: 'Concluído',
+    skipped: '{n} arquivo(s) que não são imagens foram ignorados.',
     results: 'Resultados',
     original: 'Original',
     compressed: 'Comprimido',
@@ -247,6 +267,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: '高さ',
     lockAspect: '縦横比を固定',
     apply: '設定を適用',
+    compress: '圧縮する',
+    recompress: '再圧縮',
+    done: '完了',
+    skipped: '画像以外のファイル {n} 個をスキップしました。',
     results: '結果',
     original: '元',
     compressed: '圧縮後',
@@ -289,6 +313,10 @@ export const LABELS: Record<Locale, LabelSet> = {
     height: 'Höhe',
     lockAspect: 'Seitenverhältnis sperren',
     apply: 'Einstellungen anwenden',
+    compress: 'Komprimieren',
+    recompress: 'Erneut komprimieren',
+    done: 'Fertig',
+    skipped: '{n} Nicht-Bilddatei(en) übersprungen.',
     results: 'Ergebnisse',
     original: 'Original',
     compressed: 'Komprimiert',
