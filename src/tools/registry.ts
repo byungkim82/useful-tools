@@ -103,6 +103,50 @@ export const tools: ToolMeta[] = [
     group: 'qr',
     load: () => import('@/tools/qr/EventQrClient'),
   },
+
+  // Unit converters — all 8 load the one shared ConverterClient, which picks its category from the slug.
+  // `length-converter` is the group's primary (its card represents the suite on the home grid); the rest
+  // surface via the in-tool ConverterTypeNav.
+  {
+    slug: 'length-converter', category: 'converter', icon: '📏',
+    keywords: ['length', 'distance', 'cm', 'inch', 'feet', 'meter', 'mile', '길이', '거리', '단위 변환'],
+    group: 'converter', primary: true, load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'weight-converter', category: 'converter', icon: '⚖️',
+    keywords: ['weight', 'mass', 'kg', 'pound', 'lbs', 'ounce', '무게', '질량', '근', '돈'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'temperature-converter', category: 'converter', icon: '🌡️',
+    keywords: ['temperature', 'celsius', 'fahrenheit', 'kelvin', '온도', '섭씨', '화씨'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'area-converter', category: 'converter', icon: '📐',
+    keywords: ['area', 'square', 'pyeong', 'tsubo', 'acre', 'hectare', '넓이', '평', '제곱미터'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'volume-converter', category: 'converter', icon: '🧪',
+    keywords: ['volume', 'liter', 'gallon', 'cup', 'ml', '부피', '리터', '컵', '밀리리터'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'speed-converter', category: 'converter', icon: '🚀',
+    keywords: ['speed', 'kmh', 'mph', 'knot', 'ms', '속도', '시속'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'time-converter', category: 'converter', icon: '⏱️',
+    keywords: ['time', 'seconds', 'minutes', 'hours', 'days', '시간', '초', '분'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
+  {
+    slug: 'data-converter', category: 'converter', icon: '💾',
+    keywords: ['data', 'storage', 'bytes', 'MB', 'GB', 'KiB', '디지털', '용량', '바이트'],
+    group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
+  },
 ];
 
 export function getTool(slug: string): ToolMeta | undefined {

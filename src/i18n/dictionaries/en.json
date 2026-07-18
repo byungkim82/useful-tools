@@ -8,7 +8,8 @@
     "subheading": "Pick a tool and use it instantly."
   },
   "categories": {
-    "generator": "Generator"
+    "generator": "Generator",
+    "converter": "Converter"
   },
   "common": {
     "loading": "Loading",
@@ -563,6 +564,302 @@
         {
           "q": "Can I use it on invitations?",
           "a": "Yes. Download the SVG for a sharp print on invitations, posters, or tickets."
+        }
+      ]
+    },
+    "length-converter": {
+      "title": "Length Converter",
+      "description": "Convert length and distance units — cm, inches, feet, meters, miles, and more.",
+      "metaTitle": "Length Converter — cm, inches, feet, meters, miles (Free)",
+      "metaDescription": "Free length and distance converter. Convert cm, mm, meters, km, inches, feet, yards, and miles instantly in your browser — no sign-up. Enter a value and see every unit at once.",
+      "howToTitle": "How to convert length",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Metric and imperial: cm, mm, m, km, inches, feet, yards, miles, and nautical miles.",
+        "Every unit updates instantly as you type — no button to press.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How many centimeters are in an inch?",
+          "a": "One inch is exactly 2.54 centimeters. Enter 1 and pick inches to see it."
+        },
+        {
+          "q": "How do I convert feet to meters?",
+          "a": "One foot is 0.3048 meters. Type the number of feet, pick feet, and read the meters row."
+        },
+        {
+          "q": "Is this length converter free?",
+          "a": "Yes — it's free with no sign-up, and every unit is available."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "weight-converter": {
+      "title": "Weight Converter",
+      "description": "Convert weight and mass units — kg, grams, pounds, ounces, and more.",
+      "metaTitle": "Weight Converter — kg, lbs, grams, ounces (Free)",
+      "metaDescription": "Free weight and mass converter. Convert kg, grams, pounds, ounces, tonnes, and stones instantly in your browser — no sign-up. Enter a value and see every unit at once.",
+      "howToTitle": "How to convert weight",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Metric and imperial: kg, g, mg, tonnes, pounds, ounces, stones, and carats.",
+        "Every unit updates instantly as you type — no button to press.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How many pounds are in a kilogram?",
+          "a": "One kilogram is about 2.2046 pounds. Enter 1 and pick kg to see the exact value."
+        },
+        {
+          "q": "How do I convert grams to ounces?",
+          "a": "One ounce is about 28.35 grams. Type the grams, pick grams, and read the ounces row."
+        },
+        {
+          "q": "What is a stone in kg?",
+          "a": "One stone is 6.35029 kilograms (14 pounds), used for body weight in the UK and Ireland."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "temperature-converter": {
+      "title": "Temperature Converter",
+      "description": "Convert temperature units — Celsius, Fahrenheit, and Kelvin.",
+      "metaTitle": "Temperature Converter — Celsius, Fahrenheit, Kelvin (Free)",
+      "metaDescription": "Free temperature converter. Convert Celsius to Fahrenheit, Fahrenheit to Celsius, and Kelvin instantly in your browser — no sign-up. Enter a value and see every scale at once.",
+      "howToTitle": "How to convert temperature",
+      "howTo": [
+        "Type the temperature you want to convert.",
+        "Pick the scale you're converting from.",
+        "Read the result in every other scale, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Celsius, Fahrenheit, and Kelvin — converted correctly with each scale's offset.",
+        "Every scale updates instantly as you type — no button to press.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How do I convert Celsius to Fahrenheit?",
+          "a": "Multiply by 9/5 and add 32. For example, 100 °C is 212 °F. Just type the value and read the °F row."
+        },
+        {
+          "q": "What is normal body temperature in Fahrenheit?",
+          "a": "About 37 °C, which is 98.6 °F. Enter 37 and pick Celsius to check."
+        },
+        {
+          "q": "At what temperature are Celsius and Fahrenheit equal?",
+          "a": "At −40°, where −40 °C equals −40 °F."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "area-converter": {
+      "title": "Area Converter",
+      "description": "Convert area units — square meters, square feet, acres, hectares, pyeong, and tsubo.",
+      "metaTitle": "Area Converter — m², ft², acres, pyeong, tsubo (Free)",
+      "metaDescription": "Free area converter. Convert square meters, square feet, acres, hectares, and the traditional pyeong (평) and tsubo (坪) instantly in your browser — no sign-up.",
+      "howToTitle": "How to convert area",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Metric and imperial: m², km², hectares, square feet, square yards, and acres.",
+        "Traditional units too: Korean pyeong (평) and Japanese tsubo (坪) and jō (畳).",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How many square meters is one pyeong?",
+          "a": "One pyeong (평) is about 3.3058 m² (exactly 400/121). It is the same size as the Japanese tsubo."
+        },
+        {
+          "q": "How do I convert square meters to pyeong?",
+          "a": "Multiply by 0.3025. For example, 100 m² is about 30.25 pyeong. Type the value and read the pyeong row."
+        },
+        {
+          "q": "Is pyeong the same as tsubo?",
+          "a": "Yes — the Korean pyeong and the Japanese tsubo are the same unit, both 400/121 m²."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "volume-converter": {
+      "title": "Volume Converter",
+      "description": "Convert volume units — liters, milliliters, gallons, cups, and more.",
+      "metaTitle": "Volume Converter — liters, mL, gallons, cups (Free)",
+      "metaDescription": "Free volume converter. Convert liters, milliliters, US and UK gallons, and cooking cups (US, metric, Japan) instantly in your browser — no sign-up.",
+      "howToTitle": "How to convert volume",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Metric and imperial: liters, mL, m³, US and UK gallons, quarts, pints, and fluid ounces.",
+        "Cooking cups by standard — US (240 mL), metric (250 mL), and Japan (200 mL) — plus tbsp and tsp.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How many milliliters are in a cup?",
+          "a": "It depends on the standard: a US legal cup is 240 mL, a metric cup is 250 mL, and a Japanese cup is 200 mL. Pick the one your recipe uses."
+        },
+        {
+          "q": "How do I convert liters to gallons?",
+          "a": "One US gallon is about 3.785 liters. Type the liters, pick liters, and read the gallon row."
+        },
+        {
+          "q": "Why are there different cup sizes?",
+          "a": "Countries define the cooking cup differently, and the gap compounds across a recipe, so this tool lets you pick the right one."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "speed-converter": {
+      "title": "Speed Converter",
+      "description": "Convert speed units — km/h, mph, m/s, knots, and more.",
+      "metaTitle": "Speed Converter — km/h, mph, m/s, knots (Free)",
+      "metaDescription": "Free speed converter. Convert km/h, mph, m/s, knots, and ft/s instantly in your browser — no sign-up. Enter a value and see every unit at once.",
+      "howToTitle": "How to convert speed",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Everyday and nautical units: km/h, mph, m/s, knots, and ft/s.",
+        "Every unit updates instantly as you type — no button to press.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How do I convert km/h to mph?",
+          "a": "Divide by 1.609344. For example, 100 km/h is about 62.14 mph. Type the value and read the mph row."
+        },
+        {
+          "q": "What is a knot?",
+          "a": "One knot is one nautical mile per hour, about 1.852 km/h, used for boats and aircraft."
+        },
+        {
+          "q": "How fast is 1 m/s in km/h?",
+          "a": "One meter per second is 3.6 km/h. Enter 1 and pick m/s to check."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "time-converter": {
+      "title": "Time Converter",
+      "description": "Convert time units — seconds, minutes, hours, days, and weeks.",
+      "metaTitle": "Time Converter — seconds, minutes, hours, days (Free)",
+      "metaDescription": "Free time converter. Convert seconds, minutes, hours, days, and weeks instantly in your browser — no sign-up. Enter a value and see every unit at once.",
+      "howToTitle": "How to convert time",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Milliseconds, seconds, minutes, hours, days, and weeks.",
+        "Every unit updates instantly as you type — no button to press.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "How many seconds are in an hour?",
+          "a": "One hour is 3,600 seconds. Enter 1 and pick hours to see it."
+        },
+        {
+          "q": "How do I convert minutes to hours?",
+          "a": "Divide by 60. For example, 90 minutes is 1.5 hours. Type the value and read the hours row."
+        },
+        {
+          "q": "How many hours are in a day?",
+          "a": "One day is 24 hours, or 1,440 minutes."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "data-converter": {
+      "title": "Data Storage Converter",
+      "description": "Convert digital storage units — KB, MB, GB, TB, and binary KiB, MiB, GiB.",
+      "metaTitle": "Data Storage Converter — KB, MB, GB, TB, KiB, MiB (Free)",
+      "metaDescription": "Free digital storage converter. Convert bytes, KB, MB, GB, TB (decimal) and KiB, MiB, GiB (binary) instantly in your browser — no sign-up.",
+      "howToTitle": "How to convert data sizes",
+      "howTo": [
+        "Type the value you want to convert.",
+        "Pick the unit you're converting from.",
+        "Read the result in every other unit, and copy the one you need."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Decimal (SI) units: KB, MB, GB, TB, PB — based on 1000.",
+        "Binary (IEC) units: KiB, MiB, GiB, TiB — based on 1024 — plus bits and bytes.",
+        "Free, no sign-up, and it all runs in your browser."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "What's the difference between MB and MiB?",
+          "a": "A megabyte (MB) is 1,000,000 bytes (decimal); a mebibyte (MiB) is 1,048,576 bytes (binary, 1024²). This tool has both."
+        },
+        {
+          "q": "How many megabytes are in a gigabyte?",
+          "a": "One GB is 1,000 MB in decimal (SI) units. In binary, 1 GiB is 1,024 MiB."
+        },
+        {
+          "q": "How many bits are in a byte?",
+          "a": "One byte is 8 bits. Enter 1 and pick byte to check."
+        },
+        {
+          "q": "Does my input get sent to a server?",
+          "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
         }
       ]
     }

@@ -8,7 +8,8 @@
     "subheading": "Escolha uma ferramenta e use na hora."
   },
   "categories": {
-    "generator": "Gerador"
+    "generator": "Gerador",
+    "converter": "Conversor"
   },
   "common": {
     "loading": "Carregando",
@@ -563,6 +564,302 @@
         {
           "q": "Posso usar em convites?",
           "a": "Sim. Baixe o SVG para uma impressão nítida em convites, cartazes ou ingressos."
+        }
+      ]
+    },
+    "length-converter": {
+      "title": "Conversor de comprimento",
+      "description": "Converta unidades de comprimento e distância — cm, polegadas, pés, metros, milhas e muito mais.",
+      "metaTitle": "Conversor de comprimento — cm, pés, metros (Grátis)",
+      "metaDescription": "Conversor de comprimento e distância grátis. Converta cm, mm, metros, km, polegadas, pés, jardas e milhas na hora no seu navegador — sem cadastro. Digite um valor e veja todas as unidades de uma vez.",
+      "howToTitle": "Como converter comprimento",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Métrico e imperial: cm, mm, m, km, polegadas, pés, jardas, milhas e milhas náuticas.",
+        "Todas as unidades são atualizadas na hora enquanto você digita — sem apertar nenhum botão.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Quantos centímetros há em uma polegada?",
+          "a": "Uma polegada tem exatamente 2.54 centímetros. Digite 1 e escolha polegadas para ver."
+        },
+        {
+          "q": "Como converter pés em metros?",
+          "a": "Um pé tem 0.3048 metros. Digite o número de pés, escolha pés e veja a linha dos metros."
+        },
+        {
+          "q": "Este conversor de comprimento é grátis?",
+          "a": "Sim — é grátis, sem cadastro, e todas as unidades estão disponíveis."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "weight-converter": {
+      "title": "Conversor de peso",
+      "description": "Converta unidades de peso e massa — kg, gramas, libras, onças e muito mais.",
+      "metaTitle": "Conversor de peso — kg, lb, gramas, onças (Grátis)",
+      "metaDescription": "Conversor de peso e massa grátis. Converta kg, gramas, libras, onças, toneladas e stones na hora no seu navegador — sem cadastro. Digite um valor e veja todas as unidades de uma vez.",
+      "howToTitle": "Como converter peso",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Métrico e imperial: kg, g, mg, toneladas, libras, onças, stones e quilates.",
+        "Todas as unidades são atualizadas na hora enquanto você digita — sem apertar nenhum botão.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Quantas libras há em um quilograma?",
+          "a": "Um quilograma tem cerca de 2.2046 libras. Digite 1 e escolha kg para ver o valor exato."
+        },
+        {
+          "q": "Como converter gramas em onças?",
+          "a": "Uma onça tem cerca de 28.35 gramas. Digite as gramas, escolha gramas e veja a linha das onças."
+        },
+        {
+          "q": "Quanto é um stone em kg?",
+          "a": "Um stone tem 6.35029 quilogramas (14 libras), usado para peso corporal no Reino Unido e na Irlanda."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "temperature-converter": {
+      "title": "Conversor de temperatura",
+      "description": "Converta unidades de temperatura — Celsius, Fahrenheit e Kelvin.",
+      "metaTitle": "Conversor de temperatura — Celsius, Fahrenheit (Grátis)",
+      "metaDescription": "Conversor de temperatura grátis. Converta Celsius para Fahrenheit, Fahrenheit para Celsius e Kelvin na hora no seu navegador — sem cadastro. Digite um valor e veja todas as escalas de uma vez.",
+      "howToTitle": "Como converter temperatura",
+      "howTo": [
+        "Digite a temperatura que você quer converter.",
+        "Escolha a escala de origem.",
+        "Veja o resultado em todas as outras escalas e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Celsius, Fahrenheit e Kelvin — convertidos corretamente com o deslocamento de cada escala.",
+        "Todas as escalas são atualizadas na hora enquanto você digita — sem apertar nenhum botão.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como converter Celsius em Fahrenheit?",
+          "a": "Multiplique por 9/5 e some 32. Por exemplo, 100 °C são 212 °F. Basta digitar o valor e ver a linha dos °F."
+        },
+        {
+          "q": "Qual é a temperatura corporal normal em Fahrenheit?",
+          "a": "Cerca de 37 °C, o que equivale a 98.6 °F. Digite 37 e escolha Celsius para conferir."
+        },
+        {
+          "q": "Em que temperatura Celsius e Fahrenheit são iguais?",
+          "a": "Em −40°, onde −40 °C equivalem a −40 °F."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "area-converter": {
+      "title": "Conversor de área",
+      "description": "Converta unidades de área — metros quadrados, pés quadrados, acres, hectares, pyeong e tsubo.",
+      "metaTitle": "Conversor de área — m², ft², acres, pyeong (Grátis)",
+      "metaDescription": "Conversor de área grátis. Converta metros quadrados, pés quadrados, acres, hectares e os tradicionais pyeong (평) e tsubo (坪) na hora no seu navegador — sem cadastro.",
+      "howToTitle": "Como converter área",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Métrico e imperial: m², km², hectares, pés quadrados, jardas quadradas e acres.",
+        "Unidades tradicionais também: o pyeong (평) coreano e o tsubo (坪) e o jō (畳) japoneses.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Quantos metros quadrados tem um pyeong?",
+          "a": "Um pyeong (평) tem cerca de 3.3058 m² (exatamente 400/121). Tem o mesmo tamanho do tsubo japonês."
+        },
+        {
+          "q": "Como converter metros quadrados em pyeong?",
+          "a": "Multiplique por 0.3025. Por exemplo, 100 m² são cerca de 30.25 pyeong. Digite o valor e veja a linha do pyeong."
+        },
+        {
+          "q": "Pyeong é o mesmo que tsubo?",
+          "a": "Sim — o pyeong coreano e o tsubo japonês são a mesma unidade, ambos 400/121 m²."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "volume-converter": {
+      "title": "Conversor de volume",
+      "description": "Converta unidades de volume — litros, mililitros, galões, xícaras e muito mais.",
+      "metaTitle": "Conversor de volume — litros, mL, galões (Grátis)",
+      "metaDescription": "Conversor de volume grátis. Converta litros, mililitros, galões dos EUA e do Reino Unido e xícaras de cozinha (EUA, métrica, Japão) na hora no seu navegador — sem cadastro.",
+      "howToTitle": "Como converter volume",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Métrico e imperial: litros, mL, m³, galões dos EUA e do Reino Unido, quarts, pints e onças líquidas.",
+        "Xícaras de cozinha por padrão — EUA (240 mL), métrica (250 mL) e Japão (200 mL) — além de colher de sopa e colher de chá.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Quantos mililitros tem uma xícara?",
+          "a": "Depende do padrão: a xícara legal dos EUA tem 240 mL, a xícara métrica tem 250 mL e a xícara japonesa tem 200 mL. Escolha a que a sua receita usa."
+        },
+        {
+          "q": "Como converter litros em galões?",
+          "a": "Um galão dos EUA tem cerca de 3.785 litros. Digite os litros, escolha litros e veja a linha dos galões."
+        },
+        {
+          "q": "Por que existem tamanhos diferentes de xícara?",
+          "a": "Cada país define a xícara de cozinha de um jeito, e a diferença se acumula ao longo de uma receita, então esta ferramenta deixa você escolher a certa."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "speed-converter": {
+      "title": "Conversor de velocidade",
+      "description": "Converta unidades de velocidade — km/h, mph, m/s, nós e muito mais.",
+      "metaTitle": "Conversor de velocidade — km/h, mph, m/s (Grátis)",
+      "metaDescription": "Conversor de velocidade grátis. Converta km/h, mph, m/s, nós e ft/s na hora no seu navegador — sem cadastro. Digite um valor e veja todas as unidades de uma vez.",
+      "howToTitle": "Como converter velocidade",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Unidades do dia a dia e náuticas: km/h, mph, m/s, nós e ft/s.",
+        "Todas as unidades são atualizadas na hora enquanto você digita — sem apertar nenhum botão.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Como converter km/h em mph?",
+          "a": "Divida por 1.609344. Por exemplo, 100 km/h são cerca de 62.14 mph. Digite o valor e veja a linha dos mph."
+        },
+        {
+          "q": "O que é um nó?",
+          "a": "Um nó é uma milha náutica por hora, cerca de 1.852 km/h, usado em barcos e aeronaves."
+        },
+        {
+          "q": "Quanto é 1 m/s em km/h?",
+          "a": "Um metro por segundo são 3.6 km/h. Digite 1 e escolha m/s para conferir."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "time-converter": {
+      "title": "Conversor de tempo",
+      "description": "Converta unidades de tempo — segundos, minutos, horas, dias e semanas.",
+      "metaTitle": "Conversor de tempo — segundos, minutos, horas (Grátis)",
+      "metaDescription": "Conversor de tempo grátis. Converta segundos, minutos, horas, dias e semanas na hora no seu navegador — sem cadastro. Digite um valor e veja todas as unidades de uma vez.",
+      "howToTitle": "Como converter tempo",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Milissegundos, segundos, minutos, horas, dias e semanas.",
+        "Todas as unidades são atualizadas na hora enquanto você digita — sem apertar nenhum botão.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Quantos segundos há em uma hora?",
+          "a": "Uma hora tem 3,600 segundos. Digite 1 e escolha horas para ver."
+        },
+        {
+          "q": "Como converter minutos em horas?",
+          "a": "Divida por 60. Por exemplo, 90 minutos são 1.5 horas. Digite o valor e veja a linha das horas."
+        },
+        {
+          "q": "Quantas horas há em um dia?",
+          "a": "Um dia tem 24 horas, ou 1,440 minutos."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
+        }
+      ]
+    },
+    "data-converter": {
+      "title": "Conversor de armazenamento de dados",
+      "description": "Converta unidades de armazenamento digital — KB, MB, GB, TB e os binários KiB, MiB, GiB.",
+      "metaTitle": "Conversor de armazenamento — KB, MB, GB, TB (Grátis)",
+      "metaDescription": "Conversor de armazenamento digital grátis. Converta bytes, KB, MB, GB, TB (decimal) e KiB, MiB, GiB (binário) na hora no seu navegador — sem cadastro.",
+      "howToTitle": "Como converter tamanhos de dados",
+      "howTo": [
+        "Digite o valor que você quer converter.",
+        "Escolha a unidade de origem.",
+        "Veja o resultado em todas as outras unidades e copie a que você precisa."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "Unidades decimais (SI): KB, MB, GB, TB, PB — baseadas em 1000.",
+        "Unidades binárias (IEC): KiB, MiB, GiB, TiB — baseadas em 1024 — além de bits e bytes.",
+        "Grátis, sem cadastro, e tudo roda no seu navegador."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Qual é a diferença entre MB e MiB?",
+          "a": "Um megabyte (MB) tem 1,000,000 bytes (decimal); um mebibyte (MiB) tem 1,048,576 bytes (binário, 1024²). Esta ferramenta tem os dois."
+        },
+        {
+          "q": "Quantos megabytes há em um gigabyte?",
+          "a": "Um GB tem 1,000 MB em unidades decimais (SI). Em binário, 1 GiB tem 1,024 MiB."
+        },
+        {
+          "q": "Quantos bits há em um byte?",
+          "a": "Um byte tem 8 bits. Digite 1 e escolha byte para conferir."
+        },
+        {
+          "q": "Os dados que eu digito são enviados para um servidor?",
+          "a": "Não. A conversão acontece inteiramente no seu navegador; nada do que você digita sai do seu dispositivo."
         }
       ]
     }

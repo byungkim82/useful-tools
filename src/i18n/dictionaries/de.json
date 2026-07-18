@@ -8,7 +8,8 @@
     "subheading": "Wählen Sie ein Tool und nutzen Sie es sofort."
   },
   "categories": {
-    "generator": "Generator"
+    "generator": "Generator",
+    "converter": "Umrechner"
   },
   "common": {
     "loading": "Wird geladen",
@@ -563,6 +564,302 @@
         {
           "q": "Kann ich ihn auf Einladungen verwenden?",
           "a": "Ja. Laden Sie das SVG herunter für einen scharfen Druck auf Einladungen, Postern oder Tickets."
+        }
+      ]
+    },
+    "length-converter": {
+      "title": "Längen-Umrechner",
+      "description": "Rechnen Sie Längen- und Entfernungseinheiten um — cm, Zoll, Fuß, Meter, Meilen und mehr.",
+      "metaTitle": "Längen-Umrechner — cm, Zoll, Fuß, Meter (kostenlos)",
+      "metaDescription": "Kostenloser Längen- und Entfernungs-Umrechner. Rechnen Sie cm, mm, Meter, km, Zoll, Fuß, Yard und Meilen sofort im Browser um — ohne Anmeldung. Wert eingeben und alle Einheiten auf einen Blick sehen.",
+      "howToTitle": "So rechnen Sie Länge um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Metrisch und imperial: cm, mm, m, km, Zoll, Fuß, Yard, Meilen und Seemeilen.",
+        "Jede Einheit aktualisiert sich sofort beim Tippen — kein Knopfdruck nötig.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie viele Zentimeter sind in einem Zoll?",
+          "a": "Ein Zoll sind genau 2.54 Zentimeter. Geben Sie 1 ein und wählen Sie Zoll, um es zu sehen."
+        },
+        {
+          "q": "Wie rechne ich Fuß in Meter um?",
+          "a": "Ein Fuß sind 0.3048 Meter. Geben Sie die Anzahl der Fuß ein, wählen Sie Fuß und lesen Sie die Meter-Zeile ab."
+        },
+        {
+          "q": "Ist dieser Längen-Umrechner kostenlos?",
+          "a": "Ja — er ist kostenlos, ohne Anmeldung, und jede Einheit steht zur Verfügung."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "weight-converter": {
+      "title": "Gewichts-Umrechner",
+      "description": "Rechnen Sie Gewichts- und Masseeinheiten um — kg, Gramm, Pfund, Unzen und mehr.",
+      "metaTitle": "Gewichts-Umrechner — kg, Pfund, Gramm, Unzen (kostenlos)",
+      "metaDescription": "Kostenloser Gewichts- und Masse-Umrechner. Rechnen Sie kg, Gramm, Pfund, Unzen, Tonnen und Stones sofort im Browser um — ohne Anmeldung. Wert eingeben und alle Einheiten auf einen Blick sehen.",
+      "howToTitle": "So rechnen Sie Gewicht um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Metrisch und imperial: kg, g, mg, Tonnen, Pfund, Unzen, Stones und Karat.",
+        "Jede Einheit aktualisiert sich sofort beim Tippen — kein Knopfdruck nötig.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie viele Pfund sind in einem Kilogramm?",
+          "a": "Ein Kilogramm sind etwa 2.2046 Pfund. Geben Sie 1 ein und wählen Sie kg, um den genauen Wert zu sehen."
+        },
+        {
+          "q": "Wie rechne ich Gramm in Unzen um?",
+          "a": "Eine Unze sind etwa 28.35 Gramm. Geben Sie die Gramm ein, wählen Sie Gramm und lesen Sie die Unzen-Zeile ab."
+        },
+        {
+          "q": "Was ist ein Stone in kg?",
+          "a": "Ein Stone sind 6.35029 Kilogramm (14 Pfund) und wird im Vereinigten Königreich und in Irland für das Körpergewicht verwendet."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "temperature-converter": {
+      "title": "Temperatur-Umrechner",
+      "description": "Rechnen Sie Temperatureinheiten um — Celsius, Fahrenheit und Kelvin.",
+      "metaTitle": "Temperatur-Umrechner — Celsius, Fahrenheit, Kelvin",
+      "metaDescription": "Kostenloser Temperatur-Umrechner. Rechnen Sie Celsius in Fahrenheit, Fahrenheit in Celsius und Kelvin sofort im Browser um — ohne Anmeldung. Wert eingeben und alle Skalen auf einen Blick sehen.",
+      "howToTitle": "So rechnen Sie Temperatur um",
+      "howTo": [
+        "Geben Sie die Temperatur ein, die Sie umrechnen möchten.",
+        "Wählen Sie die Skala, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Skala ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Celsius, Fahrenheit und Kelvin — korrekt umgerechnet mit dem Offset jeder Skala.",
+        "Jede Skala aktualisiert sich sofort beim Tippen — kein Knopfdruck nötig.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie rechne ich Celsius in Fahrenheit um?",
+          "a": "Multiplizieren Sie mit 9/5 und addieren Sie 32. Zum Beispiel sind 100 °C gleich 212 °F. Geben Sie einfach den Wert ein und lesen Sie die °F-Zeile ab."
+        },
+        {
+          "q": "Was ist die normale Körpertemperatur in Fahrenheit?",
+          "a": "Etwa 37 °C, also 98.6 °F. Geben Sie 37 ein und wählen Sie Celsius zum Prüfen."
+        },
+        {
+          "q": "Bei welcher Temperatur sind Celsius und Fahrenheit gleich?",
+          "a": "Bei −40°, wo −40 °C gleich −40 °F ist."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "area-converter": {
+      "title": "Flächen-Umrechner",
+      "description": "Rechnen Sie Flächeneinheiten um — Quadratmeter, Quadratfuß, Acre, Hektar, pyeong und tsubo.",
+      "metaTitle": "Flächen-Umrechner — m², ft², Acre, pyeong, tsubo",
+      "metaDescription": "Kostenloser Flächen-Umrechner. Rechnen Sie Quadratmeter, Quadratfuß, Acre, Hektar und die traditionellen pyeong (평) und tsubo (坪) sofort im Browser um — ohne Anmeldung.",
+      "howToTitle": "So rechnen Sie Fläche um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Metrisch und imperial: m², km², Hektar, Quadratfuß, Quadratyard und Acre.",
+        "Auch traditionelle Einheiten: das koreanische pyeong (평) und das japanische tsubo (坪) und jō (畳).",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie viele Quadratmeter ist ein pyeong?",
+          "a": "Ein pyeong (평) sind etwa 3.3058 m² (genau 400/121). Es ist genauso groß wie das japanische tsubo."
+        },
+        {
+          "q": "Wie rechne ich Quadratmeter in pyeong um?",
+          "a": "Multiplizieren Sie mit 0.3025. Zum Beispiel sind 100 m² etwa 30.25 pyeong. Geben Sie den Wert ein und lesen Sie die pyeong-Zeile ab."
+        },
+        {
+          "q": "Ist pyeong dasselbe wie tsubo?",
+          "a": "Ja — das koreanische pyeong und das japanische tsubo sind dieselbe Einheit, beide 400/121 m²."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "volume-converter": {
+      "title": "Volumen-Umrechner",
+      "description": "Rechnen Sie Volumeneinheiten um — Liter, Milliliter, Gallonen, Cups und mehr.",
+      "metaTitle": "Volumen-Umrechner — Liter, mL, Gallonen, Cups (kostenlos)",
+      "metaDescription": "Kostenloser Volumen-Umrechner. Rechnen Sie Liter, Milliliter, US- und UK-Gallonen und Koch-Cups (US, metrisch, Japan) sofort im Browser um — ohne Anmeldung.",
+      "howToTitle": "So rechnen Sie Volumen um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Metrisch und imperial: Liter, mL, m³, US- und UK-Gallonen, Quarts, Pints und flüssige Unzen.",
+        "Koch-Cups nach Standard — US (240 mL), metrisch (250 mL) und Japan (200 mL) — plus tbsp und tsp.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie viele Milliliter sind in einem Cup?",
+          "a": "Das hängt vom Standard ab: ein US-Cup sind 240 mL, ein metrischer Cup sind 250 mL und ein japanischer Cup sind 200 mL. Wählen Sie den, den Ihr Rezept verwendet."
+        },
+        {
+          "q": "Wie rechne ich Liter in Gallonen um?",
+          "a": "Eine US-Gallone sind etwa 3.785 Liter. Geben Sie die Liter ein, wählen Sie Liter und lesen Sie die Gallonen-Zeile ab."
+        },
+        {
+          "q": "Warum gibt es verschiedene Cup-Größen?",
+          "a": "Länder definieren den Koch-Cup unterschiedlich, und die Abweichung summiert sich über ein Rezept, deshalb können Sie mit diesem Tool den richtigen wählen."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "speed-converter": {
+      "title": "Geschwindigkeits-Umrechner",
+      "description": "Rechnen Sie Geschwindigkeitseinheiten um — km/h, mph, m/s, Knoten und mehr.",
+      "metaTitle": "Geschwindigkeits-Umrechner — km/h, mph, m/s, Knoten",
+      "metaDescription": "Kostenloser Geschwindigkeits-Umrechner. Rechnen Sie km/h, mph, m/s, Knoten und ft/s sofort im Browser um — ohne Anmeldung. Wert eingeben und alle Einheiten auf einen Blick sehen.",
+      "howToTitle": "So rechnen Sie Geschwindigkeit um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Alltags- und nautische Einheiten: km/h, mph, m/s, Knoten und ft/s.",
+        "Jede Einheit aktualisiert sich sofort beim Tippen — kein Knopfdruck nötig.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie rechne ich km/h in mph um?",
+          "a": "Teilen Sie durch 1.609344. Zum Beispiel sind 100 km/h etwa 62.14 mph. Geben Sie den Wert ein und lesen Sie die mph-Zeile ab."
+        },
+        {
+          "q": "Was ist ein Knoten?",
+          "a": "Ein Knoten ist eine Seemeile pro Stunde, etwa 1.852 km/h, und wird für Schiffe und Flugzeuge verwendet."
+        },
+        {
+          "q": "Wie schnell ist 1 m/s in km/h?",
+          "a": "Ein Meter pro Sekunde sind 3.6 km/h. Geben Sie 1 ein und wählen Sie m/s zum Prüfen."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "time-converter": {
+      "title": "Zeit-Umrechner",
+      "description": "Rechnen Sie Zeiteinheiten um — Sekunden, Minuten, Stunden, Tage und Wochen.",
+      "metaTitle": "Zeit-Umrechner — Sekunden, Minuten, Stunden, Tage",
+      "metaDescription": "Kostenloser Zeit-Umrechner. Rechnen Sie Sekunden, Minuten, Stunden, Tage und Wochen sofort im Browser um — ohne Anmeldung. Wert eingeben und alle Einheiten auf einen Blick sehen.",
+      "howToTitle": "So rechnen Sie Zeit um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Millisekunden, Sekunden, Minuten, Stunden, Tage und Wochen.",
+        "Jede Einheit aktualisiert sich sofort beim Tippen — kein Knopfdruck nötig.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Wie viele Sekunden sind in einer Stunde?",
+          "a": "Eine Stunde sind 3,600 Sekunden. Geben Sie 1 ein und wählen Sie Stunden, um es zu sehen."
+        },
+        {
+          "q": "Wie rechne ich Minuten in Stunden um?",
+          "a": "Teilen Sie durch 60. Zum Beispiel sind 90 Minuten 1.5 Stunden. Geben Sie den Wert ein und lesen Sie die Stunden-Zeile ab."
+        },
+        {
+          "q": "Wie viele Stunden sind in einem Tag?",
+          "a": "Ein Tag sind 24 Stunden oder 1,440 Minuten."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "data-converter": {
+      "title": "Datenspeicher-Umrechner",
+      "description": "Rechnen Sie digitale Speichereinheiten um — KB, MB, GB, TB und binär KiB, MiB, GiB.",
+      "metaTitle": "Datenspeicher-Umrechner — KB, MB, GB, TB, KiB, MiB",
+      "metaDescription": "Kostenloser Umrechner für digitalen Speicher. Rechnen Sie Bytes, KB, MB, GB, TB (dezimal) und KiB, MiB, GiB (binär) sofort im Browser um — ohne Anmeldung.",
+      "howToTitle": "So rechnen Sie Datengrößen um",
+      "howTo": [
+        "Geben Sie den Wert ein, den Sie umrechnen möchten.",
+        "Wählen Sie die Einheit, aus der Sie umrechnen.",
+        "Lesen Sie das Ergebnis in jeder anderen Einheit ab und kopieren Sie die, die Sie brauchen."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Dezimale (SI) Einheiten: KB, MB, GB, TB, PB — basierend auf 1000.",
+        "Binäre (IEC) Einheiten: KiB, MiB, GiB, TiB — basierend auf 1024 — plus Bits und Bytes.",
+        "Kostenlos, ohne Anmeldung, und alles läuft in Ihrem Browser."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Was ist der Unterschied zwischen MB und MiB?",
+          "a": "Ein Megabyte (MB) sind 1,000,000 Bytes (dezimal); ein Mebibyte (MiB) sind 1,048,576 Bytes (binär, 1024²). Dieses Tool hat beide."
+        },
+        {
+          "q": "Wie viele Megabyte sind in einem Gigabyte?",
+          "a": "Ein GB sind 1,000 MB in dezimalen (SI) Einheiten. Binär sind 1 GiB gleich 1,024 MiB."
+        },
+        {
+          "q": "Wie viele Bits sind in einem Byte?",
+          "a": "Ein Byte sind 8 Bit. Geben Sie 1 ein und wählen Sie Byte zum Prüfen."
+        },
+        {
+          "q": "Wird meine Eingabe an einen Server gesendet?",
+          "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
         }
       ]
     }
