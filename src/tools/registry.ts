@@ -147,6 +147,25 @@ export const tools: ToolMeta[] = [
     keywords: ['data', 'storage', 'bytes', 'MB', 'GB', 'KiB', '디지털', '용량', '바이트'],
     group: 'converter', load: () => import('@/tools/convert/ConverterClient'),
   },
+
+  // Image compressor — all three slugs load the one shared ImageCompressorClient, which reads the slug
+  // to pick the default output format (auto / jpeg / webp). `image-compressor` is the group's primary
+  // (its card represents the suite on the home grid); the rest surface via the in-tool ImageTypeNav.
+  {
+    slug: 'image-compressor', category: 'image', icon: '🖼️',
+    keywords: ['image', 'compress', 'photo', 'shrink', 'reduce size', '이미지', '사진', '용량', '압축', '리사이즈'],
+    group: 'image', primary: true, load: () => import('@/tools/image/ImageCompressorClient'),
+  },
+  {
+    slug: 'compress-jpg', category: 'image', icon: '🏞️',
+    keywords: ['jpg', 'jpeg', 'compress jpg', 'reduce jpeg', '제이피지', 'jpg 압축', '사진 용량'],
+    group: 'image', load: () => import('@/tools/image/ImageCompressorClient'),
+  },
+  {
+    slug: 'compress-webp', category: 'image', icon: '🌐',
+    keywords: ['webp', 'convert to webp', 'compress webp', '웹피', 'webp 변환', 'webp 압축'],
+    group: 'image', load: () => import('@/tools/image/ImageCompressorClient'),
+  },
 ];
 
 export function getTool(slug: string): ToolMeta | undefined {

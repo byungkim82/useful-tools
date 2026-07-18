@@ -7,6 +7,7 @@ import { tools, getTool } from '@/tools/registry';
 import ToolLoader from '@/tools/ToolLoader';
 import QrTypeNav from '@/tools/qr/QrTypeNav';
 import ConverterTypeNav from '@/tools/convert/ConverterTypeNav';
+import ImageTypeNav from '@/tools/image/ImageTypeNav';
 import { SITE_ORIGIN } from '@/site';
 
 export const dynamicParams = false;
@@ -49,7 +50,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const url = `${SITE_ORIGIN}/${locale}/tools/${slug}/`;
   // Crawlable structured data. The tool DOM is ssr:false, so without this the static HTML is thin.
   // FAQPage mirrors the visible FAQ below (Google requires the Q&A to be on-page).
-  const jsonLd = [
+  const jsonLd: Record<string, unknown>[] = [
     {
       '@context': 'https://schema.org', '@type': 'WebApplication',
       name: t.title, description: t.metaDescription, url,
@@ -64,6 +65,15 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       })),
     },
   ];
+  // Image tools additionally emit HowTo (compression is a strong how-to rich-result candidate). The
+  // steps mirror the visible how-to list below, which Google requires to be on-page.
+  if (group === 'image') {
+    jsonLd.push({
+      '@context': 'https://schema.org', '@type': 'HowTo',
+      name: t.howToTitle,
+      step: t.howTo.map((step, i) => ({ '@type': 'HowToStep', position: i + 1, text: step })),
+    });
+  }
   return (
     <main>
       {/* JSON-LD escapes `<` so page content can never break out of the script tag. */}
@@ -73,6 +83,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       <p className="mt-1 text-neutral-500">{t.description}</p>
       {group === 'qr' && <QrTypeNav locale={locale} current={slug} group={group} />}
       {group === 'converter' && <ConverterTypeNav locale={locale} current={slug} />}
+      {group === 'image' && <ImageTypeNav locale={locale} current={slug} />}
       <div className="mt-6">
         <ToolLoader slug={slug} t={t} common={dict.common} locale={locale} />
       </div>

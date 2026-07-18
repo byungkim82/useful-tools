@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/build-404.mjs",
+    "build": "node scripts/build-worker.mjs && next build && node scripts/build-404.mjs",
     "preview": "pnpm build && wrangler dev",
     "deploy": "pnpm build && wrangler deploy",
     "lint": "eslint",
@@ -24,6 +24,7 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "esbuild": "^0.28.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",

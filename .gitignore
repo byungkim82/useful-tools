@@ -44,3 +44,6 @@ next-env.d.ts
 .wrangler/
 .dev.vars
 .dev.vars.*
+
+# build artifact: the compression worker is bundled from src by scripts/build-worker.mjs
+/public/workers/

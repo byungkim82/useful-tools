@@ -9,7 +9,8 @@
   },
   "categories": {
     "generator": "Generator",
-    "converter": "Umrechner"
+    "converter": "Umrechner",
+    "image": "Bild"
   },
   "common": {
     "loading": "Wird geladen",
@@ -860,6 +861,138 @@
         {
           "q": "Wird meine Eingabe an einen Server gesendet?",
           "a": "Nein. Die Umrechnung läuft vollständig in Ihrem Browser; nichts, was Sie eingeben, verlässt Ihr Gerät."
+        }
+      ]
+    },
+    "image-compressor": {
+      "title": "Bilder komprimieren",
+      "description": "Komprimieren und verkleinern Sie Bilder direkt in Ihrem Browser — ohne Upload, ohne Anmeldung, ohne sichtbaren Qualitätsverlust.",
+      "metaTitle": "Bilder komprimieren — JPG, PNG & WebP ohne Upload",
+      "metaDescription": "Kostenloser Online-Bildkompressor. Reduzieren Sie die Dateigröße von Fotos, komprimieren Sie viele Bilder gleichzeitig, verkleinern Sie sie und laden Sie alles als ZIP herunter — alles im Browser, ohne Upload und DSGVO-konform. Keine Anmeldung, kein Wasserzeichen.",
+      "howToTitle": "So komprimieren Sie Bilder",
+      "howTo": [
+        "Ziehen Sie Ihre Bilder hierher oder klicken Sie zum Auswählen — fügen Sie beliebig viele hinzu.",
+        "Wählen Sie eine Qualitätsvorgabe oder ziehen Sie den Regler, und ändern Sie optional Größe oder Format.",
+        "Jedes Bild wird sofort in Ihrem Browser komprimiert; vergleichen Sie die Größe vorher und nachher.",
+        "Laden Sie die Dateien einzeln herunter oder alle zusammen als ZIP."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "100 % in Ihrem Browser — Ihre Bilder verlassen niemals Ihr Gerät.",
+        "Stapelverarbeitung: Ziehen Sie Dutzende Fotos hinein und verarbeiten Sie sie gemeinsam.",
+        "Ausgabe als JPG und WebP, mit Qualitätsvorgaben und einem feinstufigen Regler.",
+        "Verkleinern nach maximaler Abmessung, Prozentsatz oder exakter Größe — unter Beibehaltung des Seitenverhältnisses.",
+        "Kostenlos, ohne Werbung, ohne Wasserzeichen, ohne Anmeldung und ohne Begrenzung der Dateianzahl."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Werden meine Bilder auf einen Server hochgeladen?",
+          "a": "Nein. Die gesamte Komprimierung erfolgt lokal in Ihrem Browser über die Canvas API, sodass Ihre Dateien niemals Ihr Gerät verlassen. Sie können sogar Ihr Wi-Fi ausschalten, und es funktioniert weiterhin."
+        },
+        {
+          "q": "Wie viel kleiner werden meine Bilder?",
+          "a": "Das hängt vom Foto und der gewählten Qualität ab, aber die JPEG- und WebP-Komprimierung reduziert ein typisches Foto häufig um 50 bis 80 Prozent. Jedes Ergebnis zeigt die genaue Größe vorher und nachher."
+        },
+        {
+          "q": "Entfernt die Komprimierung EXIF- und Standortdaten?",
+          "a": "Ja. Beim erneuten Encodieren im Browser werden die EXIF-Metadaten entfernt, einschließlich des GPS-Standorts — ein Datenschutzvorteil zusätzlich zur kleineren Datei."
+        },
+        {
+          "q": "Kann ich viele Bilder gleichzeitig komprimieren?",
+          "a": "Ja. Fügen Sie beliebig viele hinzu; sie werden in eine Warteschlange gestellt und gemeinsam komprimiert, und Sie können alles als eine einzige ZIP-Datei herunterladen."
+        },
+        {
+          "q": "Gibt es eine Begrenzung für Dateigröße oder -anzahl?",
+          "a": "Es gibt keine künstliche Begrenzung. Sehr große Fotos werden automatisch verkleinert, um das Canvas-Limit des Browsers einzuhalten, und das Ergebnis wird entsprechend gekennzeichnet, wenn das geschieht."
+        }
+      ]
+    },
+    "compress-jpg": {
+      "title": "JPG komprimieren",
+      "description": "Reduzieren Sie die JPEG-Dateigröße in Ihrem Browser — Stapelverarbeitung, Verkleinern und Herunterladen, ganz ohne Upload.",
+      "metaTitle": "JPG komprimieren — JPEG verkleinern, ohne Upload",
+      "metaDescription": "Kostenloser JPG-Kompressor. Reduzieren Sie die Dateigröße von JPEG-Fotos in Ihrem Browser, komprimieren Sie viele Bilder gleichzeitig, verkleinern Sie sie und laden Sie alles als ZIP herunter. Ohne Upload, DSGVO-konform, ohne Anmeldung, ohne Wasserzeichen.",
+      "howToTitle": "So komprimieren Sie ein JPG",
+      "howTo": [
+        "Ziehen Sie Ihre JPG-Fotos hierher oder klicken Sie zum Auswählen — fügen Sie so viele hinzu, wie Sie brauchen.",
+        "Wählen Sie eine Qualitätsvorgabe oder justieren Sie den Regler, und verkleinern Sie die Abmessungen, wenn Sie möchten.",
+        "Jedes JPG wird sofort in Ihrem Browser neu komprimiert; sehen Sie, wie viel kleiner es geworden ist.",
+        "Laden Sie die komprimierten JPGs einzeln oder alle zusammen als ZIP herunter."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Komprimiert JPG- und JPEG-Dateien vollständig in Ihrem Browser — ohne Upload.",
+        "Stapelmodus: Verkleinern Sie einen ganzen Ordner voller Fotos in einem Durchgang.",
+        "Qualitätsvorgaben plus präziser Regler, um Größe und Schärfe auszubalancieren.",
+        "Optionales Verkleinern nach maximaler Abmessung, Prozentsatz oder exakter Größe.",
+        "Kostenlos, ohne Werbung, ohne Wasserzeichen und ohne Begrenzung der Dateianzahl."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Werden meine JPGs irgendwohin hochgeladen?",
+          "a": "Nein. Die JPG-Komprimierung läuft lokal in Ihrem Browser, sodass Ihre Fotos niemals Ihr Gerät verlassen — es funktioniert sogar offline."
+        },
+        {
+          "q": "Wie stark lässt sich ein JPG komprimieren?",
+          "a": "Die meisten JPEG-Fotos werden je nach gewählter Qualität um 50 bis 80 Prozent kleiner. Für jede Datei werden die Größe vorher und nachher angezeigt."
+        },
+        {
+          "q": "Verringert die Komprimierung die Bildqualität?",
+          "a": "Eine niedrigere Qualität bedeutet eine kleinere Datei. Die Vorgabe für hohe Qualität hält Fotos scharf, während die kleinste Vorgabe etwas Detail gegen die kleinstmögliche Datei eintauscht — Sie bestimmen die Balance."
+        },
+        {
+          "q": "Entfernt es EXIF- und GPS-Daten aus meinen JPGs?",
+          "a": "Ja. Beim erneuten Encodieren des JPG werden die EXIF-Metadaten entfernt, einschließlich Kamerainformationen und GPS-Standort — für zusätzlichen Datenschutz."
+        },
+        {
+          "q": "Kann ich hier auch JPG in WebP umwandeln?",
+          "a": "Ja. Stellen Sie das Ausgabeformat auf WebP, um eine noch kleinere Datei zu erhalten, oder behalten Sie JPG bei — beides ist verfügbar."
+        }
+      ]
+    },
+    "compress-webp": {
+      "title": "WebP komprimieren",
+      "description": "Wandeln Sie Bilder in WebP um und verkleinern Sie sie in Ihrem Browser — Stapelverarbeitung, Verkleinern und Herunterladen, ohne Upload.",
+      "metaTitle": "WebP komprimieren — in WebP umwandeln, ohne Upload",
+      "metaDescription": "Kostenloser WebP-Kompressor und -Konverter. Wandeln Sie JPG und PNG in WebP um, reduzieren Sie die Dateigröße, verarbeiten Sie Bilder im Stapel, verkleinern Sie sie und laden Sie alles als ZIP herunter — alles im Browser. Ohne Upload, DSGVO-konform, ohne Anmeldung.",
+      "howToTitle": "So komprimieren Sie nach WebP",
+      "howTo": [
+        "Ziehen Sie Ihre Bilder hierher oder klicken Sie zum Auswählen — JPG, PNG oder vorhandene WebP funktionieren alle.",
+        "Die Ausgabe ist auf WebP eingestellt; wählen Sie eine Qualitätsvorgabe oder passen Sie den Regler an, und verkleinern Sie bei Bedarf.",
+        "Jedes Bild wird sofort in Ihrem Browser in WebP umgewandelt und komprimiert.",
+        "Laden Sie die WebP-Dateien einzeln oder alle zusammen als ZIP herunter."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "Wandeln Sie JPG und PNG vollständig in Ihrem Browser in WebP um — ohne Upload.",
+        "WebP übertrifft JPEG bei gleicher Qualität in der Regel, sodass Dateien noch kleiner werden.",
+        "Wandeln Sie viele Bilder gleichzeitig im Stapel um und komprimieren Sie sie.",
+        "Qualitätsvorgaben, ein feiner Regler und optionales Verkleinern.",
+        "Kostenlos, ohne Werbung, ohne Wasserzeichen und ohne Begrenzung der Dateianzahl."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Werden meine Bilder zum Umwandeln in WebP hochgeladen?",
+          "a": "Nein. Die Umwandlung in WebP läuft lokal in Ihrem Browser, sodass Ihre Dateien niemals Ihr Gerät verlassen — es funktioniert auch offline."
+        },
+        {
+          "q": "Warum WebP statt JPG oder PNG wählen?",
+          "a": "WebP erzeugt bei gleicher visueller Qualität meist eine kleinere Datei als JPEG, und anders als JPEG kann es Transparenz erhalten — ideal fürs Web."
+        },
+        {
+          "q": "Behält WebP die Transparenz eines PNG bei?",
+          "a": "Ja. Beim Umwandeln eines transparenten PNG in WebP bleibt die Transparenz erhalten, während beim Umwandeln in JPG der Hintergrund weiß gefüllt würde."
+        },
+        {
+          "q": "Wird WebP überall unterstützt?",
+          "a": "WebP wird von allen modernen Browsern unterstützt. Falls Ihr Gerät WebP nicht encodieren kann, weicht das Tool automatisch auf JPG aus, sodass Sie immer eine funktionierende Datei erhalten."
+        },
+        {
+          "q": "Kann ich viele Bilder gleichzeitig in WebP komprimieren?",
+          "a": "Ja. Fügen Sie beliebig viele hinzu; sie werden gemeinsam komprimiert, und Sie können sie alle als eine einzige ZIP-Datei herunterladen."
         }
       ]
     }

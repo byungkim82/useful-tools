@@ -9,7 +9,8 @@
   },
   "categories": {
     "generator": "Generator",
-    "converter": "Converter"
+    "converter": "Converter",
+    "image": "Image"
   },
   "common": {
     "loading": "Loading",
@@ -860,6 +861,138 @@
         {
           "q": "Does my input get sent to a server?",
           "a": "No. The conversion runs entirely in your browser; nothing you type leaves your device."
+        }
+      ]
+    },
+    "image-compressor": {
+      "title": "Image Compressor",
+      "description": "Compress and resize images right in your browser — no upload, no sign-up, no visible quality loss.",
+      "metaTitle": "Image Compressor — Shrink JPG, PNG & WebP Free (No Upload)",
+      "metaDescription": "Free online image compressor. Reduce photo file size, batch-compress many images at once, resize, and download as a ZIP — all in your browser. Nothing is uploaded, no sign-up, no watermark.",
+      "howToTitle": "How to compress images",
+      "howTo": [
+        "Drop your images or click to choose — add as many as you like.",
+        "Pick a quality preset or drag the slider, and optionally resize or change the format.",
+        "Each image is compressed instantly in your browser; check the before and after size.",
+        "Download files one by one, or grab them all as a ZIP."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "100% in your browser — your images never leave your device.",
+        "Batch compression: drop dozens of photos and process them together.",
+        "JPG and WebP output, with quality presets and a fine-grained slider.",
+        "Resize by max dimension, percentage, or exact size while keeping the aspect ratio.",
+        "Free, no ads, no watermark, no sign-up, and no limit on the number of files."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "Are my images uploaded to a server?",
+          "a": "No. All compression happens locally in your browser using the Canvas API, so your files never leave your device. You can even turn off your Wi-Fi and it still works."
+        },
+        {
+          "q": "How much smaller will my images get?",
+          "a": "It depends on the photo and the quality setting, but JPEG and WebP compression commonly cuts 50 to 80 percent off a typical photo. Each result shows the exact before and after size."
+        },
+        {
+          "q": "Does compressing remove EXIF and location data?",
+          "a": "Yes. Re-encoding through the browser strips EXIF metadata, including GPS location, which is a privacy bonus on top of the smaller file."
+        },
+        {
+          "q": "Can I compress many images at once?",
+          "a": "Yes. Add as many as you like; they are queued and compressed together, and you can download everything as a single ZIP file."
+        },
+        {
+          "q": "Is there a file size or count limit?",
+          "a": "There is no artificial limit. Very large photos are resized automatically to fit the browser's canvas limit, and the result is flagged when that happens."
+        }
+      ]
+    },
+    "compress-jpg": {
+      "title": "Compress JPG",
+      "description": "Reduce JPEG file size in your browser — batch compress, resize, and download, with nothing uploaded.",
+      "metaTitle": "Compress JPG — Reduce JPEG File Size Free, No Upload",
+      "metaDescription": "Free JPG compressor. Reduce JPEG photo file size in your browser, compress many images at once, resize, and download as a ZIP. No upload, no sign-up, no watermark.",
+      "howToTitle": "How to compress a JPG",
+      "howTo": [
+        "Drop your JPG photos or click to choose — add as many as you need.",
+        "Choose a quality preset or fine-tune the slider, and resize if you want smaller dimensions.",
+        "Each JPG is re-compressed instantly in your browser; check how much smaller it got.",
+        "Download the compressed JPGs individually or all together as a ZIP."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Compresses JPG and JPEG files entirely in your browser — no upload.",
+        "Batch mode: shrink a whole folder of photos in one go.",
+        "Quality presets plus a precise slider to balance size and sharpness.",
+        "Optional resizing by max dimension, percentage, or exact size.",
+        "Free, no ads, no watermark, and no file-count limit."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "Are my JPGs uploaded anywhere?",
+          "a": "No. JPG compression runs locally in your browser, so your photos never leave your device — it even works offline."
+        },
+        {
+          "q": "How much can a JPG be compressed?",
+          "a": "Most JPEG photos shrink by 50 to 80 percent depending on the quality you pick. The before and after sizes are shown for every file."
+        },
+        {
+          "q": "Will compressing reduce the image quality?",
+          "a": "Lower quality means a smaller file. The 'High quality' preset keeps photos looking sharp, while 'Smallest' trades some detail for the tiniest file — you choose the balance."
+        },
+        {
+          "q": "Does it strip EXIF and GPS data from my JPGs?",
+          "a": "Yes. Re-encoding the JPG removes EXIF metadata, including camera info and GPS location, for extra privacy."
+        },
+        {
+          "q": "Can I convert JPG to WebP here too?",
+          "a": "Yes. Set the output format to WebP to get an even smaller file, or keep it as JPG — both are available."
+        }
+      ]
+    },
+    "compress-webp": {
+      "title": "Compress WebP",
+      "description": "Convert to WebP and shrink images in your browser — batch, resize, and download, with no upload.",
+      "metaTitle": "Compress WebP — Convert & Shrink to WebP Free, No Upload",
+      "metaDescription": "Free WebP compressor and converter. Convert JPG and PNG to WebP, reduce file size, batch process, resize, and download as a ZIP — all in your browser. No upload, no sign-up.",
+      "howToTitle": "How to compress to WebP",
+      "howTo": [
+        "Drop your images or click to choose — JPG, PNG, or existing WebP all work.",
+        "The output is set to WebP; pick a quality preset or adjust the slider, and resize if needed.",
+        "Each image is converted and compressed to WebP instantly in your browser.",
+        "Download the WebP files one by one or all together as a ZIP."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "Convert JPG and PNG to WebP entirely in your browser — no upload.",
+        "WebP typically beats JPEG at the same quality, so files get even smaller.",
+        "Batch convert and compress many images at once.",
+        "Quality presets, a fine slider, and optional resizing.",
+        "Free, no ads, no watermark, and no file-count limit."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "Are my images uploaded to convert to WebP?",
+          "a": "No. The conversion to WebP runs locally in your browser, so your files never leave your device — it works offline too."
+        },
+        {
+          "q": "Why choose WebP over JPG or PNG?",
+          "a": "WebP usually produces a smaller file than JPEG at the same visual quality, and unlike JPEG it can keep transparency, making it great for the web."
+        },
+        {
+          "q": "Does WebP keep transparency from a PNG?",
+          "a": "Yes. Converting a transparent PNG to WebP preserves the transparency, while converting to JPG would fill it with white."
+        },
+        {
+          "q": "Is WebP supported everywhere?",
+          "a": "WebP is supported by all modern browsers. If your device cannot encode WebP, the tool falls back to JPG automatically so you always get a working file."
+        },
+        {
+          "q": "Can I compress many images to WebP at once?",
+          "a": "Yes. Add as many as you like; they are compressed together and you can download them all as a single ZIP."
         }
       ]
     }

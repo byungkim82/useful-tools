@@ -1,0 +1,317 @@
+// UI chrome for the image compressor, kept in CODE (not the per-locale SEO JSON) — same rationale as
+// the converter's labels.ts and QrTypeNav: these strings are shared across all three image slugs, so a
+// code map is one edit instead of a 3-tool × 6-locale dictionary change. The per-slug JSON blocks carry
+// only SEO copy (title/description/howTo/features/faq).
+
+import type { Locale } from '@/i18n/config';
+import type { ImageSlug } from './compress-math';
+
+export type LabelSet = {
+  // dropzone
+  dropTitle: string;
+  dropHint: string;
+  addMore: string;
+  invalidType: string;
+  // settings
+  settingsTitle: string;
+  quality: string;
+  presetHigh: string;
+  presetBalanced: string;
+  presetSmallest: string;
+  custom: string;
+  outputFormat: string;
+  formatAuto: string;
+  formatJpeg: string;
+  formatWebp: string;
+  resize: string;
+  resizeNone: string;
+  resizeMax: string;
+  resizePercent: string;
+  resizeExact: string;
+  width: string;
+  height: string;
+  lockAspect: string;
+  apply: string;
+  // queue / results
+  results: string;
+  original: string;
+  compressed: string;
+  processing: string;
+  failed: string;
+  canceled: string;
+  queued: string;
+  download: string;
+  remove: string;
+  downscaledBadge: string;
+  alphaWarning: string;
+  // action bar
+  downloadZip: string;
+  clearAll: string;
+  total: string;
+  savedSuffix: string; // e.g. "saved" — appended after the percentage in the total line
+  // a11y / misc
+  previewAlt: string;
+  compressing: string;
+};
+
+export const LABELS: Record<Locale, LabelSet> = {
+  ko: {
+    dropTitle: '여기에 이미지를 놓거나 클릭해서 선택하세요',
+    dropHint: 'JPG · PNG · WebP · 업로드 없이 브라우저에서 바로 압축',
+    addMore: '이미지 추가',
+    invalidType: '이미지 파일만 추가할 수 있습니다.',
+    settingsTitle: '압축 설정',
+    quality: '품질',
+    presetHigh: '고화질',
+    presetBalanced: '균형',
+    presetSmallest: '최소 용량',
+    custom: '사용자 지정',
+    outputFormat: '출력 포맷',
+    formatAuto: '자동',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: '크기 조정',
+    resizeNone: '원본 크기',
+    resizeMax: '최대 가로/세로',
+    resizePercent: '비율(%)',
+    resizeExact: '정확한 크기',
+    width: '가로',
+    height: '세로',
+    lockAspect: '비율 유지',
+    apply: '설정 적용',
+    results: '결과',
+    original: '원본',
+    compressed: '압축',
+    processing: '처리 중…',
+    failed: '실패',
+    canceled: '취소됨',
+    queued: '대기 중',
+    download: '다운로드',
+    remove: '제거',
+    downscaledBadge: '크기 자동 축소됨',
+    alphaWarning: '투명 배경이 흰색으로 채워집니다',
+    downloadZip: 'ZIP으로 모두 받기',
+    clearAll: '전체 지우기',
+    total: '합계',
+    savedSuffix: '절약',
+    previewAlt: '압축된 이미지 미리보기',
+    compressing: '압축 중',
+  },
+  en: {
+    dropTitle: 'Drop images here or click to choose',
+    dropHint: 'JPG · PNG · WebP · compressed in your browser, never uploaded',
+    addMore: 'Add images',
+    invalidType: 'Only image files can be added.',
+    settingsTitle: 'Compression settings',
+    quality: 'Quality',
+    presetHigh: 'High quality',
+    presetBalanced: 'Balanced',
+    presetSmallest: 'Smallest',
+    custom: 'Custom',
+    outputFormat: 'Output format',
+    formatAuto: 'Auto',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: 'Resize',
+    resizeNone: 'Original size',
+    resizeMax: 'Max width/height',
+    resizePercent: 'Percentage',
+    resizeExact: 'Exact size',
+    width: 'Width',
+    height: 'Height',
+    lockAspect: 'Lock aspect ratio',
+    apply: 'Apply settings',
+    results: 'Results',
+    original: 'Original',
+    compressed: 'Compressed',
+    processing: 'Processing…',
+    failed: 'Failed',
+    canceled: 'Canceled',
+    queued: 'Queued',
+    download: 'Download',
+    remove: 'Remove',
+    downscaledBadge: 'auto-resized to fit',
+    alphaWarning: 'transparency will be flattened to white',
+    downloadZip: 'Download all as ZIP',
+    clearAll: 'Clear all',
+    total: 'Total',
+    savedSuffix: 'saved',
+    previewAlt: 'Compressed image preview',
+    compressing: 'Compressing',
+  },
+  es: {
+    dropTitle: 'Suelta las imágenes aquí o haz clic para elegir',
+    dropHint: 'JPG · PNG · WebP · se comprime en tu navegador, sin subir nada',
+    addMore: 'Añadir imágenes',
+    invalidType: 'Solo se pueden añadir archivos de imagen.',
+    settingsTitle: 'Ajustes de compresión',
+    quality: 'Calidad',
+    presetHigh: 'Alta calidad',
+    presetBalanced: 'Equilibrado',
+    presetSmallest: 'Mínimo tamaño',
+    custom: 'Personalizado',
+    outputFormat: 'Formato de salida',
+    formatAuto: 'Automático',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: 'Redimensionar',
+    resizeNone: 'Tamaño original',
+    resizeMax: 'Ancho/alto máx.',
+    resizePercent: 'Porcentaje',
+    resizeExact: 'Tamaño exacto',
+    width: 'Ancho',
+    height: 'Alto',
+    lockAspect: 'Mantener proporción',
+    apply: 'Aplicar ajustes',
+    results: 'Resultados',
+    original: 'Original',
+    compressed: 'Comprimido',
+    processing: 'Procesando…',
+    failed: 'Error',
+    canceled: 'Cancelado',
+    queued: 'En cola',
+    download: 'Descargar',
+    remove: 'Quitar',
+    downscaledBadge: 'redimensionada automáticamente',
+    alphaWarning: 'la transparencia se rellenará de blanco',
+    downloadZip: 'Descargar todo en ZIP',
+    clearAll: 'Borrar todo',
+    total: 'Total',
+    savedSuffix: 'ahorrado',
+    previewAlt: 'Vista previa de la imagen comprimida',
+    compressing: 'Comprimiendo',
+  },
+  pt: {
+    dropTitle: 'Solte as imagens aqui ou clique para escolher',
+    dropHint: 'JPG · PNG · WebP · comprimido no seu navegador, sem enviar nada',
+    addMore: 'Adicionar imagens',
+    invalidType: 'Só é possível adicionar arquivos de imagem.',
+    settingsTitle: 'Configurações de compressão',
+    quality: 'Qualidade',
+    presetHigh: 'Alta qualidade',
+    presetBalanced: 'Equilibrado',
+    presetSmallest: 'Menor tamanho',
+    custom: 'Personalizado',
+    outputFormat: 'Formato de saída',
+    formatAuto: 'Automático',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: 'Redimensionar',
+    resizeNone: 'Tamanho original',
+    resizeMax: 'Largura/altura máx.',
+    resizePercent: 'Porcentagem',
+    resizeExact: 'Tamanho exato',
+    width: 'Largura',
+    height: 'Altura',
+    lockAspect: 'Manter proporção',
+    apply: 'Aplicar configurações',
+    results: 'Resultados',
+    original: 'Original',
+    compressed: 'Comprimido',
+    processing: 'Processando…',
+    failed: 'Falhou',
+    canceled: 'Cancelado',
+    queued: 'Na fila',
+    download: 'Baixar',
+    remove: 'Remover',
+    downscaledBadge: 'redimensionada automaticamente',
+    alphaWarning: 'a transparência será preenchida com branco',
+    downloadZip: 'Baixar tudo em ZIP',
+    clearAll: 'Limpar tudo',
+    total: 'Total',
+    savedSuffix: 'economizado',
+    previewAlt: 'Prévia da imagem comprimida',
+    compressing: 'Comprimindo',
+  },
+  ja: {
+    dropTitle: 'ここに画像をドロップ、またはクリックして選択',
+    dropHint: 'JPG · PNG · WebP · アップロードせずブラウザ内で圧縮',
+    addMore: '画像を追加',
+    invalidType: '画像ファイルのみ追加できます。',
+    settingsTitle: '圧縮設定',
+    quality: '画質',
+    presetHigh: '高画質',
+    presetBalanced: 'バランス',
+    presetSmallest: '最小サイズ',
+    custom: 'カスタム',
+    outputFormat: '出力形式',
+    formatAuto: '自動',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: 'リサイズ',
+    resizeNone: '元のサイズ',
+    resizeMax: '最大の幅/高さ',
+    resizePercent: '割合(%)',
+    resizeExact: '正確なサイズ',
+    width: '幅',
+    height: '高さ',
+    lockAspect: '縦横比を固定',
+    apply: '設定を適用',
+    results: '結果',
+    original: '元',
+    compressed: '圧縮後',
+    processing: '処理中…',
+    failed: '失敗',
+    canceled: 'キャンセル',
+    queued: '待機中',
+    download: 'ダウンロード',
+    remove: '削除',
+    downscaledBadge: '自動でリサイズされました',
+    alphaWarning: '透過部分は白で塗りつぶされます',
+    downloadZip: 'すべてZIPでダウンロード',
+    clearAll: 'すべてクリア',
+    total: '合計',
+    savedSuffix: '削減',
+    previewAlt: '圧縮した画像のプレビュー',
+    compressing: '圧縮中',
+  },
+  de: {
+    dropTitle: 'Bilder hier ablegen oder zum Auswählen klicken',
+    dropHint: 'JPG · PNG · WebP · im Browser komprimiert, kein Upload',
+    addMore: 'Bilder hinzufügen',
+    invalidType: 'Es können nur Bilddateien hinzugefügt werden.',
+    settingsTitle: 'Komprimierungseinstellungen',
+    quality: 'Qualität',
+    presetHigh: 'Hohe Qualität',
+    presetBalanced: 'Ausgewogen',
+    presetSmallest: 'Kleinste Größe',
+    custom: 'Benutzerdefiniert',
+    outputFormat: 'Ausgabeformat',
+    formatAuto: 'Automatisch',
+    formatJpeg: 'JPG',
+    formatWebp: 'WebP',
+    resize: 'Größe ändern',
+    resizeNone: 'Originalgröße',
+    resizeMax: 'Max. Breite/Höhe',
+    resizePercent: 'Prozent',
+    resizeExact: 'Exakte Größe',
+    width: 'Breite',
+    height: 'Höhe',
+    lockAspect: 'Seitenverhältnis sperren',
+    apply: 'Einstellungen anwenden',
+    results: 'Ergebnisse',
+    original: 'Original',
+    compressed: 'Komprimiert',
+    processing: 'Wird verarbeitet…',
+    failed: 'Fehlgeschlagen',
+    canceled: 'Abgebrochen',
+    queued: 'In Warteschlange',
+    download: 'Herunterladen',
+    remove: 'Entfernen',
+    downscaledBadge: 'automatisch verkleinert',
+    alphaWarning: 'Transparenz wird mit Weiß gefüllt',
+    downloadZip: 'Alle als ZIP herunterladen',
+    clearAll: 'Alle entfernen',
+    total: 'Gesamt',
+    savedSuffix: 'gespart',
+    previewAlt: 'Vorschau des komprimierten Bildes',
+    compressing: 'Wird komprimiert',
+  },
+};
+
+// Short labels for the in-tool format switcher (mirrors ConverterTypeNav / QrTypeNav).
+export const NAV_LABEL: Record<ImageSlug, Record<Locale, string>> = {
+  'image-compressor': { ko: '이미지 압축', en: 'Compress', es: 'Comprimir', pt: 'Comprimir', ja: '画像圧縮', de: 'Komprimieren' },
+  'compress-jpg': { ko: 'JPG', en: 'JPG', es: 'JPG', pt: 'JPG', ja: 'JPG', de: 'JPG' },
+  'compress-webp': { ko: 'WebP', en: 'WebP', es: 'WebP', pt: 'WebP', ja: 'WebP', de: 'WebP' },
+};
