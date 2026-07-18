@@ -60,7 +60,12 @@ function canEncodeWebp(): Promise<boolean> {
   if (!webpProbe) {
     webpProbe = (async () => {
       try {
-        const blob = await canvasToBlob(makeCanvas(1, 1), 'image/webp', 0.5);
+        const c = makeCanvas(1, 1);
+        // OffscreenCanvas.convertToBlob throws InvalidStateError unless a rendering context exists, so
+        // the probe MUST obtain one first — otherwise WebP is wrongly reported unsupported and every
+        // output silently downgrades to JPEG (breaking compress-webp and auto PNG→WebP).
+        if (!get2d(c)) return false;
+        const blob = await canvasToBlob(c, 'image/webp', 0.5);
         return blob.type === 'image/webp';
       } catch {
         return false;
