@@ -3,12 +3,14 @@
 Small, search-discovered, **100% client-side** browser tools with **no backend** ($0 server) and no
 sign-up — nothing you type leaves your device. Live at **https://tools.solisapps.com**.
 
-The first (and so far only) tool is a **QR code suite**: 9 generators sharing one render engine, each its
-own SEO landing page, in 6 languages.
+Two suites so far, each generator/converter sharing one engine with its own SEO landing page, in 6
+languages: a **QR code suite** (9 generators) and a **unit converter suite** (8 categories, incl.
+traditional Korean/Japanese units — 평/坪, 근, 돈).
 
 | | |
 |---|---|
-| **Tools** | QR: URL/text · WiFi · vCard · email · SMS · phone · WhatsApp · location · event |
+| **QR** | URL/text · WiFi · vCard · email · SMS · phone · WhatsApp · location · event |
+| **Converters** | length · weight · temperature · area · volume · speed · time · data |
 | **Locales** | 한국어 · English · Español · Português (BR) · 日本語 · Deutsch (hreflang) |
 | **Stack** | Next.js (App Router) · TypeScript · Tailwind v4 · `qrcode` · Vitest |
 | **Hosting** | static export (`output: 'export'`) → Cloudflare Workers Static Assets |
