@@ -10,6 +10,19 @@
 
 ---
 
+> ## 🚀 구현 완료 · 라이브 (2026-07-18)
+> 이 계획 전체가 **구현·검증·배포**됐다. `tools.solisapps.com`에 6로케일 × `heic-to-jpg`(primary) +
+> `heic-to-webp` 라이브. **현황·아키텍처의 최종 진실은 `implementation-status.md` §1.4** (와 코드).
+>
+> **실제 진행(아래 §8 원안과 다른 점):** P0-a(스파이크) → P1(이음새 `encodeBitmap`+`image/heic→jpeg`) →
+> P2(`heic.worker.ts`+별도 `build()`+runner 라우팅) → **P3(registry + i18n 6로케일 + `HeicClient` + nav +
+> JSON-LD + CSP)** → 배포. **⚠️ §8은 client를 P2, i18n을 P4로 뒀지만, `Slug = keyof Dictionary['tools']`
+> 타입 결합 때문에 client·registry·i18n은 한 덩어리라 실제로는 전부 P3로 합쳐 배포했다.** 채택된 워커 형태 =
+> **(i) 전용 워커**(wasm-bundle, esbuild 별도 build()). 검증: 유닛 109 · check-i18n ALL GOOD · 헤드리스 실 .heic
+> E2E(스파이크·빌드페이지·라이브) · beacon 무회귀 · compress.js 9,939B 무회귀.
+
+---
+
 > ## ✅ P0-a 스파이크 완료 — 결정 확정 (2026-07-18)
 > BLOCKING 스파이크 P0-a를 **esbuild 실산출물 + 프로덕션 CSP 헤드리스**로 실행해 계획의 미결 결정을
 > 판정했다(전체 근거·재현: **`heic-converter-p0a-spike-ko.md`**). **이 배너가 최상위 권위이며, 본문·rev·
