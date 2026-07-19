@@ -1,10 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "useful-tools",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-07-15",
   "assets": {
     "directory": "./out",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Expose the static assets to the Worker so it can delegate everything that is not "/".
+    "binding": "ASSETS",
+    // Run worker/index.ts BEFORE the asset layer for "/" only (glob array: "/" matches the root exactly).
+    // Every other path stays asset-first and never invokes the Worker. See docs/cloudflare-routing.md.
+    "run_worker_first": ["/"]
   },
   "routes": [
     { "pattern": "tools.solisapps.com", "custom_domain": true }
