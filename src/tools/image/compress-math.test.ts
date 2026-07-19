@@ -90,6 +90,14 @@ describe('resolveOutputFormat', () => {
     expect(resolveOutputFormat('image/gif', 'auto')).toBe('webp');
     expect(resolveOutputFormat('', 'auto')).toBe('webp');
   });
+  it('auto sends HEIC/HEIF to jpeg (not the unknown→webp default)', () => {
+    expect(resolveOutputFormat('image/heic', 'auto')).toBe('jpeg');
+    expect(resolveOutputFormat('image/heif', 'auto')).toBe('jpeg');
+  });
+  it('explicit webp still wins over the HEIC auto→jpeg default', () => {
+    expect(resolveOutputFormat('image/heic', 'webp')).toBe('webp');
+    expect(resolveOutputFormat('image/heic', 'jpeg')).toBe('jpeg');
+  });
 });
 
 describe('mayFlattenAlpha', () => {

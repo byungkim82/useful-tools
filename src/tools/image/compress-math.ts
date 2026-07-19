@@ -147,12 +147,14 @@ export function outputFilename(originalName: string, format: OutputFormat): stri
 
 /**
  * Resolve the effective output format from the source MIME and the user's choice.
- * `auto`: keep JPEG/WebP as-is; PNG/GIF/other → WebP (preserves possible alpha, strong ratio).
+ * `auto`: keep JPEG/WebP as-is; HEIC/HEIF → JPEG (camera photos, no alpha, the expected conversion
+ * target); PNG/GIF/other → WebP (preserves possible alpha, strong ratio).
  */
 export function resolveOutputFormat(sourceType: string, choice: FormatChoice): OutputFormat {
   if (choice === 'jpeg' || choice === 'webp') return choice;
   if (sourceType === 'image/webp') return 'webp';
   if (sourceType === 'image/jpeg' || sourceType === 'image/jpg') return 'jpeg';
+  if (sourceType === 'image/heic' || sourceType === 'image/heif') return 'jpeg';
   return 'webp'; // png, gif, bmp, unknown
 }
 

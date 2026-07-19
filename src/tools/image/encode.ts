@@ -5,6 +5,11 @@
 // Re-encoding through a canvas ALWAYS discards EXIF/metadata — a privacy win and the reason we don't
 // ship a fragile "keep EXIF" toggle in v1. Orientation is baked into the pixels via
 // createImageBitmap({ imageOrientation: 'from-image' }) so rotated phone photos don't come out sideways.
+//
+// Two entry points share the resize/crop/re-encode core: encodeImage() decodes a Blob with the browser's
+// native codecs (and owns the bitmap it creates); encodeBitmap() takes an ALREADY-DECODED, already-oriented
+// bitmap — the HEIC path, where libheif decodes and its display() already applies the irot/EXIF rotation,
+// so that path must NOT re-apply orientation. The caller owns and closes any bitmap it passes to encodeBitmap().
 
 import {
   planDimensions,
@@ -193,38 +198,48 @@ async function encodeToTarget(
 export async function encodeImage(source: Blob, req: EncodeRequest): Promise<EncodeResult> {
   const bitmap = await createImageBitmap(source, { imageOrientation: 'from-image' });
   try {
-    let outFormat = resolveOutputFormat(source.type, req.format);
-    if (outFormat === 'webp' && !(await canEncodeWebp())) outFormat = 'jpeg';
-
-    // Build the draw plan: exactCrop → centre-crop to an exact box; everything else → scale-to-fit.
-    let width: number;
-    let height: number;
-    let downscaled: boolean;
-    let crop: Crop | undefined;
-    if (req.resize.mode === 'exactCrop' && (req.resize.width ?? 0) > 0 && (req.resize.height ?? 0) > 0) {
-      const cp = planCrop(bitmap.width, bitmap.height, req.resize.width!, req.resize.height!, MAX_CANVAS_EDGE);
-      width = cp.width;
-      height = cp.height;
-      downscaled = cp.downscaled;
-      crop = { sx: cp.sx, sy: cp.sy, sw: cp.sw, sh: cp.sh };
-    } else {
-      const pd = planDimensions(bitmap.width, bitmap.height, req.resize, MAX_CANVAS_EDGE, req.maxArea);
-      width = pd.width;
-      height = pd.height;
-      downscaled = pd.downscaled;
-    }
-
-    if (req.targetBytes && req.targetBytes > 0) {
-      return await encodeToTarget(bitmap, width, height, downscaled, outFormat, req.targetBytes, crop);
-    }
-
-    const canvas = drawToCanvas(bitmap, width, height, outFormat, crop);
-    const blob = await canvasToBlob(canvas, MIME[outFormat], req.quality);
-    if (blob.size === 0) throw new Error('empty output');
-    return { blob, outFormat, width, height, downscaled };
+    return await encodeBitmap(bitmap, source.type, req);
   } finally {
     bitmap.close();
   }
+}
+
+/**
+ * Resize/crop/clamp an ALREADY-DECODED, already-oriented `bitmap` per `req`, re-encode as JPEG or WebP.
+ * `sourceType` drives auto format resolution (e.g. 'image/heic' → JPEG). Used by the HEIC path, where
+ * libheif has already applied the irot/EXIF rotation — so this MUST NOT re-apply orientation. The CALLER
+ * owns and closes `bitmap`. Strips metadata by construction (nothing is carried across the canvas).
+ */
+export async function encodeBitmap(bitmap: ImageBitmap, sourceType: string, req: EncodeRequest): Promise<EncodeResult> {
+  let outFormat = resolveOutputFormat(sourceType, req.format);
+  if (outFormat === 'webp' && !(await canEncodeWebp())) outFormat = 'jpeg';
+
+  // Build the draw plan: exactCrop → centre-crop to an exact box; everything else → scale-to-fit.
+  let width: number;
+  let height: number;
+  let downscaled: boolean;
+  let crop: Crop | undefined;
+  if (req.resize.mode === 'exactCrop' && (req.resize.width ?? 0) > 0 && (req.resize.height ?? 0) > 0) {
+    const cp = planCrop(bitmap.width, bitmap.height, req.resize.width!, req.resize.height!, MAX_CANVAS_EDGE);
+    width = cp.width;
+    height = cp.height;
+    downscaled = cp.downscaled;
+    crop = { sx: cp.sx, sy: cp.sy, sw: cp.sw, sh: cp.sh };
+  } else {
+    const pd = planDimensions(bitmap.width, bitmap.height, req.resize, MAX_CANVAS_EDGE, req.maxArea);
+    width = pd.width;
+    height = pd.height;
+    downscaled = pd.downscaled;
+  }
+
+  if (req.targetBytes && req.targetBytes > 0) {
+    return await encodeToTarget(bitmap, width, height, downscaled, outFormat, req.targetBytes, crop);
+  }
+
+  const canvas = drawToCanvas(bitmap, width, height, outFormat, crop);
+  const blob = await canvasToBlob(canvas, MIME[outFormat], req.quality);
+  if (blob.size === 0) throw new Error('empty output');
+  return { blob, outFormat, width, height, downscaled };
 }
 
 export type { FormatChoice, OutputFormat, ResizeSettings };
