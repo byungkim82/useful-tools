@@ -1,6 +1,6 @@
 # 구현 현황 (Implementation Status)
 
-> **문서 성격:** 2026-07-18 기준 **실제로 구현·배포되어 라이브인 상태**의 스냅샷(최신: 이미지 압축기 v1). "무엇이 있고, 어디에 있고,
+> **문서 성격:** 2026-07-18 기준 **실제로 구현·배포되어 라이브인 상태**의 스냅샷(최신: HEIC→JPG/WebP 변환기 v1). "무엇이 있고, 어디에 있고,
 > 어떻게 검증됐는지"의 인덱스다. 세부 설계·전략은 각 짝 문서로 링크한다. **최종 진실은 코드**이며, 이 문서는
 > 그 위의 요약 계층이다.
 
@@ -9,9 +9,9 @@
 | | |
 |---|---|
 | **라이브** | https://tools.solisapps.com |
-| **스위트 3종** | QR 생성기 **9종** + 단위 변환기 **8종** + 이미지 압축기 **3종** = **도구 20개** |
+| **스위트 4종** | QR 생성기 **9종** + 단위 변환기 **8종** + 이미지 압축기 **3종** + HEIC 변환기 **2종** = **도구 22개** |
 | **로케일** | 6개 — 한국어 · English · Español · Português(BR) · 日本語 · Deutsch (hreflang) |
-| **정적 라우트** | **126 URL** = 6 로케일 × (홈 1 + 도구 20) → `sitemap.xml` |
+| **정적 라우트** | **138 URL** = 6 로케일 × (홈 1 + 도구 22) → `sitemap.xml` |
 | **스택** | Next.js(App Router) · TypeScript · Tailwind v4 · Vitest |
 | **호스팅** | static export(`output:'export'`) → Cloudflare Workers Static Assets · **$0 서버** |
 | **분석** | Cloudflare Web Analytics (쿠키리스 beacon) |
@@ -106,6 +106,31 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
   순수 `clampPercent`(테스트) 하나로 위치 클램프. **실 UI E2E**: 압축 후 ⇋ → Before/After 라벨·슬라이더 렌더, 50%→25%
   이동 시 clip-path `inset(0 50%…)`→`inset(0 75%…)` 변화 확인.
 
+### 1.4 HEIC → JPG/WebP 변환기 — 2종 (라이브, 이번에 신규)
+slug: `heic-to-jpg`(primary·JPG 출력) · `heic-to-webp`(WebP 출력). **자체 group `'heic'`** → 홈 그리드에
+독립 카드(압축기 밑에 안 묻힘). 아이폰 HEIC/HEIF를 **100% 브라우저에서** 변환 — 드롭 → 대기열 → 설정 →
+[변환 시작] → before/after → 다운로드 + ZIP. **압축기 파이프라인 전부 재사용**(리사이즈·타깃크기·프리셋·비교·EXIF제거).
+
+**아키텍처 (`src/tools/image/`, 압축기와 형제):**
+- **`heic.worker.ts`**(신규) — libheif(WASM)로 HEIC 디코드 → RGBA(방향 이미 적용됨) → `createImageBitmap`
+  → **공유 `encodeBitmap`**. `scripts/build-worker.mjs`의 **별도 `build()` 호출**로 `public/workers/heic.js`
+  (1.5MB) 산출 — compress.js는 **9,939B 불변**(libheif 격리). `runner.ts`가 **입력 타입으로 워커 선택**
+  (HEIC→heic.js 지연 생성, 그 외→compress.js). **HEIC는 메인스레드 폴백 없음**(브라우저 네이티브 디코드 불가)
+  → 워커 불가 시 `HEIC_UNSUPPORTED`로 "미지원 브라우저" 안내.
+- **`encode.ts`** — `encodeImage`(Blob 디코드)와 신규 **`encodeBitmap`**(이미 디코드·정방향 비트맵)으로 분리.
+  libheif가 irot/EXIF 회전을 이미 적용하므로 이 경로는 **재회전 안 함**. `resolveOutputFormat`에 `image/heic→jpeg` 추가.
+- **UI**: **`ImagePipelineClient`**(신규 공유 아일랜드)로 압축기·HEIC 공통 흐름 추출 → `ImageCompressorClient`·
+  **`HeicClient`**는 얇은 래퍼(labels·accept·기본포맷만 차이). HeicClient는 HEIC 전용 파일 피커 + "변환" 프레이밍 +
+  미지원 안내. 큐는 HEIC/HEIF 수용(빈 MIME는 확장자 폴백). **`HeicTypeNav`**(JPG⇄WebP 전환).
+- 라벨은 `labels.ts` 코드 맵에 **HEIC 오버라이드**(변환 프레이밍만 덮음), 로케일 JSON은 SEO 블록만.
+
+**인프라:** CSP `script-src`에 **`'wasm-unsafe-eval'` 추가**(libheif WASM 컴파일). WASM은 번들 임베드라
+`.wasm` 자체호스팅·`connect-src` 변경 불요. **COEP 불변**(beacon 보호). → 근거·결정로그·P0-a 스파이크:
+**`heic-converter-plan-ko.md`** / **`heic-converter-p0a-spike-ko.md`**.
+
+**결정:** v1 출력 = **JPG·WebP만**(PNG 출력·`heic-to-png`은 v1.1 — 공유 `OutputFormat`이 jpeg|webp뿐, 사진 PNG
+저가치) · 멀티이미지 HEIC는 **primary item(첫 프레임)만** · slug 2개(jpg primary·webp 공짜 재사용).
+
 ---
 
 ## 2. 다국어 (i18n)
@@ -116,8 +141,8 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 3. SEO / 검색 발견성
 - 도구별 전용 랜딩 + 키워드 튜닝 `metaTitle`/`metaDescription`(H1과 분리) + 크롤 가능한 사용법·특징·FAQ 정적 텍스트.
-- **JSON-LD**: 전 도구 페이지에 `WebApplication` + `FAQPage`(화면 FAQ와 일치). 이미지 도구는 **`HowTo` 추가**.
-- `sitemap.xml`(126 URL, hreflang alternates) · `robots.txt` · OG 이미지(`og.png`) · Google Search Console 등록.
+- **JSON-LD**: 전 도구 페이지에 `WebApplication` + `FAQPage`(화면 FAQ와 일치). 이미지·HEIC 도구는 **`HowTo` 추가**.
+- `sitemap.xml`(138 URL, hreflang alternates) · `robots.txt` · OG 이미지(`og.png`) · Google Search Console 등록.
 - → 전략: **`qr-generator-growth-seo.md`**, 체크리스트 `qr-generator-seo-action-checklist.md`.
 
 ## 4. 분석 (Analytics)
@@ -133,7 +158,15 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
   → **`.claude/skills/extend-tools/`**. 프레임워크 코드 전 `node_modules/next/dist/docs/` 확인(`AGENTS.md`).
 
 ## 6. 검증 로그 (verify, don't claim)
-최신 배포(이미지 압축기) 기준 실제 실행·확인:
+최신 배포(HEIC 변환기) 기준 실제 실행·확인:
+- ✅ **[HEIC 변환기 v1]** test **109**(+isHeic·isHeicSlug·heic 포맷해석)·lint·tsc·**check-i18n ALL GOOD**·전체 build 클린 ·
+  `out/` 검사(12개 heic 페이지·title/meta·JSON-LD **WebApplication+FAQPage+HowTo**·**ssr:false 마커 부재**·홈 카드·
+  HeicTypeNav·sitemap **138**) · **P0-a 스파이크**(실 esbuild 산출물+프로덕션 CSP 헤드리스로 libheif 지연·번들·
+  orientation·(i)전용워커 확정, `heic-converter-p0a-spike-ko.md`) · **헤드리스 실 .heic E2E**(실 runner+실 heic.js):
+  HEIC MIME/확장자 라우팅·webp 명시·resize 재사용·**orientation 출력 코너가 레퍼런스와 일치**·heic.js 지연 로드 ·
+  **빌드된 실제 페이지 E2E**: 아일랜드 마운트(ssr:false)·실 .heic 드롭→변환 완료·ko H1 현지화·CSP 위반 0 ·
+  **라이브 검증**(tools.solisapps.com): heic 페이지 6로케일 200·CSP에 `wasm-unsafe-eval`·**compress.js 9,939B 무회귀**·
+  라이브 실변환 완료·**beacon 로드됨(분석 안 깨짐)**·CSP 위반 0.
 - ✅ **[v1.1 ⑤ 비교 슬라이더]** test 103(+clampPercent)·lint·build·check-i18n 클린 · **CDP 실 UI E2E**: 압축 후 ⇋
   토글 → Before/After 라벨·슬라이더 렌더 확인, range 50%→25% 이동 시 오버레이 clip-path `inset(0 50%…)`→`inset(0 75%…)` 변화.
 - ✅ **[v1.1 ④ Ctrl+V / 폴더 업로드]** test 102·lint·build·check-i18n 클린 · **CDP 실 UI E2E**: 합성 ClipboardEvent
@@ -163,6 +196,7 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 - `qr-generator-implementation.md` — QR 아키텍처·결정·검증
 - `qr-generator-improvements.md` — QR 기능/UX 백로그
 - `qr-generator-growth-seo.md` · `qr-generator-seo-action-checklist.md` — 유입/SEO 전략·체크리스트
+- `heic-converter-plan-ko.md` — HEIC 변환기 구현 계획·결정로그 · `heic-converter-p0a-spike-ko.md` — P0-a 스파이크(libheif·CSP·워커 확정)
 - `tool-roadmap.md` — 다음 추가 도구(6로케일 리서치 → 소비자용 우선 백로그)
 - `unit-converter-research.md` — 단위 변환기 리서치(기능·수요·로케일 단위·UI/UX)
 - `monetization-strategy.md` — 다국어 트래픽 수익화(단/중/장기 + AI 티어)
@@ -171,7 +205,9 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 - **이미지 압축기 v1.1 — 전 5종 완료·라이브** (§1.3): ① 타깃 파일 크기 · ② 이미지별 오버라이드 · ③ 유스케이스 프리셋 ·
   ④ Ctrl+V/폴더 · ⑤ 비교 슬라이더. **다음은 v1.5**: AVIF 출력(jSquash 지연 + `wasm-unsafe-eval`) · PNG 출력 + oxipng
   (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
-- **로드맵 도구**(미착수, `tool-roadmap.md` 순서): HEIC 변환 → PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
+- **HEIC 변환기 v1 — 완료·라이브** (§1.4): `heic-to-jpg`·`heic-to-webp`. **다음은 v1.1**: PNG 출력 + `heic-to-png`
+  (공유 `OutputFormat` 되살리기 + HEIC 게이팅) · EXIF-only orientation·실 아이폰 샘플 재확인 · 멀티프레임(버스트/라이브).
+- **로드맵 도구**(미착수, `tool-roadmap.md` 순서): PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
   배경 제거 → (KO 특화) 평↔㎡·만나이 → 개발자용(JWT·hash·base64·JSON·UUID).
 - **QR Tier 2/3**(미착수): 디자인 깊이(`qr-code-styling`)·대량 CSV→ZIP·디코드 QA·QR 리더.
 - **단위 변환기 v1 이후**: 신발/의류 사이즈(검증 소스 필요) · 공유 가능한 URL 상태 · from/to swap(현재 멀티타깃만) ·
