@@ -17,11 +17,16 @@ export const localeMeta: Record<Locale, { lang: string; hreflang: string; ogLoca
   de: { lang: 'de', hreflang: 'de', ogLocale: 'de_DE', label: 'Deutsch' },
 };
 
+// The locale Google serves to visitors whose language matches none of ours. English, NOT
+// `defaultLocale` — ko is the site's default, but a French or Hindi searcher landing on Korean
+// copy bounces. This is a search-surface decision, so it is deliberately separate from the
+// site-default decision above.
+export const xDefaultLocale: Locale = 'en';
+
 // hreflang → URL map for <link rel=alternate> and the sitemap. `path(l)` returns the URL for locale l.
-// x-default points at the default locale (Google's fallback for unmatched languages).
 export function hreflangMap(path: (l: Locale) => string, xDefault = true): Record<string, string> {
   const map: Record<string, string> = {};
   for (const l of locales) map[localeMeta[l].hreflang] = path(l);
-  if (xDefault) map['x-default'] = path(defaultLocale);
+  if (xDefault) map['x-default'] = path(xDefaultLocale);
   return map;
 }
