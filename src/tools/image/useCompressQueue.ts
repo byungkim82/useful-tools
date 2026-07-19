@@ -11,14 +11,7 @@ import {
   type DeviceHints,
 } from './queue-reducer';
 import { CompressRunner } from './runner';
-import {
-  outputFilename,
-  presetQuality,
-  safeMaxArea,
-  type FormatChoice,
-  type Preset,
-  type ResizeSettings,
-} from './compress-math';
+import { outputFilename, presetQuality, safeMaxArea, type Settings, type TargetSettings } from './compress-math';
 import { zipStore, uniqueName } from './zip-store';
 import { withTimeout } from './async-util';
 
@@ -26,17 +19,9 @@ import { withTimeout } from './async-util';
 // infinite spinner. Generous so even a huge image on a slow device finishes well under it.
 const JOB_TIMEOUT_MS = 45_000;
 
-// Target output size: when enabled, the encoder searches quality (and downscales if needed) to land at
-// ≤ `kb` kilobytes, and the manual quality/preset controls step aside.
-export type TargetSettings = { enabled: boolean; kb: number };
-
-export type Settings = {
-  preset: Preset;
-  quality: number; // slider value used when preset === 'custom'
-  format: FormatChoice;
-  resize: ResizeSettings;
-  target: TargetSettings;
-};
+// Settings / TargetSettings are the pure data shape defined in compress-math; re-exported here so the
+// UI components can keep importing them from the hook module they already depend on.
+export type { Settings, TargetSettings };
 
 // Resolves the effective settings for one job — the client returns a per-image override when present,
 // otherwise the global settings. Kept as a function so per-image overrides don't leak into the hook.

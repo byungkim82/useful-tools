@@ -8,6 +8,7 @@
 
 import {
   planDimensions,
+  planCrop,
   resolveOutputFormat,
   MIME,
   MAX_CANVAS_EDGE,
@@ -16,6 +17,9 @@ import {
   type ResizeSettings,
 } from './compress-math';
 import { searchQualityForTarget } from './compress-core';
+
+// Source rectangle to sample when centre-cropping (exactCrop mode); undefined draws the whole bitmap.
+type Crop = { sx: number; sy: number; sw: number; sh: number };
 
 export type EncodeRequest = {
   quality: number; // 0..1
@@ -116,8 +120,9 @@ function looksDrawn(ctx: AnyCtx, w: number, h: number, bitmap: ImageBitmap): boo
 }
 
 // Draw the bitmap onto a fresh canvas at (w×h), verifying it isn't silently blank. Shared by the plain
-// and target-size paths. Throws on an unusable context or a blank draw so we never emit a fake success.
-function drawToCanvas(bitmap: ImageBitmap, w: number, h: number, outFormat: OutputFormat): AnyCanvas {
+// and target-size paths. With `crop` it samples a source rectangle (centre-crop to fill w×h); without,
+// it scales the whole bitmap. Throws on an unusable context or a blank draw so we never fake a success.
+function drawToCanvas(bitmap: ImageBitmap, w: number, h: number, outFormat: OutputFormat, crop?: Crop): AnyCanvas {
   const canvas = makeCanvas(w, h);
   const ctx = get2d(canvas);
   if (!ctx) throw new Error('2d context unavailable');
@@ -128,7 +133,8 @@ function drawToCanvas(bitmap: ImageBitmap, w: number, h: number, outFormat: Outp
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, w, h);
   }
-  ctx.drawImage(bitmap, 0, 0, w, h);
+  if (crop) ctx.drawImage(bitmap, crop.sx, crop.sy, crop.sw, crop.sh, 0, 0, w, h);
+  else ctx.drawImage(bitmap, 0, 0, w, h);
   // Guard against a silently-blank canvas (e.g., canvas-limit exceeded) → fail visibly, no fake success.
   if (!looksDrawn(ctx, w, h, bitmap)) throw new Error('blank output — the image may be too large for this device');
   return canvas;
@@ -149,6 +155,7 @@ async function encodeToTarget(
   baseDownscaled: boolean,
   outFormat: OutputFormat,
   targetBytes: number,
+  crop?: Crop,
 ): Promise<EncodeResult> {
   const mime = MIME[outFormat];
   let w = baseW;
@@ -159,7 +166,7 @@ async function encodeToTarget(
   for (let step = 0; step <= TARGET_DIM_STEPS; step++) {
     const iw = Math.max(1, Math.round(w));
     const ih = Math.max(1, Math.round(h));
-    const canvas = drawToCanvas(bitmap, iw, ih, outFormat);
+    const canvas = drawToCanvas(bitmap, iw, ih, outFormat, crop);
     const res = await searchQualityForTarget(
       async (q) => {
         const blob = await canvasToBlob(canvas, mime, q);
@@ -182,25 +189,36 @@ async function encodeToTarget(
   return last!;
 }
 
-/** Decode `source`, resize/clamp per `req`, re-encode as JPEG or WebP. Strips metadata by construction. */
+/** Decode `source`, resize/crop/clamp per `req`, re-encode as JPEG or WebP. Strips metadata by construction. */
 export async function encodeImage(source: Blob, req: EncodeRequest): Promise<EncodeResult> {
   const bitmap = await createImageBitmap(source, { imageOrientation: 'from-image' });
   try {
-    const { width, height, downscaled } = planDimensions(
-      bitmap.width,
-      bitmap.height,
-      req.resize,
-      MAX_CANVAS_EDGE,
-      req.maxArea,
-    );
     let outFormat = resolveOutputFormat(source.type, req.format);
     if (outFormat === 'webp' && !(await canEncodeWebp())) outFormat = 'jpeg';
 
-    if (req.targetBytes && req.targetBytes > 0) {
-      return await encodeToTarget(bitmap, width, height, downscaled, outFormat, req.targetBytes);
+    // Build the draw plan: exactCrop → centre-crop to an exact box; everything else → scale-to-fit.
+    let width: number;
+    let height: number;
+    let downscaled: boolean;
+    let crop: Crop | undefined;
+    if (req.resize.mode === 'exactCrop' && (req.resize.width ?? 0) > 0 && (req.resize.height ?? 0) > 0) {
+      const cp = planCrop(bitmap.width, bitmap.height, req.resize.width!, req.resize.height!, MAX_CANVAS_EDGE);
+      width = cp.width;
+      height = cp.height;
+      downscaled = cp.downscaled;
+      crop = { sx: cp.sx, sy: cp.sy, sw: cp.sw, sh: cp.sh };
+    } else {
+      const pd = planDimensions(bitmap.width, bitmap.height, req.resize, MAX_CANVAS_EDGE, req.maxArea);
+      width = pd.width;
+      height = pd.height;
+      downscaled = pd.downscaled;
     }
 
-    const canvas = drawToCanvas(bitmap, width, height, outFormat);
+    if (req.targetBytes && req.targetBytes > 0) {
+      return await encodeToTarget(bitmap, width, height, downscaled, outFormat, req.targetBytes, crop);
+    }
+
+    const canvas = drawToCanvas(bitmap, width, height, outFormat, crop);
     const blob = await canvasToBlob(canvas, MIME[outFormat], req.quality);
     if (blob.size === 0) throw new Error('empty output');
     return { blob, outFormat, width, height, downscaled };

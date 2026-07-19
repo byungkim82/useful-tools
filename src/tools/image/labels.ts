@@ -28,9 +28,17 @@ export type LabelSet = {
   resizeMax: string;
   resizePercent: string;
   resizeExact: string;
+  resizeExactCrop: string; // "Exact size (crop)"
+  cropHint: string; // note under the crop dimensions
   width: string;
   height: string;
   lockAspect: string;
+  // use-case presets
+  optimizeFor: string; // heading over the preset chips
+  presetWhatsApp: string;
+  presetEmail: string;
+  presetWeb: string;
+  presetIdPhoto: string;
   targetSize: string; // "Target file size" toggle
   targetSizeHint: string; // note that quality is auto-adjusted when target is on
   targetMissed: string; // badge when the target couldn't be reached
@@ -88,9 +96,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: '최대 가로/세로',
     resizePercent: '비율(%)',
     resizeExact: '정확한 크기',
+    resizeExactCrop: '정확한 크기(크롭)',
+    cropHint: '지정한 비율에 맞춰 가운데를 크롭합니다.',
     width: '가로',
     height: '세로',
     lockAspect: '비율 유지',
+    optimizeFor: '용도별 최적화',
+    presetWhatsApp: '왓츠앱',
+    presetEmail: '이메일 첨부',
+    presetWeb: '웹/블로그',
+    presetIdPhoto: '증명사진',
     targetSize: '목표 파일 크기',
     targetSizeHint: '품질을 자동으로 조절해 목표 용량에 맞춥니다.',
     targetMissed: '목표보다 작게 만들지 못함 (가장 근접한 결과)',
@@ -142,9 +157,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: 'Max width/height',
     resizePercent: 'Percentage',
     resizeExact: 'Exact size',
+    resizeExactCrop: 'Exact size (crop)',
+    cropHint: 'Centre-cropped to fill the exact dimensions.',
     width: 'Width',
     height: 'Height',
     lockAspect: 'Lock aspect ratio',
+    optimizeFor: 'Optimize for',
+    presetWhatsApp: 'WhatsApp',
+    presetEmail: 'Email attachment',
+    presetWeb: 'Web/Blog',
+    presetIdPhoto: 'ID photo',
     targetSize: 'Target file size',
     targetSizeHint: 'Quality is adjusted automatically to hit the target.',
     targetMissed: 'couldn’t reach target — closest result',
@@ -196,9 +218,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: 'Ancho/alto máx.',
     resizePercent: 'Porcentaje',
     resizeExact: 'Tamaño exacto',
+    resizeExactCrop: 'Tamaño exacto (recorte)',
+    cropHint: 'Se recorta desde el centro para llenar las dimensiones exactas.',
     width: 'Ancho',
     height: 'Alto',
     lockAspect: 'Mantener proporción',
+    optimizeFor: 'Optimizar para',
+    presetWhatsApp: 'WhatsApp',
+    presetEmail: 'Adjunto de correo',
+    presetWeb: 'Web/Blog',
+    presetIdPhoto: 'Foto de carné',
     targetSize: 'Tamaño de archivo objetivo',
     targetSizeHint: 'La calidad se ajusta automáticamente para alcanzarlo.',
     targetMissed: 'no se alcanzó el objetivo — resultado más cercano',
@@ -250,9 +279,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: 'Largura/altura máx.',
     resizePercent: 'Porcentagem',
     resizeExact: 'Tamanho exato',
+    resizeExactCrop: 'Tamanho exato (corte)',
+    cropHint: 'Cortado a partir do centro para preencher as dimensões exatas.',
     width: 'Largura',
     height: 'Altura',
     lockAspect: 'Manter proporção',
+    optimizeFor: 'Otimizar para',
+    presetWhatsApp: 'WhatsApp',
+    presetEmail: 'Anexo de e-mail',
+    presetWeb: 'Web/Blog',
+    presetIdPhoto: 'Foto 3x4',
     targetSize: 'Tamanho de arquivo alvo',
     targetSizeHint: 'A qualidade é ajustada automaticamente para atingir o alvo.',
     targetMissed: 'não atingiu o alvo — resultado mais próximo',
@@ -304,9 +340,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: '最大の幅/高さ',
     resizePercent: '割合(%)',
     resizeExact: '正確なサイズ',
+    resizeExactCrop: '正確なサイズ（切り抜き）',
+    cropHint: '指定した比率に合わせて中央を切り抜きます。',
     width: '幅',
     height: '高さ',
     lockAspect: '縦横比を固定',
+    optimizeFor: '用途で最適化',
+    presetWhatsApp: 'WhatsApp',
+    presetEmail: 'メール添付',
+    presetWeb: 'Web/ブログ',
+    presetIdPhoto: '証明写真',
     targetSize: '目標ファイルサイズ',
     targetSizeHint: '画質を自動調整して目標サイズに合わせます。',
     targetMissed: '目標に届きませんでした（最も近い結果）',
@@ -358,9 +401,16 @@ export const LABELS: Record<Locale, LabelSet> = {
     resizeMax: 'Max. Breite/Höhe',
     resizePercent: 'Prozent',
     resizeExact: 'Exakte Größe',
+    resizeExactCrop: 'Exakte Größe (zuschneiden)',
+    cropHint: 'Mittig zugeschnitten, um die exakten Maße zu füllen.',
     width: 'Breite',
     height: 'Höhe',
     lockAspect: 'Seitenverhältnis sperren',
+    optimizeFor: 'Optimieren für',
+    presetWhatsApp: 'WhatsApp',
+    presetEmail: 'E-Mail-Anhang',
+    presetWeb: 'Web/Blog',
+    presetIdPhoto: 'Bewerbungsfoto',
     targetSize: 'Ziel-Dateigröße',
     targetSizeHint: 'Die Qualität wird automatisch an die Zielgröße angepasst.',
     targetMissed: 'Ziel nicht erreicht — nächstgelegenes Ergebnis',

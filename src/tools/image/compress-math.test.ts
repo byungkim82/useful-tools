@@ -6,11 +6,15 @@ import {
   resolveOutputFormat,
   mayFlattenAlpha,
   planDimensions,
+  planCrop,
   presetQuality,
   defaultFormatForSlug,
   isImageSlug,
+  applyUsePreset,
+  USE_PRESETS,
   MAX_CANVAS_EDGE,
   safeMaxArea,
+  type Settings,
 } from './compress-math';
 import {
   reducer,
@@ -171,6 +175,68 @@ describe('planDimensions', () => {
   it('area clamp is a no-op when under the cap', () => {
     const r = planDimensions(3000, 2000, { mode: 'none' }, 8192, 16_777_216); // 6MP < 16.7M
     expect(r).toEqual({ width: 3000, height: 2000, downscaled: false });
+  });
+});
+
+describe('planCrop', () => {
+  it('outputs the exact target box, centre-cropping a square source to portrait', () => {
+    const r = planCrop(1000, 1000, 413, 531);
+    expect(r.width).toBe(413);
+    expect(r.height).toBe(531);
+    // portrait target from a square source → crop the width, keep full height
+    expect(Math.round(r.sh)).toBe(1000);
+    expect(r.sw).toBeLessThan(1000);
+    expect(r.sy).toBe(0);
+    expect(r.sx).toBeGreaterThan(0);
+    // the sampled rectangle matches the target aspect (so no distortion)
+    expect(r.sw / r.sh).toBeCloseTo(413 / 531, 3);
+  });
+  it('crops the height of a wide source for a portrait box', () => {
+    const r = planCrop(2000, 1000, 413, 531);
+    expect(r.sh).toBe(1000); // full height used
+    expect(r.sw).toBeLessThan(2000);
+    expect(r.sx).toBeGreaterThan(0);
+    expect(r.sy).toBe(0);
+  });
+  it('clamps a box larger than the canvas ceiling and flags downscaled', () => {
+    const r = planCrop(20000, 20000, 10000, 10000, MAX_CANVAS_EDGE);
+    expect(Math.max(r.width, r.height)).toBe(MAX_CANVAS_EDGE);
+    expect(r.downscaled).toBe(true);
+  });
+});
+
+describe('applyUsePreset', () => {
+  const base: Settings = {
+    preset: 'balanced',
+    quality: 0.8,
+    format: 'auto',
+    resize: { mode: 'none', maxDimension: 1920, percentage: 80, width: 1280, height: 1280, lockAspect: true },
+    target: { enabled: false, kb: 200 },
+  };
+  const byId = (id: string) => USE_PRESETS.find((p) => p.id === id)!;
+
+  it('ID photo preset sets an exact crop + jpeg + a target, keeping the rest', () => {
+    const s = applyUsePreset(base, byId('idphoto'));
+    expect(s.format).toBe('jpeg');
+    expect(s.resize.mode).toBe('exactCrop');
+    expect(s.resize.width).toBe(413);
+    expect(s.resize.height).toBe(531);
+    expect(s.target).toEqual({ enabled: true, kb: 200 });
+    expect(s.preset).toBe('balanced'); // untouched
+  });
+  it('WhatsApp preset caps the longest edge and enables a 100 KB target', () => {
+    const s = applyUsePreset(base, byId('whatsapp'));
+    expect(s.format).toBe('auto');
+    expect(s.resize.mode).toBe('maxDimension');
+    expect(s.resize.maxDimension).toBe(1600);
+    expect(s.target).toEqual({ enabled: true, kb: 100 });
+  });
+  it('all four presets enable a target and keep resize sub-fields from the base', () => {
+    for (const p of USE_PRESETS) {
+      const s = applyUsePreset(base, p);
+      expect(s.target.enabled).toBe(true);
+      expect(s.resize.percentage).toBe(80); // base sub-field preserved through the merge
+    }
   });
 });
 

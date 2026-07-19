@@ -5,16 +5,53 @@
 export type OutputFormat = 'jpeg' | 'webp';
 export type FormatChoice = 'auto' | OutputFormat;
 export type Preset = 'high' | 'balanced' | 'smallest' | 'custom';
-export type ResizeMode = 'none' | 'maxDimension' | 'percentage' | 'exact';
+// 'exactCrop' fills an exact W×H box by scaling to cover then centre-cropping the overflow (ID photos).
+export type ResizeMode = 'none' | 'maxDimension' | 'percentage' | 'exact' | 'exactCrop';
 
 export type ResizeSettings = {
   mode: ResizeMode;
   maxDimension?: number; // px, applied to the longest edge (shrink-only)
   percentage?: number; // 1..100 (shrink-only)
-  width?: number; // exact mode
-  height?: number; // exact mode
+  width?: number; // exact / exactCrop mode
+  height?: number; // exact / exactCrop mode
   lockAspect?: boolean; // exact mode: fit inside the box preserving aspect (default true)
 };
+
+// Global compression settings — the pure data shape shared by the panel, the hook and the presets.
+export type TargetSettings = { enabled: boolean; kb: number };
+export type Settings = {
+  preset: Preset;
+  quality: number; // slider value used when preset === 'custom'
+  format: FormatChoice;
+  resize: ResizeSettings;
+  target: TargetSettings;
+};
+
+// One-click use-case presets: a format + resize + target-size combo tuned for a common destination.
+// Data only (labels live in labels.ts). Same locales, translated labels — see AskUserQuestion decision.
+export type UsePresetId = 'whatsapp' | 'email' | 'web' | 'idphoto';
+export type UsePreset = {
+  id: UsePresetId;
+  format: FormatChoice;
+  resize: Partial<ResizeSettings> & { mode: ResizeMode };
+  targetKb: number;
+};
+export const USE_PRESETS: readonly UsePreset[] = [
+  { id: 'whatsapp', format: 'auto', resize: { mode: 'maxDimension', maxDimension: 1600 }, targetKb: 100 },
+  { id: 'email', format: 'auto', resize: { mode: 'maxDimension', maxDimension: 2048 }, targetKb: 300 },
+  { id: 'web', format: 'webp', resize: { mode: 'maxDimension', maxDimension: 1920 }, targetKb: 200 },
+  { id: 'idphoto', format: 'jpeg', resize: { mode: 'exactCrop', width: 413, height: 531 }, targetKb: 200 },
+];
+
+/** Apply a use-case preset over the current settings: sets format, resize and target, keeps the rest. */
+export function applyUsePreset(base: Settings, preset: UsePreset): Settings {
+  return {
+    ...base,
+    format: preset.format,
+    resize: { ...base.resize, ...preset.resize },
+    target: { enabled: true, kb: preset.targetKb },
+  };
+}
 
 // The three quality presets shown as buttons. `custom` = the raw slider value, no preset.
 export const PRESET_QUALITY: Record<Exclude<Preset, 'custom'>, number> = {
@@ -198,4 +235,38 @@ export function planDimensions(
     height: Math.max(1, Math.round(h)),
     downscaled,
   };
+}
+
+export type CropPlan = {
+  width: number; // output canvas width (== requested target, clamped to the canvas ceiling)
+  height: number;
+  sx: number; // source rectangle to sample (centre-crop), in source pixels
+  sy: number;
+  sw: number;
+  sh: number;
+  downscaled: boolean; // the requested box exceeded the canvas ceiling and had to shrink
+};
+
+/**
+ * Plan an exact-size centre crop: scale the source to COVER the target box, then crop the overflow so
+ * the output is exactly targetW×targetH with the centre of the image kept. Used for ID/passport photos.
+ * The output box is clamped to `maxEdge` (rare — ID sizes are tiny) and that clamp sets `downscaled`.
+ */
+export function planCrop(srcW: number, srcH: number, targetW: number, targetH: number, maxEdge = MAX_CANVAS_EDGE): CropPlan {
+  let tw = Math.max(1, Math.round(targetW));
+  let th = Math.max(1, Math.round(targetH));
+  let downscaled = false;
+  const longest = Math.max(tw, th);
+  if (longest > maxEdge) {
+    const f = maxEdge / longest;
+    tw = Math.max(1, Math.round(tw * f));
+    th = Math.max(1, Math.round(th * f));
+    downscaled = true;
+  }
+  const scale = Math.max(tw / srcW, th / srcH); // cover: the larger ratio fills both axes
+  const sw = Math.min(srcW, tw / scale);
+  const sh = Math.min(srcH, th / scale);
+  const sx = Math.max(0, (srcW - sw) / 2);
+  const sy = Math.max(0, (srcH - sh) / 2);
+  return { width: tw, height: th, sx, sy, sw, sh, downscaled };
 }

@@ -88,6 +88,13 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
   현재 유효 설정이 달라지면 **dirty**로 감지 → 행별 `↻` + 전역 "다시 압축(N)"이 dirty만 재인코딩. `custom` 배지 ·
   "기본값으로" 초기화 · remove/clear 시 오버라이드/appliedFor 정리. **헤드리스 실 UI E2E**: 같은 6.5MB 소스 2장 →
   a.png만 타깃 20KB 오버라이드 → **a=20.0KB / b=926.6KB**(이미지별로 다른 EncodeRequest 라우팅 확인), 회귀 0.
+- **③ 유스케이스 프리셋 (라이브)** — 설정 상단 "용도별 최적화" 칩 4종(공통, 전 로케일·라벨만 번역): **WhatsApp**(≤100KB·
+  1600px) · **이메일 첨부**(≤300KB·2048px) · **웹/블로그**(≤200KB·1920px WebP) · **증명사진**(≤200KB·**413×531 정확 크롭**).
+  칩 1클릭이 format+resize+target을 한 번에 세팅(`applyUsePreset` 순수·전역/이미지별 편집기 공용). 증명사진용 **`exactCrop`
+  리사이즈 모드 신규**(`planCrop`: cover 스케일 → 중앙 크롭 → 정확한 W×H, 캔버스 상한 클램프). `encode.ts`가 crop
+  소스 사각형을 `drawImage`로 샘플(타깃 경로도 crop 유지). 프리셋 데이터·`Settings` 타입은 `compress-math.ts`로 이동해
+  순수 테스트 가능(hook은 재export). 유닛테스트 6개(planCrop 3·applyUsePreset 3) + **실 UI E2E**(ID사진 칩→413×531
+  jpeg 130KB·WhatsApp→99,968B≤100KB).
 
 ---
 
@@ -117,6 +124,9 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 6. 검증 로그 (verify, don't claim)
 최신 배포(이미지 압축기) 기준 실제 실행·확인:
+- ✅ **[v1.1 ③ 유스케이스 프리셋]** test 102(+6: planCrop·applyUsePreset)·lint·build·check-i18n 클린 · 워커 번들에
+  crop 로직 포함 · **CDP 실 UI E2E**: ID사진 칩 클릭 → 패널이 exactCrop·413×531·jpeg·타깃 200KB 반영 확인 + 페이지에서
+  실제 encode 모듈 import → **크롭 출력 정확히 413×531 jpeg(130KB)**·WhatsApp 프리셋 **99,968B≤100KB**.
 - ✅ **[v1.1 ② 이미지별 오버라이드]** test 96·lint·build·check-i18n 클린 · **CDP 실 UI E2E**(Node 22 WebSocket로
   헤드리스 Chrome 구동, 프로덕션 CSP로 out/ 서빙): 같은 6.5MB 소스 2장 주입 → a.png ⚙로 타깃 20KB 오버라이드 →
   전역 압축 → **a=20.0KB(custom 배지·자동 리사이즈)·b=926.6KB(-86%)** → 이미지별 다른 EncodeRequest 확인·배치 회귀 0.
@@ -144,9 +154,9 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 - `monetization-strategy.md` — 다국어 트래픽 수익화(단/중/장기 + AI 티어)
 
 ## 8. 미구현 / 다음 (What's next)
-- **이미지 압축기 v1.1** (순서대로 진행 중): ✅ **① 타깃 파일 크기** · ✅ **② 이미지별 오버라이드**(둘 다 완료·라이브,
-  §1.3) → ③ 유스케이스 프리셋(증명사진·WhatsApp, ①에 의존) → ④ Ctrl+V/폴더 → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력
-  (jSquash 지연 + `wasm-unsafe-eval`) · PNG 출력 + oxipng (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
+- **이미지 압축기 v1.1** (순서대로 진행 중): ✅ **① 타깃 파일 크기** · ✅ **② 이미지별 오버라이드** · ✅ **③ 유스케이스
+  프리셋**(셋 다 완료·라이브, §1.3) → ④ Ctrl+V/폴더 → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력(jSquash 지연 +
+  `wasm-unsafe-eval`) · PNG 출력 + oxipng (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
 - **로드맵 도구**(미착수, `tool-roadmap.md` 순서): HEIC 변환 → PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
   배경 제거 → (KO 특화) 평↔㎡·만나이 → 개발자용(JWT·hash·base64·JSON·UUID).
 - **QR Tier 2/3**(미착수): 디자인 깊이(`qr-code-styling`)·대량 CSV→ZIP·디코드 QA·QR 리더.

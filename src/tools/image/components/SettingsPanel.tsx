@@ -1,8 +1,16 @@
 // Global compression settings applied to the whole queue (v1: one setting for all images; per-image
 // overrides are v1.1). No 'use client' — imported by the client boundary ImageCompressorClient.
 import type { LabelSet } from '../labels';
-import { presetQuality, type FormatChoice, type Preset, type ResizeMode } from '../compress-math';
-import type { Settings } from '../useCompressQueue';
+import {
+  presetQuality,
+  applyUsePreset,
+  USE_PRESETS,
+  type FormatChoice,
+  type Preset,
+  type ResizeMode,
+  type UsePresetId,
+  type Settings,
+} from '../compress-math';
 
 const inputClass =
   'w-full rounded border border-neutral-300 px-3 py-2 text-sm dark:border-neutral-700 dark:bg-neutral-900';
@@ -12,6 +20,13 @@ const PRESETS: { key: Exclude<Preset, 'custom'>; label: (l: LabelSet) => string 
   { key: 'balanced', label: (l) => l.presetBalanced },
   { key: 'smallest', label: (l) => l.presetSmallest },
 ];
+
+const USE_PRESET_LABEL: Record<UsePresetId, (l: LabelSet) => string> = {
+  whatsapp: (l) => l.presetWhatsApp,
+  email: (l) => l.presetEmail,
+  web: (l) => l.presetWeb,
+  idphoto: (l) => l.presetIdPhoto,
+};
 
 export default function SettingsPanel({
   settings,
@@ -35,6 +50,23 @@ export default function SettingsPanel({
   return (
     <div className={bare ? 'space-y-4' : 'space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-800'}>
       {showTitle && <h2 className="text-sm font-semibold">{labels.settingsTitle}</h2>}
+
+      {/* Use-case presets: one click sets format + resize + target for a common destination. */}
+      <div>
+        <span className="text-xs font-medium text-neutral-500">{labels.optimizeFor}</span>
+        <div className="mt-1 flex flex-wrap gap-2">
+          {USE_PRESETS.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => onChange(applyUsePreset(settings, p))}
+              className="rounded-full border border-neutral-300 px-3 py-1 text-xs transition hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+            >
+              {USE_PRESET_LABEL[p.id](labels)}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Target file size — when on, the encoder searches quality (and downscales) to fit. */}
       <div>
@@ -128,6 +160,7 @@ export default function SettingsPanel({
           <option value="maxDimension">{labels.resizeMax}</option>
           <option value="percentage">{labels.resizePercent}</option>
           <option value="exact">{labels.resizeExact}</option>
+          <option value="exactCrop">{labels.resizeExactCrop}</option>
         </select>
       </label>
 
@@ -163,7 +196,7 @@ export default function SettingsPanel({
         </label>
       )}
 
-      {resize.mode === 'exact' && (
+      {(resize.mode === 'exact' || resize.mode === 'exactCrop') && (
         <div className="space-y-2">
           <div className="flex gap-2">
             <label className="block flex-1">
@@ -189,14 +222,18 @@ export default function SettingsPanel({
               />
             </label>
           </div>
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={resize.lockAspect ?? true}
-              onChange={(e) => setResize({ lockAspect: e.target.checked })}
-            />
-            {labels.lockAspect}
-          </label>
+          {resize.mode === 'exact' ? (
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                checked={resize.lockAspect ?? true}
+                onChange={(e) => setResize({ lockAspect: e.target.checked })}
+              />
+              {labels.lockAspect}
+            </label>
+          ) : (
+            <p className="text-xs text-neutral-500">{labels.cropHint}</p>
+          )}
         </div>
       )}
     </div>
