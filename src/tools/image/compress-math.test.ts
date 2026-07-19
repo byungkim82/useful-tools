@@ -7,6 +7,7 @@ import {
   mayFlattenAlpha,
   planDimensions,
   planCrop,
+  clampPercent,
   presetQuality,
   defaultFormatForSlug,
   isImageSlug,
@@ -53,6 +54,16 @@ describe('percentSaved', () => {
   it('negative when the file grew, 0 when original is 0', () => {
     expect(percentSaved(1000, 1200)).toBe(-20);
     expect(percentSaved(0, 100)).toBe(0);
+  });
+});
+
+describe('clampPercent', () => {
+  it('clamps to [0,100] and centres non-finite input', () => {
+    expect(clampPercent(50)).toBe(50);
+    expect(clampPercent(-10)).toBe(0);
+    expect(clampPercent(140)).toBe(100);
+    expect(clampPercent(NaN)).toBe(50);
+    expect(clampPercent(Infinity)).toBe(50);
   });
 });
 

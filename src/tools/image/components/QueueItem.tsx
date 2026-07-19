@@ -7,6 +7,7 @@ import type { LabelSet } from '../labels';
 import type { ViewJob, Settings } from '../useCompressQueue';
 import { formatBytes, percentSaved, mayFlattenAlpha } from '../compress-math';
 import SettingsPanel from './SettingsPanel';
+import CompareSlider from './CompareSlider';
 
 export default function QueueItem({
   job,
@@ -34,9 +35,11 @@ export default function QueueItem({
   onRecompress: () => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [compareOpen, setCompareOpen] = useState(false);
   const pct = job.outSize !== undefined ? percentSaved(job.size, job.outSize) : 0;
   const grew = pct < 0;
   const editable = job.status === 'done' || job.status === 'pending' || job.status === 'error';
+  const canCompare = job.status === 'done' && !!job.previewUrl && !!job.outputUrl;
 
   return (
     <li className="py-3">
@@ -118,6 +121,20 @@ export default function QueueItem({
               ↻ {labels.recompress}
             </button>
           )}
+          {canCompare && (
+            <button
+              type="button"
+              onClick={() => setCompareOpen((o) => !o)}
+              aria-expanded={compareOpen}
+              aria-label={labels.compare}
+              title={labels.compare}
+              className={`rounded px-2 py-1 text-xs transition hover:bg-neutral-100 dark:hover:bg-neutral-800 ${
+                compareOpen ? 'text-blue-600 dark:text-blue-400' : 'text-neutral-400 hover:text-neutral-700'
+              }`}
+            >
+              ⇋
+            </button>
+          )}
           {editable && (
             <button
               type="button"
@@ -167,6 +184,12 @@ export default function QueueItem({
             )}
           </div>
           <SettingsPanel settings={settings} onChange={onOverride} labels={labels} showTitle={false} bare />
+        </div>
+      )}
+
+      {compareOpen && canCompare && (
+        <div className="mt-3">
+          <CompareSlider beforeUrl={job.previewUrl!} afterUrl={job.outputUrl!} labels={labels} />
         </div>
       )}
     </li>

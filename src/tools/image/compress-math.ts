@@ -132,6 +132,12 @@ export function percentSaved(originalBytes: number, outputBytes: number): number
   return Math.round((1 - outputBytes / originalBytes) * 100);
 }
 
+/** Clamp a percentage to [0, 100]; non-finite input falls back to 50 (the compare-slider centre). */
+export function clampPercent(n: number): number {
+  if (!Number.isFinite(n)) return 50;
+  return Math.max(0, Math.min(100, n));
+}
+
 /** Output filename: swap the extension for the format's and add a "-min" suffix. photo.png → photo-min.webp */
 export function outputFilename(originalName: string, format: OutputFormat): string {
   const dot = originalName.lastIndexOf('.');

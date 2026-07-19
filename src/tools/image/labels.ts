@@ -67,6 +67,10 @@ export type LabelSet = {
   remove: string;
   downscaledBadge: string;
   alphaWarning: string;
+  // compare slider
+  compare: string;
+  before: string;
+  after: string;
   // action bar
   downloadZip: string;
   clearAll: string;
@@ -134,6 +138,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: '제거',
     downscaledBadge: '크기 자동 축소됨',
     alphaWarning: '투명 배경이 흰색으로 채워집니다',
+    compare: '원본과 비교',
+    before: '원본',
+    after: '압축 후',
     downloadZip: 'ZIP으로 모두 받기',
     clearAll: '전체 지우기',
     total: '합계',
@@ -197,6 +204,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: 'Remove',
     downscaledBadge: 'auto-resized to fit',
     alphaWarning: 'transparency will be flattened to white',
+    compare: 'Compare with original',
+    before: 'Before',
+    after: 'After',
     downloadZip: 'Download all as ZIP',
     clearAll: 'Clear all',
     total: 'Total',
@@ -260,6 +270,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: 'Quitar',
     downscaledBadge: 'redimensionada automáticamente',
     alphaWarning: 'la transparencia se rellenará de blanco',
+    compare: 'Comparar con el original',
+    before: 'Antes',
+    after: 'Después',
     downloadZip: 'Descargar todo en ZIP',
     clearAll: 'Borrar todo',
     total: 'Total',
@@ -323,6 +336,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: 'Remover',
     downscaledBadge: 'redimensionada automaticamente',
     alphaWarning: 'a transparência será preenchida com branco',
+    compare: 'Comparar com o original',
+    before: 'Antes',
+    after: 'Depois',
     downloadZip: 'Baixar tudo em ZIP',
     clearAll: 'Limpar tudo',
     total: 'Total',
@@ -386,6 +402,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: '削除',
     downscaledBadge: '自動でリサイズされました',
     alphaWarning: '透過部分は白で塗りつぶされます',
+    compare: '元画像と比較',
+    before: '元',
+    after: '圧縮後',
     downloadZip: 'すべてZIPでダウンロード',
     clearAll: 'すべてクリア',
     total: '合計',
@@ -449,6 +468,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     remove: 'Entfernen',
     downscaledBadge: 'automatisch verkleinert',
     alphaWarning: 'Transparenz wird mit Weiß gefüllt',
+    compare: 'Mit Original vergleichen',
+    before: 'Vorher',
+    after: 'Nachher',
     downloadZip: 'Alle als ZIP herunterladen',
     clearAll: 'Alle entfernen',
     total: 'Gesamt',

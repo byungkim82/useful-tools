@@ -73,7 +73,7 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 `default-src 'self'`가 커버). → 근거·결정로그: **`image-compressor-plan-ko.md`** / `-en.md`, 리서치
 `image-compressor-research.md`.
 
-**v1.1 추가 (진행 중):**
+**v1.1 추가 (전 5종 완료·라이브):**
 - **① 타깃 파일 크기 (라이브)** — 설정에 "목표 파일 크기(KB)" 토글. 켜면 **`compress-core.ts`(순수 이진탐색)**가
   품질을 [0.4, 0.95]에서 이진탐색해 **목표 이하 최고 품질**을 찾고, 최저 품질로도 초과하면 **치수를 단계적으로 다운스케일**
   (0.8배 × 최대 5단계, 64px 바닥)해 재시도. 목표를 못 맞추면 결과에 **`approximated` 플래그**(가장 근접) → 배지 고지.
@@ -100,6 +100,11 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
   DropZone에 **`webkitdirectory` 폴더 인풋**(속성은 ref로 명령형 설정 — React prop 타입에 없음) + "폴더 선택" 버튼 +
   붙여넣기 힌트. 비이미지는 기존 필터가 걸러냄. **실 UI E2E**: 합성 ClipboardEvent 붙여넣기 → pasted.png 큐 행 추가·
   폴더 인풋 `webkitdirectory` 확인.
+- **⑤ 비교 슬라이더 (라이브)** — done 잡의 ⇋ 토글이 **원본↔압축 before/after 슬라이더**(`CompareSlider`)를 인라인
+  확장. Job에 이미 있는 `previewUrl`(원본)·`outputUrl`(압축) 두 blob을 겹쳐, 위 레이어를 `clip-path: inset(0 X% 0 0)`
+  으로 잘라 divider 위치만큼 노출(새 상태 0). 포인터 드래그(setPointerCapture) + `<input type=range>` 키보드 접근성.
+  순수 `clampPercent`(테스트) 하나로 위치 클램프. **실 UI E2E**: 압축 후 ⇋ → Before/After 라벨·슬라이더 렌더, 50%→25%
+  이동 시 clip-path `inset(0 50%…)`→`inset(0 75%…)` 변화 확인.
 
 ---
 
@@ -129,6 +134,8 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 6. 검증 로그 (verify, don't claim)
 최신 배포(이미지 압축기) 기준 실제 실행·확인:
+- ✅ **[v1.1 ⑤ 비교 슬라이더]** test 103(+clampPercent)·lint·build·check-i18n 클린 · **CDP 실 UI E2E**: 압축 후 ⇋
+  토글 → Before/After 라벨·슬라이더 렌더 확인, range 50%→25% 이동 시 오버레이 clip-path `inset(0 50%…)`→`inset(0 75%…)` 변화.
 - ✅ **[v1.1 ④ Ctrl+V / 폴더 업로드]** test 102·lint·build·check-i18n 클린 · **CDP 실 UI E2E**: 합성 ClipboardEvent
   붙여넣기 → "pasted.png" 큐 행 추가 확인 · 폴더 인풋에 `webkitdirectory` 설정됨(파일/폴더 인풋 2개) 확인.
 - ✅ **[v1.1 ③ 유스케이스 프리셋]** test 102(+6: planCrop·applyUsePreset)·lint·build·check-i18n 클린 · 워커 번들에
@@ -161,9 +168,9 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 - `monetization-strategy.md` — 다국어 트래픽 수익화(단/중/장기 + AI 티어)
 
 ## 8. 미구현 / 다음 (What's next)
-- **이미지 압축기 v1.1** (순서대로 진행 중): ✅ **① 타깃 파일 크기** · ✅ **② 이미지별 오버라이드** · ✅ **③ 유스케이스
-  프리셋** · ✅ **④ Ctrl+V/폴더**(넷 다 완료·라이브, §1.3) → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력(jSquash 지연 +
-  `wasm-unsafe-eval`) · PNG 출력 + oxipng (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
+- **이미지 압축기 v1.1 — 전 5종 완료·라이브** (§1.3): ① 타깃 파일 크기 · ② 이미지별 오버라이드 · ③ 유스케이스 프리셋 ·
+  ④ Ctrl+V/폴더 · ⑤ 비교 슬라이더. **다음은 v1.5**: AVIF 출력(jSquash 지연 + `wasm-unsafe-eval`) · PNG 출력 + oxipng
+  (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
 - **로드맵 도구**(미착수, `tool-roadmap.md` 순서): HEIC 변환 → PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
   배경 제거 → (KO 특화) 평↔㎡·만나이 → 개발자용(JWT·hash·base64·JSON·UUID).
 - **QR Tier 2/3**(미착수): 디자인 깊이(`qr-code-styling`)·대량 CSV→ZIP·디코드 QA·QR 리더.
