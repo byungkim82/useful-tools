@@ -9,21 +9,32 @@
 // single source, so there is no drift from the unit-tested code.
 //
 // Runs first in the `build` script, before `next build`, so the file exists when the export copies public/.
+//
+// TWO separate build() calls, one per worker — NOT one call with two entryPoints, because esbuild's
+// `outfile` is single-entry only (two entries needs `outdir`, which would move compress.js). The HEIC
+// worker bundles libheif (~1.4 MB) into its own file, so the compressor's compress.js stays tiny; encode.ts
+// and compress-math.ts get bundled into both, but from the one source, so there is no drift.
 import { build } from 'esbuild';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-await build({
-  entryPoints: [join(root, 'src/tools/image/compress.worker.ts')],
+const common = {
   bundle: true,
   format: 'iife', // classic worker: no module-worker MIME strictness, broadest browser support
   platform: 'browser',
   target: 'es2019',
-  outfile: join(root, 'public/workers/compress.js'),
   legalComments: 'none',
   logLevel: 'info',
-});
+};
 
-console.log('built public/workers/compress.js');
+async function buildWorker(entry, outfile) {
+  await build({ ...common, entryPoints: [join(root, entry)], outfile: join(root, outfile) });
+  console.log(`built ${outfile}`);
+}
+
+await buildWorker('src/tools/image/compress.worker.ts', 'public/workers/compress.js');
+// HEIC decoder worker: libheif (WASM, wasm-unsafe-eval) is bundled here only. Loaded lazily by runner.ts
+// the first time a HEIC/HEIF file appears, so non-HEIC users never download it.
+await buildWorker('src/tools/image/heic.worker.ts', 'public/workers/heic.js');

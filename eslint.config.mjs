@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated worker bundles (esbuild output, incl. vendored libheif) — build artifacts, not source.
+    "public/workers/**",
   ]),
 ]);
 
