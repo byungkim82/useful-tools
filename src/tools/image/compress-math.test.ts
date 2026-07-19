@@ -11,6 +11,7 @@ import {
   presetQuality,
   defaultFormatForSlug,
   isImageSlug,
+  isHeicSlug,
   applyUsePreset,
   USE_PRESETS,
   MAX_CANVAS_EDGE,
@@ -121,6 +122,14 @@ describe('presetQuality / slug helpers', () => {
     expect(defaultFormatForSlug('image-compressor')).toBe('auto');
     expect(isImageSlug('image-compressor')).toBe(true);
     expect(isImageSlug('length-converter')).toBe(false);
+  });
+  it('HEIC slugs pin their output format and are not image slugs', () => {
+    expect(defaultFormatForSlug('heic-to-jpg')).toBe('jpeg');
+    expect(defaultFormatForSlug('heic-to-webp')).toBe('webp');
+    expect(isHeicSlug('heic-to-jpg')).toBe(true);
+    expect(isHeicSlug('heic-to-webp')).toBe(true);
+    expect(isHeicSlug('image-compressor')).toBe(false);
+    expect(isImageSlug('heic-to-jpg')).toBe(false);
   });
 });
 

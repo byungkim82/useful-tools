@@ -10,7 +10,7 @@ import {
   type Job,
   type DeviceHints,
 } from './queue-reducer';
-import { CompressRunner } from './runner';
+import { CompressRunner, isHeic } from './runner';
 import { outputFilename, presetQuality, safeMaxArea, type Settings, type TargetSettings } from './compress-math';
 import { zipStore, uniqueName } from './zip-store';
 import { withTimeout } from './async-util';
@@ -148,7 +148,9 @@ export function useCompressQueue() {
   }, [state, startJob]);
 
   const addFiles = useCallback((files: File[]) => {
-    const accepted = files.filter((f) => f.type.startsWith('image/'));
+    // Accept normal images plus HEIC/HEIF (which some platforms hand an empty MIME type — isHeic falls
+    // back to the extension). The runner routes HEIC to the libheif worker; everything else stays native.
+    const accepted = files.filter((f) => f.type.startsWith('image/') || isHeic(f));
     if (accepted.length === 0) return { rejected: files.length };
     const newFiles = accepted.map((file) => {
       const id = `f${seqRef.current++}`;

@@ -995,6 +995,94 @@
           "a": "Sí. Añade todas las que quieras; se comprimen juntas y puedes descargarlas todas en un único ZIP."
         }
       ]
+    },
+    "heic-to-jpg": {
+      "title": "Conversor de HEIC a JPG",
+      "description": "Convierte las fotos HEIC de tu iPhone a JPG directamente en tu navegador: sin subir archivos, sin registro y convierte por lotes tantas como quieras.",
+      "metaTitle": "Convertir HEIC a JPG Gratis — Sin Subir Archivos (iPhone)",
+      "metaDescription": "Conversor de HEIC a JPG gratis. Convierte las fotos HEIC y HEIF de tu iPhone a JPG en tu navegador, convierte muchas a la vez por lotes, redimensiona y descarga en un ZIP. No se sube nada, sin registro y sin marca de agua.",
+      "howToTitle": "Cómo convertir HEIC a JPG",
+      "howTo": [
+        "Arrastra tus archivos HEIC o HEIF o haz clic para elegirlos: añade todos los que quieras.",
+        "Elige JPG (o WebP) y, si quieres, redimensiona o define un tamaño de archivo objetivo.",
+        "Cada foto se convierte al instante en tu navegador; comprueba el tamaño resultante.",
+        "Descarga los archivos uno a uno o todos juntos en un ZIP."
+      ],
+      "featuresTitle": "Características",
+      "features": [
+        "100% en tu navegador: tus fotos nunca salen de tu dispositivo.",
+        "Conversión por lotes: arrastra todo un carrete de archivos HEIC y procésalos juntos.",
+        "Salida en JPG o WebP, con ajustes de calidad preestablecidos y un control deslizante preciso.",
+        "Redimensiona o alcanza un tamaño de archivo objetivo, con la orientación de la foto mantenida derecha automáticamente.",
+        "Gratis, sin anuncios, sin marca de agua, sin registro y sin límite en el número de archivos."
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faq": [
+        {
+          "q": "¿Se suben mis fotos a un servidor?",
+          "a": "No. La decodificación y la conversión de HEIC se realizan por completo en tu navegador, así que tus fotos nunca salen de tu dispositivo. Incluso puedes apagar el Wi-Fi y sigue funcionando."
+        },
+        {
+          "q": "¿Qué es HEIC y por qué convertirlo a JPG?",
+          "a": "HEIC (también llamado HEIF) es el formato que usan los iPhone para guardar fotos. Es eficiente, pero muchas apps y sitios web no pueden abrirlo, así que convertirlo a JPG hace que tus fotos funcionen en todas partes."
+        },
+        {
+          "q": "¿La foto convertida mantendrá la orientación correcta?",
+          "a": "Sí. La rotación se aplica mientras se decodifica la foto, así que las fotos verticales quedan derechas en lugar de salir de lado."
+        },
+        {
+          "q": "¿La conversión elimina los datos EXIF y de ubicación?",
+          "a": "Sí. Volver a codificar en el navegador elimina los metadatos EXIF, incluida la ubicación GPS, lo que supone una ventaja de privacidad además de un archivo más pequeño."
+        },
+        {
+          "q": "¿Puedo convertir muchos archivos HEIC a la vez?",
+          "a": "Sí. Añade todos los que quieras; se ponen en cola y se convierten juntos, y puedes descargarlo todo en un único archivo ZIP."
+        }
+      ]
+    },
+    "heic-to-webp": {
+      "title": "Conversor de HEIC a WebP",
+      "description": "Convierte las fotos HEIC de tu iPhone a WebP directamente en tu navegador: sin subir archivos, sin registro y convierte por lotes tantas como quieras.",
+      "metaTitle": "Convertir HEIC a WebP Gratis — Sin Subir Archivos (iPhone)",
+      "metaDescription": "Conversor de HEIC a WebP gratis. Convierte las fotos HEIC y HEIF de tu iPhone a WebP en tu navegador, convierte muchas a la vez por lotes, redimensiona y descarga en un ZIP. No se sube nada, sin registro y sin marca de agua.",
+      "howToTitle": "Cómo convertir HEIC a WebP",
+      "howTo": [
+        "Arrastra tus archivos HEIC o HEIF o haz clic para elegirlos: añade todos los que quieras.",
+        "Elige WebP (o JPG) y, si quieres, redimensiona o define un tamaño de archivo objetivo.",
+        "Cada foto se convierte al instante en tu navegador; comprueba el tamaño resultante.",
+        "Descarga los archivos uno a uno o todos juntos en un ZIP."
+      ],
+      "featuresTitle": "Características",
+      "features": [
+        "100% en tu navegador: tus fotos nunca salen de tu dispositivo.",
+        "Conversión por lotes: arrastra todo un carrete de archivos HEIC y procésalos juntos.",
+        "Salida en WebP o JPG, con ajustes de calidad preestablecidos y un control deslizante preciso.",
+        "Redimensiona o alcanza un tamaño de archivo objetivo, con la orientación de la foto mantenida derecha automáticamente.",
+        "Gratis, sin anuncios, sin marca de agua, sin registro y sin límite en el número de archivos."
+      ],
+      "faqTitle": "Preguntas frecuentes",
+      "faq": [
+        {
+          "q": "¿Se suben mis fotos a un servidor?",
+          "a": "No. La decodificación y la conversión de HEIC se realizan por completo en tu navegador, así que tus fotos nunca salen de tu dispositivo. Incluso puedes apagar el Wi-Fi y sigue funcionando."
+        },
+        {
+          "q": "¿Por qué convertir HEIC a WebP en lugar de JPG?",
+          "a": "WebP es un formato web moderno con una compresión excelente, así que pasar de HEIC a WebP mantiene los archivos pequeños y funciona en todos los navegadores modernos. Elige JPG cuando necesites la máxima compatibilidad con apps."
+        },
+        {
+          "q": "¿La foto convertida mantendrá la orientación correcta?",
+          "a": "Sí. La rotación se aplica mientras se decodifica la foto, así que las fotos verticales quedan derechas en lugar de salir de lado."
+        },
+        {
+          "q": "¿La conversión elimina los datos EXIF y de ubicación?",
+          "a": "Sí. Volver a codificar en el navegador elimina los metadatos EXIF, incluida la ubicación GPS, lo que supone una ventaja de privacidad además de un archivo más pequeño."
+        },
+        {
+          "q": "¿Puedo convertir muchos archivos HEIC a la vez?",
+          "a": "Sí. Añade todos los que quieras; se ponen en cola y se convierten juntos, y puedes descargarlo todo en un único archivo ZIP."
+        }
+      ]
     }
   }
 }

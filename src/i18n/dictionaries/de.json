@@ -995,6 +995,94 @@
           "a": "Ja. Fügen Sie beliebig viele hinzu; sie werden gemeinsam komprimiert, und Sie können sie alle als eine einzige ZIP-Datei herunterladen."
         }
       ]
+    },
+    "heic-to-jpg": {
+      "title": "HEIC in JPG umwandeln",
+      "description": "Wandeln Sie iPhone-HEIC-Fotos direkt in Ihrem Browser in JPG um — ohne Upload, ohne Anmeldung, beliebig viele im Stapel.",
+      "metaTitle": "HEIC in JPG umwandeln — kostenlos & ohne Upload",
+      "metaDescription": "HEIC in JPG umwandeln — kostenlos und direkt im Browser. Verwandeln Sie iPhone-HEIC- und HEIF-Fotos in JPG, wandeln Sie viele gleichzeitig um, verkleinern Sie sie und laden Sie alles als ZIP herunter. Ohne Upload, DSGVO-konform, ohne Anmeldung, ohne Wasserzeichen.",
+      "howToTitle": "So wandeln Sie HEIC in JPG um",
+      "howTo": [
+        "Ziehen Sie Ihre HEIC- oder HEIF-Dateien hierher oder klicken Sie zum Auswählen — fügen Sie beliebig viele hinzu.",
+        "Wählen Sie JPG (oder WebP) und verkleinern Sie optional oder legen Sie eine Zieldateigröße fest.",
+        "Jedes Foto wird sofort in Ihrem Browser umgewandelt; prüfen Sie die Größe der Ausgabe.",
+        "Laden Sie die Dateien einzeln herunter oder alle zusammen als ZIP."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "100 % in Ihrem Browser — Ihre Fotos verlassen niemals Ihr Gerät.",
+        "Stapelverarbeitung: Ziehen Sie eine ganze Kamerarolle voller HEIC-Dateien hinein und verarbeiten Sie sie gemeinsam.",
+        "Ausgabe als JPG oder WebP, mit Qualitätsvorgaben und einem feinstufigen Regler.",
+        "Verkleinern oder eine Zieldateigröße treffen — die Bildausrichtung bleibt dabei automatisch aufrecht.",
+        "Kostenlos, ohne Werbung, ohne Wasserzeichen, ohne Anmeldung und ohne Begrenzung der Dateianzahl."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Werden meine Fotos auf einen Server hochgeladen?",
+          "a": "Nein. Das Decodieren und Umwandeln von HEIC erfolgt vollständig in Ihrem Browser, sodass Ihre Fotos niemals Ihr Gerät verlassen. Sie können sogar Ihr Wi-Fi ausschalten, und es funktioniert weiterhin."
+        },
+        {
+          "q": "Was ist HEIC und warum sollte man es in JPG umwandeln?",
+          "a": "HEIC (auch HEIF genannt) ist das Format, in dem iPhones Fotos speichern. Es ist effizient, aber viele Apps und Websites können es nicht öffnen — durch das Umwandeln in JPG funktionieren Ihre Fotos überall."
+        },
+        {
+          "q": "Behält das umgewandelte Foto die richtige Ausrichtung?",
+          "a": "Ja. Die Drehung wird beim Decodieren des Fotos angewendet, sodass Hochformataufnahmen aufrecht bleiben und nicht seitlich verdreht herauskommen."
+        },
+        {
+          "q": "Entfernt das Umwandeln EXIF- und Standortdaten?",
+          "a": "Ja. Beim erneuten Encodieren im Browser werden die EXIF-Metadaten entfernt, einschließlich des GPS-Standorts — ein Datenschutzvorteil zusätzlich zur kleineren Datei."
+        },
+        {
+          "q": "Kann ich viele HEIC-Dateien gleichzeitig umwandeln?",
+          "a": "Ja. Fügen Sie beliebig viele hinzu; sie werden in eine Warteschlange gestellt und gemeinsam umgewandelt, und Sie können alles als eine einzige ZIP-Datei herunterladen."
+        }
+      ]
+    },
+    "heic-to-webp": {
+      "title": "HEIC in WebP umwandeln",
+      "description": "Wandeln Sie iPhone-HEIC-Fotos direkt in Ihrem Browser in WebP um — ohne Upload, ohne Anmeldung, beliebig viele im Stapel.",
+      "metaTitle": "HEIC in WebP umwandeln — kostenlos & ohne Upload",
+      "metaDescription": "HEIC in WebP umwandeln — kostenlos und direkt im Browser. Verwandeln Sie iPhone-HEIC- und HEIF-Fotos in WebP, wandeln Sie viele gleichzeitig um, verkleinern Sie sie und laden Sie alles als ZIP herunter. Ohne Upload, DSGVO-konform, ohne Anmeldung, ohne Wasserzeichen.",
+      "howToTitle": "So wandeln Sie HEIC in WebP um",
+      "howTo": [
+        "Ziehen Sie Ihre HEIC- oder HEIF-Dateien hierher oder klicken Sie zum Auswählen — fügen Sie beliebig viele hinzu.",
+        "Wählen Sie WebP (oder JPG) und verkleinern Sie optional oder legen Sie eine Zieldateigröße fest.",
+        "Jedes Foto wird sofort in Ihrem Browser umgewandelt; prüfen Sie die Größe der Ausgabe.",
+        "Laden Sie die Dateien einzeln herunter oder alle zusammen als ZIP."
+      ],
+      "featuresTitle": "Funktionen",
+      "features": [
+        "100 % in Ihrem Browser — Ihre Fotos verlassen niemals Ihr Gerät.",
+        "Stapelverarbeitung: Ziehen Sie eine ganze Kamerarolle voller HEIC-Dateien hinein und verarbeiten Sie sie gemeinsam.",
+        "Ausgabe als WebP oder JPG, mit Qualitätsvorgaben und einem feinstufigen Regler.",
+        "Verkleinern oder eine Zieldateigröße treffen — die Bildausrichtung bleibt dabei automatisch aufrecht.",
+        "Kostenlos, ohne Werbung, ohne Wasserzeichen, ohne Anmeldung und ohne Begrenzung der Dateianzahl."
+      ],
+      "faqTitle": "Häufig gestellte Fragen",
+      "faq": [
+        {
+          "q": "Werden meine Fotos auf einen Server hochgeladen?",
+          "a": "Nein. Das Decodieren und Umwandeln von HEIC erfolgt vollständig in Ihrem Browser, sodass Ihre Fotos niemals Ihr Gerät verlassen. Sie können sogar Ihr Wi-Fi ausschalten, und es funktioniert weiterhin."
+        },
+        {
+          "q": "Warum HEIC in WebP statt in JPG umwandeln?",
+          "a": "WebP ist ein modernes Web-Format mit hervorragender Komprimierung, sodass HEIC-zu-WebP die Dateien klein hält und in jedem modernen Browser funktioniert. Wählen Sie stattdessen JPG, wenn Sie die größtmögliche App-Kompatibilität benötigen."
+        },
+        {
+          "q": "Behält das umgewandelte Foto die richtige Ausrichtung?",
+          "a": "Ja. Die Drehung wird beim Decodieren des Fotos angewendet, sodass Hochformataufnahmen aufrecht bleiben und nicht seitlich verdreht herauskommen."
+        },
+        {
+          "q": "Entfernt das Umwandeln EXIF- und Standortdaten?",
+          "a": "Ja. Beim erneuten Encodieren im Browser werden die EXIF-Metadaten entfernt, einschließlich des GPS-Standorts — ein Datenschutzvorteil zusätzlich zur kleineren Datei."
+        },
+        {
+          "q": "Kann ich viele HEIC-Dateien gleichzeitig umwandeln?",
+          "a": "Ja. Fügen Sie beliebig viele hinzu; sie werden in eine Warteschlange gestellt und gemeinsam umgewandelt, und Sie können alles als eine einzige ZIP-Datei herunterladen."
+        }
+      ]
     }
   }
 }

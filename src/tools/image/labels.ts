@@ -4,7 +4,7 @@
 // only SEO copy (title/description/howTo/features/faq).
 
 import type { Locale } from '@/i18n/config';
-import type { ImageSlug } from './compress-math';
+import type { ImageSlug, HeicSlug } from './compress-math';
 
 export type LabelSet = {
   // dropzone
@@ -485,4 +485,77 @@ export const NAV_LABEL: Record<ImageSlug, Record<Locale, string>> = {
   'image-compressor': { ko: '이미지 압축', en: 'Compress', es: 'Comprimir', pt: 'Comprimir', ja: '画像圧縮', de: 'Komprimieren' },
   'compress-jpg': { ko: 'JPG', en: 'JPG', es: 'JPG', pt: 'JPG', ja: 'JPG', de: 'JPG' },
   'compress-webp': { ko: 'WebP', en: 'WebP', es: 'WebP', pt: 'WebP', ja: 'WebP', de: 'WebP' },
+};
+
+// HEIC converter tools reuse the compressor UI with a "convert" framing. Only the strings that differ are
+// overridden here; every other label falls back to that locale's compressor LABELS. `unsupported` is
+// HEIC-only — shown when the platform can't run the libheif worker (there is no main-thread fallback).
+export type HeicLabelSet = LabelSet & { unsupported: string };
+type HeicOverride = Partial<LabelSet> & { unsupported: string };
+const HEIC_LABEL_OVERRIDES: Record<Locale, HeicOverride> = {
+  ko: {
+    dropTitle: 'HEIC 사진을 여기에 놓거나 클릭해서 선택하세요',
+    dropHint: 'HEIC · HEIF · 업로드 없이 브라우저에서 바로 변환',
+    compress: '변환 시작',
+    recompress: '다시 변환',
+    compressing: '변환 중',
+    previewAlt: '변환된 사진 미리보기',
+    unsupported: '이 브라우저는 HEIC 변환을 지원하지 않습니다. 최신 Chrome·Edge·Safari·Firefox를 사용해 주세요.',
+  },
+  en: {
+    dropTitle: 'Drop HEIC photos here or click to choose',
+    dropHint: 'HEIC · HEIF · converted in your browser, never uploaded',
+    compress: 'Convert',
+    recompress: 'Convert again',
+    compressing: 'Converting',
+    previewAlt: 'Converted photo preview',
+    unsupported: 'Your browser can’t convert HEIC. Try the latest Chrome, Edge, Safari, or Firefox.',
+  },
+  es: {
+    dropTitle: 'Suelta las fotos HEIC aquí o haz clic para elegir',
+    dropHint: 'HEIC · HEIF · convertido en tu navegador, sin subir nada',
+    compress: 'Convertir',
+    recompress: 'Convertir de nuevo',
+    compressing: 'Convirtiendo',
+    previewAlt: 'Vista previa de la foto convertida',
+    unsupported: 'Tu navegador no puede convertir HEIC. Prueba con la última versión de Chrome, Edge, Safari o Firefox.',
+  },
+  pt: {
+    dropTitle: 'Solte as fotos HEIC aqui ou clique para escolher',
+    dropHint: 'HEIC · HEIF · convertido no seu navegador, sem enviar nada',
+    compress: 'Converter',
+    recompress: 'Converter novamente',
+    compressing: 'Convertendo',
+    previewAlt: 'Prévia da foto convertida',
+    unsupported: 'Seu navegador não pode converter HEIC. Use a versão mais recente do Chrome, Edge, Safari ou Firefox.',
+  },
+  ja: {
+    dropTitle: 'ここにHEIC写真をドロップ、またはクリックして選択',
+    dropHint: 'HEIC · HEIF · アップロードせずブラウザ内で変換',
+    compress: '変換する',
+    recompress: '再変換',
+    compressing: '変換中',
+    previewAlt: '変換した写真のプレビュー',
+    unsupported: 'このブラウザーはHEIC変換に対応していません。最新のChrome・Edge・Safari・Firefoxをお使いください。',
+  },
+  de: {
+    dropTitle: 'HEIC-Fotos hier ablegen oder zum Auswählen klicken',
+    dropHint: 'HEIC · HEIF · im Browser konvertiert, kein Upload',
+    compress: 'Konvertieren',
+    recompress: 'Erneut konvertieren',
+    compressing: 'Wird konvertiert',
+    previewAlt: 'Vorschau des konvertierten Fotos',
+    unsupported: 'Ihr Browser kann HEIC nicht konvertieren. Verwenden Sie die neueste Version von Chrome, Edge, Safari oder Firefox.',
+  },
+};
+
+/** Compressor labels for `locale` with the HEIC "convert" wording layered on top. */
+export function heicLabels(locale: Locale): HeicLabelSet {
+  return { ...LABELS[locale], ...HEIC_LABEL_OVERRIDES[locale] };
+}
+
+// Short labels for the in-tool HEIC format switcher (HeicTypeNav).
+export const HEIC_NAV_LABEL: Record<HeicSlug, Record<Locale, string>> = {
+  'heic-to-jpg': { ko: 'JPG', en: 'JPG', es: 'JPG', pt: 'JPG', ja: 'JPG', de: 'JPG' },
+  'heic-to-webp': { ko: 'WebP', en: 'WebP', es: 'WebP', pt: 'WebP', ja: 'WebP', de: 'WebP' },
 };

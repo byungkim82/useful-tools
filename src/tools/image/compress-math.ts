@@ -95,10 +95,19 @@ export function isImageSlug(slug: string): slug is ImageSlug {
   return (IMAGE_SLUGS as readonly string[]).includes(slug);
 }
 
+// HEIC converter slugs — their own group 'heic'. heic-to-jpg is the primary (JPG output, the common
+// need); heic-to-webp pins WebP output. Both reuse the compressor pipeline via the libheif decode worker.
+export const HEIC_SLUGS = ['heic-to-jpg', 'heic-to-webp'] as const;
+export type HeicSlug = (typeof HEIC_SLUGS)[number];
+
+export function isHeicSlug(slug: string): slug is HeicSlug {
+  return (HEIC_SLUGS as readonly string[]).includes(slug);
+}
+
 /** Default output-format choice implied by the tool slug. */
 export function defaultFormatForSlug(slug: string): FormatChoice {
-  if (slug === 'compress-jpg') return 'jpeg';
-  if (slug === 'compress-webp') return 'webp';
+  if (slug === 'compress-jpg' || slug === 'heic-to-jpg') return 'jpeg';
+  if (slug === 'compress-webp' || slug === 'heic-to-webp') return 'webp';
   return 'auto';
 }
 

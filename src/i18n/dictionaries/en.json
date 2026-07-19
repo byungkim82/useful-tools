@@ -995,6 +995,94 @@
           "a": "Yes. Add as many as you like; they are compressed together and you can download them all as a single ZIP."
         }
       ]
+    },
+    "heic-to-jpg": {
+      "title": "HEIC to JPG Converter",
+      "description": "Convert iPhone HEIC photos to JPG right in your browser — no upload, no sign-up, batch convert as many as you like.",
+      "metaTitle": "HEIC to JPG Converter — Free, No Upload (iPhone Photos)",
+      "metaDescription": "Free online HEIC to JPG converter. Turn iPhone HEIC and HEIF photos into JPG in your browser, batch-convert many at once, resize, and download as a ZIP. Nothing is uploaded, no sign-up, no watermark.",
+      "howToTitle": "How to convert HEIC to JPG",
+      "howTo": [
+        "Drop your HEIC or HEIF files or click to choose — add as many as you like.",
+        "Pick JPG (or WebP) and optionally resize or set a target file size.",
+        "Each photo is converted instantly in your browser; check the output size.",
+        "Download files one by one, or grab them all as a ZIP."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "100% in your browser — your photos never leave your device.",
+        "Batch convert: drop a whole camera roll of HEIC files and process them together.",
+        "JPG or WebP output, with quality presets and a fine-grained slider.",
+        "Resize or hit a target file size, with photo orientation kept upright automatically.",
+        "Free, no ads, no watermark, no sign-up, and no limit on the number of files."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "Are my photos uploaded to a server?",
+          "a": "No. HEIC decoding and conversion happen entirely in your browser, so your photos never leave your device. You can even turn off your Wi-Fi and it still works."
+        },
+        {
+          "q": "What is HEIC and why convert it to JPG?",
+          "a": "HEIC (also called HEIF) is the format iPhones use to save photos. It is efficient, but many apps and websites cannot open it, so converting to JPG makes your photos work everywhere."
+        },
+        {
+          "q": "Will the converted photo keep the right orientation?",
+          "a": "Yes. Rotation is applied while the photo is decoded, so portrait shots stay upright instead of coming out sideways."
+        },
+        {
+          "q": "Does converting remove EXIF and location data?",
+          "a": "Yes. Re-encoding through the browser strips EXIF metadata, including GPS location, which is a privacy bonus on top of a smaller file."
+        },
+        {
+          "q": "Can I convert many HEIC files at once?",
+          "a": "Yes. Add as many as you like; they are queued and converted together, and you can download everything as a single ZIP file."
+        }
+      ]
+    },
+    "heic-to-webp": {
+      "title": "HEIC to WebP Converter",
+      "description": "Convert iPhone HEIC photos to WebP right in your browser — no upload, no sign-up, batch convert as many as you like.",
+      "metaTitle": "HEIC to WebP Converter — Free, No Upload (iPhone Photos)",
+      "metaDescription": "Free online HEIC to WebP converter. Turn iPhone HEIC and HEIF photos into WebP in your browser, batch-convert many at once, resize, and download as a ZIP. Nothing is uploaded, no sign-up, no watermark.",
+      "howToTitle": "How to convert HEIC to WebP",
+      "howTo": [
+        "Drop your HEIC or HEIF files or click to choose — add as many as you like.",
+        "Pick WebP (or JPG) and optionally resize or set a target file size.",
+        "Each photo is converted instantly in your browser; check the output size.",
+        "Download files one by one, or grab them all as a ZIP."
+      ],
+      "featuresTitle": "Features",
+      "features": [
+        "100% in your browser — your photos never leave your device.",
+        "Batch convert: drop a whole camera roll of HEIC files and process them together.",
+        "WebP or JPG output, with quality presets and a fine-grained slider.",
+        "Resize or hit a target file size, with photo orientation kept upright automatically.",
+        "Free, no ads, no watermark, no sign-up, and no limit on the number of files."
+      ],
+      "faqTitle": "Frequently asked questions",
+      "faq": [
+        {
+          "q": "Are my photos uploaded to a server?",
+          "a": "No. HEIC decoding and conversion happen entirely in your browser, so your photos never leave your device. You can even turn off your Wi-Fi and it still works."
+        },
+        {
+          "q": "Why convert HEIC to WebP instead of JPG?",
+          "a": "WebP is a modern web format with excellent compression, so HEIC-to-WebP keeps files small while working in every modern browser. Choose JPG instead when you need the widest app compatibility."
+        },
+        {
+          "q": "Will the converted photo keep the right orientation?",
+          "a": "Yes. Rotation is applied while the photo is decoded, so portrait shots stay upright instead of coming out sideways."
+        },
+        {
+          "q": "Does converting remove EXIF and location data?",
+          "a": "Yes. Re-encoding through the browser strips EXIF metadata, including GPS location, which is a privacy bonus on top of a smaller file."
+        },
+        {
+          "q": "Can I convert many HEIC files at once?",
+          "a": "Yes. Add as many as you like; they are queued and converted together, and you can download everything as a single ZIP file."
+        }
+      ]
     }
   }
 }

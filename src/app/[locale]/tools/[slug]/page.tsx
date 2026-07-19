@@ -8,6 +8,7 @@ import ToolLoader from '@/tools/ToolLoader';
 import QrTypeNav from '@/tools/qr/QrTypeNav';
 import ConverterTypeNav from '@/tools/convert/ConverterTypeNav';
 import ImageTypeNav from '@/tools/image/ImageTypeNav';
+import HeicTypeNav from '@/tools/image/HeicTypeNav';
 import { SITE_ORIGIN } from '@/site';
 
 export const dynamicParams = false;
@@ -65,9 +66,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       })),
     },
   ];
-  // Image tools additionally emit HowTo (compression is a strong how-to rich-result candidate). The
-  // steps mirror the visible how-to list below, which Google requires to be on-page.
-  if (group === 'image') {
+  // Image + HEIC tools additionally emit HowTo (compression/conversion is a strong how-to rich-result
+  // candidate). The steps mirror the visible how-to list below, which Google requires to be on-page.
+  if (group === 'image' || group === 'heic') {
     jsonLd.push({
       '@context': 'https://schema.org', '@type': 'HowTo',
       name: t.howToTitle,
@@ -84,6 +85,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       {group === 'qr' && <QrTypeNav locale={locale} current={slug} group={group} />}
       {group === 'converter' && <ConverterTypeNav locale={locale} current={slug} />}
       {group === 'image' && <ImageTypeNav locale={locale} current={slug} />}
+      {group === 'heic' && <HeicTypeNav locale={locale} current={slug} />}
       <div className="mt-6">
         <ToolLoader slug={slug} t={t} common={dict.common} locale={locale} />
       </div>

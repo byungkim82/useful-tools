@@ -11,10 +11,12 @@ export default function DropZone({
   labels,
   onFiles,
   hasJobs,
+  accept = 'image/*',
 }: {
   labels: LabelSet;
   onFiles: (files: File[]) => void;
   hasJobs: boolean;
+  accept?: string; // file-input filter; HEIC tools narrow this to '.heic,.heif,image/heic,image/heif'
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const folderRef = useRef<HTMLInputElement>(null);
@@ -76,7 +78,7 @@ export default function DropZone({
         ref={inputRef}
         type="file"
         name="img-source"
-        accept="image/*"
+        accept={accept}
         multiple
         className="sr-only"
         onChange={(e) => {
@@ -87,7 +89,7 @@ export default function DropZone({
       <input
         ref={folderRef}
         type="file"
-        accept="image/*"
+        accept={accept}
         multiple
         className="sr-only"
         onChange={(e) => {

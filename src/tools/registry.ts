@@ -166,6 +166,20 @@ export const tools: ToolMeta[] = [
     keywords: ['webp', 'convert to webp', 'compress webp', '웹피', 'webp 변환', 'webp 압축'],
     group: 'image', load: () => import('@/tools/image/ImageCompressorClient'),
   },
+
+  // HEIC → JPG / WebP converter — both slugs load the one shared HeicClient (decodes HEIC with libheif,
+  // then reuses the compressor pipeline). Own group 'heic' so the primary (heic-to-jpg) gets its own
+  // home-grid card instead of being buried under the compressor; the pair links via HeicTypeNav.
+  {
+    slug: 'heic-to-jpg', category: 'image', icon: '📸',
+    keywords: ['heic', 'heic to jpg', 'heic jpg', 'iphone photo', 'convert heic', 'heif', 'heic 변환', 'heic jpg 변환', '아이폰 사진', '아이폰 heic'],
+    group: 'heic', primary: true, load: () => import('@/tools/image/HeicClient'),
+  },
+  {
+    slug: 'heic-to-webp', category: 'image', icon: '🌐',
+    keywords: ['heic', 'heic to webp', 'heic webp', 'iphone photo', 'heif', 'heic webp 변환', '아이폰 사진'],
+    group: 'heic', load: () => import('@/tools/image/HeicClient'),
+  },
 ];
 
 export function getTool(slug: string): ToolMeta | undefined {

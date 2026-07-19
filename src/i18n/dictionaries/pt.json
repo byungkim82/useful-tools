@@ -995,6 +995,94 @@
           "a": "Sim. Adicione quantas quiser; elas são comprimidas juntas e você pode baixar todas em um único ZIP."
         }
       ]
+    },
+    "heic-to-jpg": {
+      "title": "Conversor de HEIC para JPG",
+      "description": "Converta fotos HEIC do iPhone para JPG direto no seu navegador — sem enviar arquivos, sem cadastro e convertendo em lote quantas quiser.",
+      "metaTitle": "Converter HEIC para JPG — Grátis, sem enviar (fotos do iPhone)",
+      "metaDescription": "Conversor de HEIC para JPG grátis e online. Transforme fotos HEIC e HEIF do iPhone em JPG no seu navegador, converta várias de uma vez, redimensione e baixe em ZIP. Nada é enviado, sem cadastro e sem marca d'água.",
+      "howToTitle": "Como converter HEIC para JPG",
+      "howTo": [
+        "Solte seus arquivos HEIC ou HEIF ou clique para escolher — adicione quantos quiser.",
+        "Escolha JPG (ou WebP) e, se quiser, redimensione ou defina um tamanho de arquivo desejado.",
+        "Cada foto é convertida na hora no seu navegador; confira o tamanho do resultado.",
+        "Baixe os arquivos um a um ou todos de uma vez em um ZIP."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "100% no seu navegador — suas fotos nunca saem do seu dispositivo.",
+        "Conversão em lote: solte um rolo de câmera inteiro de arquivos HEIC e processe todos juntos.",
+        "Saída em JPG ou WebP, com predefinições de qualidade e um controle deslizante preciso.",
+        "Redimensione ou atinja um tamanho de arquivo desejado, com a orientação da foto mantida em pé automaticamente.",
+        "Grátis, sem anúncios, sem marca d'água, sem cadastro e sem limite de arquivos."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Minhas fotos são enviadas para um servidor?",
+          "a": "Não. A decodificação e a conversão do HEIC acontecem inteiramente no seu navegador, então suas fotos nunca saem do seu dispositivo. Você pode até desligar o Wi-Fi que continua funcionando."
+        },
+        {
+          "q": "O que é HEIC e por que converter para JPG?",
+          "a": "HEIC (também chamado de HEIF) é o formato que os iPhones usam para salvar fotos. Ele é eficiente, mas muitos apps e sites não conseguem abri-lo, então converter para JPG faz suas fotos funcionarem em qualquer lugar."
+        },
+        {
+          "q": "A foto convertida mantém a orientação correta?",
+          "a": "Sim. A rotação é aplicada enquanto a foto é decodificada, então as fotos em retrato ficam em pé em vez de saírem deitadas."
+        },
+        {
+          "q": "A conversão remove os dados EXIF e de localização?",
+          "a": "Sim. Recodificar pelo navegador remove os metadados EXIF, incluindo a localização GPS, o que é um bônus de privacidade além do arquivo menor."
+        },
+        {
+          "q": "Posso converter vários arquivos HEIC de uma vez?",
+          "a": "Sim. Adicione quantos quiser; eles são colocados na fila e convertidos juntos, e você pode baixar tudo em um único arquivo ZIP."
+        }
+      ]
+    },
+    "heic-to-webp": {
+      "title": "Conversor de HEIC para WebP",
+      "description": "Converta fotos HEIC do iPhone para WebP direto no seu navegador — sem enviar arquivos, sem cadastro e convertendo em lote quantas quiser.",
+      "metaTitle": "Converter HEIC para WebP — Grátis, sem enviar (fotos do iPhone)",
+      "metaDescription": "Conversor de HEIC para WebP grátis e online. Transforme fotos HEIC e HEIF do iPhone em WebP no seu navegador, converta várias de uma vez, redimensione e baixe em ZIP. Nada é enviado, sem cadastro e sem marca d'água.",
+      "howToTitle": "Como converter HEIC para WebP",
+      "howTo": [
+        "Solte seus arquivos HEIC ou HEIF ou clique para escolher — adicione quantos quiser.",
+        "Escolha WebP (ou JPG) e, se quiser, redimensione ou defina um tamanho de arquivo desejado.",
+        "Cada foto é convertida na hora no seu navegador; confira o tamanho do resultado.",
+        "Baixe os arquivos um a um ou todos de uma vez em um ZIP."
+      ],
+      "featuresTitle": "Recursos",
+      "features": [
+        "100% no seu navegador — suas fotos nunca saem do seu dispositivo.",
+        "Conversão em lote: solte um rolo de câmera inteiro de arquivos HEIC e processe todos juntos.",
+        "Saída em WebP ou JPG, com predefinições de qualidade e um controle deslizante preciso.",
+        "Redimensione ou atinja um tamanho de arquivo desejado, com a orientação da foto mantida em pé automaticamente.",
+        "Grátis, sem anúncios, sem marca d'água, sem cadastro e sem limite de arquivos."
+      ],
+      "faqTitle": "Perguntas frequentes",
+      "faq": [
+        {
+          "q": "Minhas fotos são enviadas para um servidor?",
+          "a": "Não. A decodificação e a conversão do HEIC acontecem inteiramente no seu navegador, então suas fotos nunca saem do seu dispositivo. Você pode até desligar o Wi-Fi que continua funcionando."
+        },
+        {
+          "q": "Por que converter HEIC para WebP em vez de JPG?",
+          "a": "O WebP é um formato web moderno com compressão excelente, então converter de HEIC para WebP mantém os arquivos pequenos e funcionando em todos os navegadores modernos. Escolha JPG quando precisar da maior compatibilidade com apps."
+        },
+        {
+          "q": "A foto convertida mantém a orientação correta?",
+          "a": "Sim. A rotação é aplicada enquanto a foto é decodificada, então as fotos em retrato ficam em pé em vez de saírem deitadas."
+        },
+        {
+          "q": "A conversão remove os dados EXIF e de localização?",
+          "a": "Sim. Recodificar pelo navegador remove os metadados EXIF, incluindo a localização GPS, o que é um bônus de privacidade além do arquivo menor."
+        },
+        {
+          "q": "Posso converter vários arquivos HEIC de uma vez?",
+          "a": "Sim. Adicione quantos quiser; eles são colocados na fila e convertidos juntos, e você pode baixar tudo em um único arquivo ZIP."
+        }
+      ]
     }
   }
 }
