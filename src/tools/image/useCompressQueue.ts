@@ -26,11 +26,16 @@ import { withTimeout } from './async-util';
 // infinite spinner. Generous so even a huge image on a slow device finishes well under it.
 const JOB_TIMEOUT_MS = 45_000;
 
+// Target output size: when enabled, the encoder searches quality (and downscales if needed) to land at
+// ≤ `kb` kilobytes, and the manual quality/preset controls step aside.
+export type TargetSettings = { enabled: boolean; kb: number };
+
 export type Settings = {
   preset: Preset;
   quality: number; // slider value used when preset === 'custom'
   format: FormatChoice;
   resize: ResizeSettings;
+  target: TargetSettings;
 };
 
 // Render data lives entirely in the reducer Job (incl. the object URLs), so the view is just the jobs.
@@ -114,6 +119,7 @@ export function useCompressQueue() {
       format: settings.format,
       resize: settings.resize,
       maxArea: safeMaxArea(hintsRef.current), // device-safe output area cap (iOS/low-memory guard)
+      targetBytes: settings.target.enabled && settings.target.kb > 0 ? settings.target.kb * 1000 : undefined,
     };
     withTimeout(getRunner().compress(file, req), JOB_TIMEOUT_MS)
       .then((r) => {
@@ -130,6 +136,7 @@ export function useCompressQueue() {
             outHeight: r.height,
             outFormat: r.outFormat,
             downscaled: r.downscaled,
+            approximated: r.approximated,
             outputUrl: url,
             outputName: outputFilename(file.name, r.outFormat),
           },

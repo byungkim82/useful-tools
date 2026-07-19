@@ -31,6 +31,9 @@ export type LabelSet = {
   width: string;
   height: string;
   lockAspect: string;
+  targetSize: string; // "Target file size" toggle
+  targetSizeHint: string; // note that quality is auto-adjusted when target is on
+  targetMissed: string; // badge when the target couldn't be reached
   apply: string;
   compress: string; // primary "Compress" button (a count is appended in the UI)
   recompress: string; // re-run all after a settings change
@@ -82,6 +85,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: '가로',
     height: '세로',
     lockAspect: '비율 유지',
+    targetSize: '목표 파일 크기',
+    targetSizeHint: '품질을 자동으로 조절해 목표 용량에 맞춥니다.',
+    targetMissed: '목표보다 작게 만들지 못함 (가장 근접한 결과)',
     apply: '설정 적용',
     compress: '압축 시작',
     recompress: '다시 압축',
@@ -128,6 +134,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: 'Width',
     height: 'Height',
     lockAspect: 'Lock aspect ratio',
+    targetSize: 'Target file size',
+    targetSizeHint: 'Quality is adjusted automatically to hit the target.',
+    targetMissed: 'couldn’t reach target — closest result',
     apply: 'Apply settings',
     compress: 'Compress',
     recompress: 'Re-compress',
@@ -174,6 +183,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: 'Ancho',
     height: 'Alto',
     lockAspect: 'Mantener proporción',
+    targetSize: 'Tamaño de archivo objetivo',
+    targetSizeHint: 'La calidad se ajusta automáticamente para alcanzarlo.',
+    targetMissed: 'no se alcanzó el objetivo — resultado más cercano',
     apply: 'Aplicar ajustes',
     compress: 'Comprimir',
     recompress: 'Volver a comprimir',
@@ -220,6 +232,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: 'Largura',
     height: 'Altura',
     lockAspect: 'Manter proporção',
+    targetSize: 'Tamanho de arquivo alvo',
+    targetSizeHint: 'A qualidade é ajustada automaticamente para atingir o alvo.',
+    targetMissed: 'não atingiu o alvo — resultado mais próximo',
     apply: 'Aplicar configurações',
     compress: 'Comprimir',
     recompress: 'Comprimir novamente',
@@ -266,6 +281,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: '幅',
     height: '高さ',
     lockAspect: '縦横比を固定',
+    targetSize: '目標ファイルサイズ',
+    targetSizeHint: '画質を自動調整して目標サイズに合わせます。',
+    targetMissed: '目標に届きませんでした（最も近い結果）',
     apply: '設定を適用',
     compress: '圧縮する',
     recompress: '再圧縮',
@@ -312,6 +330,9 @@ export const LABELS: Record<Locale, LabelSet> = {
     width: 'Breite',
     height: 'Höhe',
     lockAspect: 'Seitenverhältnis sperren',
+    targetSize: 'Ziel-Dateigröße',
+    targetSizeHint: 'Die Qualität wird automatisch an die Zielgröße angepasst.',
+    targetMissed: 'Ziel nicht erreicht — nächstgelegenes Ergebnis',
     apply: 'Einstellungen anwenden',
     compress: 'Komprimieren',
     recompress: 'Erneut komprimieren',

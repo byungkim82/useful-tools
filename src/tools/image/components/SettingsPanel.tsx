@@ -23,20 +23,52 @@ export default function SettingsPanel({
   labels: LabelSet;
 }) {
   const quality = presetQuality(settings.preset, settings.quality);
-  const { resize } = settings;
+  const { resize, target } = settings;
   const setResize = (patch: Partial<Settings['resize']>) => onChange({ ...settings, resize: { ...resize, ...patch } });
+  const setTarget = (patch: Partial<Settings['target']>) => onChange({ ...settings, target: { ...target, ...patch } });
+  const targetOn = target.enabled; // target size drives quality, so the manual quality controls step aside
 
   return (
     <div className="space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
       <h2 className="text-sm font-semibold">{labels.settingsTitle}</h2>
 
-      {/* Presets + quality slider (moving the slider switches to custom). */}
+      {/* Target file size — when on, the encoder searches quality (and downscales) to fit. */}
       <div>
+        <label className="flex items-center gap-2 text-sm font-medium">
+          <input
+            type="checkbox"
+            checked={target.enabled}
+            onChange={(e) => setTarget({ enabled: e.target.checked })}
+          />
+          {labels.targetSize}
+        </label>
+        {target.enabled && (
+          <div className="mt-2 space-y-1">
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min={1}
+                inputMode="numeric"
+                value={target.kb || ''}
+                onChange={(e) => setTarget({ kb: e.target.value ? Math.max(1, Math.floor(Number(e.target.value))) : 0 })}
+                className={`w-28 ${inputClass}`}
+                aria-label={labels.targetSize}
+              />
+              <span className="text-sm text-neutral-500">KB</span>
+            </div>
+            <p className="text-xs text-neutral-500">{labels.targetSizeHint}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Presets + quality slider (moving the slider switches to custom). Disabled while a target is set. */}
+      <div className={targetOn ? 'pointer-events-none opacity-40' : ''} aria-disabled={targetOn}>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((p) => (
             <button
               key={p.key}
               type="button"
+              disabled={targetOn}
               onClick={() => onChange({ ...settings, preset: p.key })}
               className={`rounded px-3 py-1 text-sm transition ${
                 settings.preset === p.key
@@ -59,6 +91,7 @@ export default function SettingsPanel({
             max={1}
             step={0.01}
             value={quality}
+            disabled={targetOn}
             onChange={(e) => onChange({ ...settings, preset: 'custom', quality: Number(e.target.value) })}
             className="mt-1 w-full"
           />

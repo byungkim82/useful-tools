@@ -22,6 +22,7 @@ import {
 } from './queue-reducer';
 import { crc32, zipStore, uniqueName } from './zip-store';
 import { withTimeout } from './async-util';
+import { searchQualityForTarget } from './compress-core';
 
 describe('formatBytes', () => {
   it('bytes / KB / MB / GB with decimal units', () => {
@@ -370,5 +371,50 @@ describe('withTimeout', () => {
   });
   it('propagates the original rejection when it settles first', async () => {
     await expect(withTimeout(Promise.reject(new Error('boom')), 1000)).rejects.toThrow('boom');
+  });
+});
+
+// --- compress-core: target-size quality search ---------------------------------------------------
+
+// Fake encoder: output size grows linearly with quality (monotonic, like real JPEG/WebP canvas encoding).
+const linearEncoder = (bytesAtFull: number) => async (q: number) => {
+  const size = Math.round(bytesAtFull * q);
+  return { blob: { size } as unknown as Blob, size };
+};
+
+describe('searchQualityForTarget', () => {
+  it('returns the ceiling immediately when the best quality already fits', async () => {
+    const r = await searchQualityForTarget(linearEncoder(1000), 2000);
+    expect(r.fits).toBe(true);
+    expect(r.quality).toBeCloseTo(0.95, 9);
+    expect(r.size).toBe(950);
+    expect(r.encodeCount).toBe(1); // one probe, no search needed
+  });
+
+  it('finds the highest quality whose output stays under the budget', async () => {
+    const r = await searchQualityForTarget(linearEncoder(1000), 500); // size = 1000·q → fits when q ≤ 0.5
+    expect(r.fits).toBe(true);
+    expect(r.size).toBeLessThanOrEqual(500);
+    expect(r.quality).toBeGreaterThan(0.49); // budget nearly used
+    expect(r.quality).toBeLessThanOrEqual(0.5 + 1e-9);
+  });
+
+  it('signals fits:false when even the quality floor overshoots (caller then downscales)', async () => {
+    const r = await searchQualityForTarget(linearEncoder(1000), 300); // floor 0.4 → 400 > 300
+    expect(r.fits).toBe(false);
+    expect(r.quality).toBeCloseTo(0.4, 9);
+    expect(r.size).toBe(400);
+    expect(r.encodeCount).toBe(2); // ceiling probe + floor probe, then bail
+  });
+
+  it('honours custom quality bounds', async () => {
+    const r = await searchQualityForTarget(linearEncoder(1000), 10_000, { minQuality: 0.1, maxQuality: 0.8 });
+    expect(r.fits).toBe(true);
+    expect(r.quality).toBeCloseTo(0.8, 9);
+  });
+
+  it('bounds the encoder calls to 2 probes + maxIterations', async () => {
+    const r = await searchQualityForTarget(linearEncoder(1000), 500, { maxIterations: 7 });
+    expect(r.encodeCount).toBeLessThanOrEqual(9);
   });
 });

@@ -73,6 +73,15 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 `default-src 'self'`가 커버). → 근거·결정로그: **`image-compressor-plan-ko.md`** / `-en.md`, 리서치
 `image-compressor-research.md`.
 
+**v1.1 추가 (진행 중):**
+- **① 타깃 파일 크기 (라이브)** — 설정에 "목표 파일 크기(KB)" 토글. 켜면 **`compress-core.ts`(순수 이진탐색)**가
+  품질을 [0.4, 0.95]에서 이진탐색해 **목표 이하 최고 품질**을 찾고, 최저 품질로도 초과하면 **치수를 단계적으로 다운스케일**
+  (0.8배 × 최대 5단계, 64px 바닥)해 재시도. 목표를 못 맞추면 결과에 **`approximated` 플래그**(가장 근접) → 배지 고지.
+  타깃 ON이면 품질/프리셋 컨트롤은 비활성(품질을 자동 결정). `encode.ts`가 디코드 1회 후 같은 캔버스에서 재인코딩
+  (효율), 워커/메인스레드 폴백 동일 경로. 유닛테스트 5개(수렴·경계·근사·인코드콜 바운드) + **헤드리스 실왕복 검증**
+  (100KB→99.96KB·30KB→29.66KB·5KB→근사, 치수 다운스케일 작동). 상태머신엔 `iterating`/`approximated` 상태를
+  추가하지 않고 **성공 결과의 플래그**로 처리(= `downscaled`와 동일 패턴, 리듀서 전이 단순 유지).
+
 ---
 
 ## 2. 다국어 (i18n)
@@ -101,6 +110,10 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 6. 검증 로그 (verify, don't claim)
 최신 배포(이미지 압축기) 기준 실제 실행·확인:
+- ✅ **[v1.1 ① 타깃 파일 크기]** `pnpm test` **96 통과**(+5 타깃 이진탐색: 천장 즉시 채택·최고 적합 품질·근사
+  fits:false·커스텀 경계·인코드콜 바운드) · lint/build/check-i18n 클린 · 워커 번들에 타깃 로직 포함(자체완결 JS, bare
+  import 0) · **헤드리스 실왕복**(메인스레드 `encodeImage` = 워커 동일 함수, 1600² 노이즈 소스): 100KB→99,962B ·
+  30KB→29,662B(둘 다 목표 아래, 치수 자동 다운스케일 작동) · 5KB→16,738B `approximated`(근접 처리·배지) · 무타깃 대조군 정상.
 - ✅ `pnpm test` — **91 통과**(이미지 순수 로직 신규: math·큐리듀서·zip·면적클램프·타임아웃) · `pnpm lint` 클린 · `pnpm build` 성공 · `check-i18n.mjs` **ALL GOOD**.
 - ✅ `out/` 검사 — 3개 이미지 페이지, 키워드 title/meta, JSON-LD(**WebApplication+FAQPage+HowTo**), **`ssr:false`
   확인**(`name="img-source"` 마커가 정적 HTML에 없음), 홈 카드 1장(primary만), ImageTypeNav 형제 링크, **sitemap 126**.
@@ -121,9 +134,9 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 - `monetization-strategy.md` — 다국어 트래픽 수익화(단/중/장기 + AI 티어)
 
 ## 8. 미구현 / 다음 (What's next)
-- **이미지 압축기 v1.1+**: 이미지별 오버라이드 · **타깃 파일 크기("100KB 이하로")** · Ctrl+V/폴더 · 비교 슬라이더 ·
-  유스케이스 프리셋(증명사진·WhatsApp). **v1.5**: AVIF 출력(jSquash 지연 + `wasm-unsafe-eval`) · PNG 출력 + oxipng
-  (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
+- **이미지 압축기 v1.1** (순서대로 진행 중): ✅ **① 타깃 파일 크기(완료·라이브, §1.3)** → ② 이미지별 오버라이드 →
+  ③ 유스케이스 프리셋(증명사진·WhatsApp, ①에 의존) → ④ Ctrl+V/폴더 → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력(jSquash
+  지연 + `wasm-unsafe-eval`) · PNG 출력 + oxipng (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
 - **로드맵 도구**(미착수, `tool-roadmap.md` 순서): HEIC 변환 → PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
   배경 제거 → (KO 특화) 평↔㎡·만나이 → 개발자용(JWT·hash·base64·JSON·UUID).
 - **QR Tier 2/3**(미착수): 디자인 깊이(`qr-code-styling`)·대량 CSV→ZIP·디코드 QA·QR 리더.

@@ -9,7 +9,7 @@ import type { OutputFormat } from './compress-math';
 
 export type WorkerIn = { id: string; file: Blob; req: EncodeRequest };
 export type WorkerOut =
-  | { id: string; ok: true; blob: Blob; outFormat: OutputFormat; width: number; height: number; downscaled: boolean }
+  | { id: string; ok: true; blob: Blob; outFormat: OutputFormat; width: number; height: number; downscaled: boolean; approximated?: boolean }
   | { id: string; ok: false; error: string };
 
 // One-arg postMessage (the worker global's signature); cast avoids the DOM Window.postMessage overload
@@ -20,7 +20,7 @@ self.onmessage = async (e: MessageEvent<WorkerIn>) => {
   const { id, file, req } = e.data;
   try {
     const r = await encodeImage(file, req);
-    post({ id, ok: true, blob: r.blob, outFormat: r.outFormat, width: r.width, height: r.height, downscaled: r.downscaled });
+    post({ id, ok: true, blob: r.blob, outFormat: r.outFormat, width: r.width, height: r.height, downscaled: r.downscaled, approximated: r.approximated });
   } catch (err) {
     post({ id, ok: false, error: err instanceof Error ? err.message : String(err) });
   }

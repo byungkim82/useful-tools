@@ -45,7 +45,7 @@ export class CompressRunner {
     if (!p) return;
     this.pending.delete(msg.id);
     if (msg.ok) {
-      p.resolve({ blob: msg.blob, outFormat: msg.outFormat, width: msg.width, height: msg.height, downscaled: msg.downscaled });
+      p.resolve({ blob: msg.blob, outFormat: msg.outFormat, width: msg.width, height: msg.height, downscaled: msg.downscaled, approximated: msg.approximated });
     } else {
       p.reject(new Error(msg.error));
     }

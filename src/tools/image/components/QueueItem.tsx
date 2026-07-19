@@ -66,6 +66,9 @@ export default function QueueItem({
           )}
           {job.status === 'canceled' && <span>{labels.canceled}</span>}
         </div>
+        {job.status === 'done' && job.approximated && (
+          <div className="mt-0.5 text-xs text-amber-600">{labels.targetMissed}</div>
+        )}
         {job.status === 'done' && job.downscaled && (
           <div className="mt-0.5 text-xs text-amber-600">{labels.downscaledBadge}</div>
         )}

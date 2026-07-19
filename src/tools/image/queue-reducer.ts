@@ -21,6 +21,7 @@ export type Job = {
   outHeight?: number;
   outFormat?: OutputFormat;
   downscaled?: boolean; // canvas-edge clamp kicked in (badge)
+  approximated?: boolean; // target size was requested but couldn't be reached (badge)
   outputUrl?: string; // object URL of the compressed blob (download/preview)
   outputName?: string; // suggested download filename, e.g. photo-min.webp
   error?: string;
@@ -35,6 +36,7 @@ export type JobResult = {
   outHeight: number;
   outFormat: OutputFormat;
   downscaled: boolean;
+  approximated?: boolean;
   outputUrl?: string;
   outputName?: string;
 };

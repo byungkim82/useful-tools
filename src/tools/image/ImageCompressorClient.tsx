@@ -22,6 +22,7 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
     quality: 0.8,
     format: defaultFormatForSlug(slug),
     resize: { mode: 'none', maxDimension: 1920, percentage: 80, width: 1280, height: 1280, lockAspect: true },
+    target: { enabled: false, kb: 200 },
   };
   const [settings, setSettings] = useState<Settings>(initial);
   const [applied, setApplied] = useState<Settings>(initial);

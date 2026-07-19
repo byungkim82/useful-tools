@@ -15,12 +15,14 @@ import {
   type OutputFormat,
   type ResizeSettings,
 } from './compress-math';
+import { searchQualityForTarget } from './compress-core';
 
 export type EncodeRequest = {
   quality: number; // 0..1
   format: FormatChoice;
   resize: ResizeSettings;
   maxArea?: number; // device-safe output area cap (see safeMaxArea); undefined → no area clamp
+  targetBytes?: number; // when set, search quality (and downscale) to land at ≤ this many bytes
 };
 
 export type EncodeResult = {
@@ -29,6 +31,7 @@ export type EncodeResult = {
   width: number;
   height: number;
   downscaled: boolean;
+  approximated?: boolean; // targetBytes was requested but couldn't be reached → closest result
 };
 
 type AnyCanvas = OffscreenCanvas | HTMLCanvasElement;
@@ -112,6 +115,73 @@ function looksDrawn(ctx: AnyCtx, w: number, h: number, bitmap: ImageBitmap): boo
   }
 }
 
+// Draw the bitmap onto a fresh canvas at (w×h), verifying it isn't silently blank. Shared by the plain
+// and target-size paths. Throws on an unusable context or a blank draw so we never emit a fake success.
+function drawToCanvas(bitmap: ImageBitmap, w: number, h: number, outFormat: OutputFormat): AnyCanvas {
+  const canvas = makeCanvas(w, h);
+  const ctx = get2d(canvas);
+  if (!ctx) throw new Error('2d context unavailable');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  // JPEG has no alpha channel — paint white first so transparent regions don't render as black.
+  if (outFormat === 'jpeg') {
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, w, h);
+  }
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  // Guard against a silently-blank canvas (e.g., canvas-limit exceeded) → fail visibly, no fake success.
+  if (!looksDrawn(ctx, w, h, bitmap)) throw new Error('blank output — the image may be too large for this device');
+  return canvas;
+}
+
+// Dimension-downscale fallback for the target-size search: when even the lowest quality can't fit the
+// budget, shrink the longest edge and try again, a bounded number of times. Better perceptual quality
+// than crushing JPEG quality to the floor at full resolution for the same file size.
+const TARGET_DIM_STEPS = 5;
+const TARGET_DIM_FACTOR = 0.8;
+const TARGET_MIN_EDGE = 64;
+
+/** Search quality (and, if needed, dimensions) so the output lands at ≤ req.targetBytes. */
+async function encodeToTarget(
+  bitmap: ImageBitmap,
+  baseW: number,
+  baseH: number,
+  baseDownscaled: boolean,
+  outFormat: OutputFormat,
+  targetBytes: number,
+): Promise<EncodeResult> {
+  const mime = MIME[outFormat];
+  let w = baseW;
+  let h = baseH;
+  let downscaled = baseDownscaled;
+  let last: EncodeResult | null = null;
+
+  for (let step = 0; step <= TARGET_DIM_STEPS; step++) {
+    const iw = Math.max(1, Math.round(w));
+    const ih = Math.max(1, Math.round(h));
+    const canvas = drawToCanvas(bitmap, iw, ih, outFormat);
+    const res = await searchQualityForTarget(
+      async (q) => {
+        const blob = await canvasToBlob(canvas, mime, q);
+        return { blob, size: blob.size };
+      },
+      targetBytes,
+    );
+    if (res.blob.size === 0) throw new Error('empty output');
+    last = { blob: res.blob, outFormat, width: iw, height: ih, downscaled, approximated: !res.fits };
+    if (res.fits) return last;
+
+    // Even the quality floor overshot → shrink dimensions and retry (unless we've hit the size floor).
+    const nextLongest = Math.max(w, h) * TARGET_DIM_FACTOR;
+    if (nextLongest < TARGET_MIN_EDGE) break;
+    w *= TARGET_DIM_FACTOR;
+    h *= TARGET_DIM_FACTOR;
+    downscaled = true;
+  }
+  // Couldn't reach the target even at the smallest size — hand back the closest (smallest) output.
+  return last!;
+}
+
 /** Decode `source`, resize/clamp per `req`, re-encode as JPEG or WebP. Strips metadata by construction. */
 export async function encodeImage(source: Blob, req: EncodeRequest): Promise<EncodeResult> {
   const bitmap = await createImageBitmap(source, { imageOrientation: 'from-image' });
@@ -126,21 +196,11 @@ export async function encodeImage(source: Blob, req: EncodeRequest): Promise<Enc
     let outFormat = resolveOutputFormat(source.type, req.format);
     if (outFormat === 'webp' && !(await canEncodeWebp())) outFormat = 'jpeg';
 
-    const canvas = makeCanvas(width, height);
-    const ctx = get2d(canvas);
-    if (!ctx) throw new Error('2d context unavailable');
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    // JPEG has no alpha channel — paint white first so transparent regions don't render as black.
-    if (outFormat === 'jpeg') {
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, width, height);
+    if (req.targetBytes && req.targetBytes > 0) {
+      return await encodeToTarget(bitmap, width, height, downscaled, outFormat, req.targetBytes);
     }
-    ctx.drawImage(bitmap, 0, 0, width, height);
 
-    // Guard against a silently-blank canvas (e.g., canvas-limit exceeded) → fail visibly, no fake success.
-    if (!looksDrawn(ctx, width, height, bitmap)) throw new Error('blank output — the image may be too large for this device');
-
+    const canvas = drawToCanvas(bitmap, width, height, outFormat);
     const blob = await canvasToBlob(canvas, MIME[outFormat], req.quality);
     if (blob.size === 0) throw new Error('empty output');
     return { blob, outFormat, width, height, downscaled };
