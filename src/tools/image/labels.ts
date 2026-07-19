@@ -12,6 +12,8 @@ export type LabelSet = {
   dropHint: string;
   addMore: string;
   invalidType: string;
+  pasteHint: string; // "or paste from clipboard (Ctrl+V)"
+  selectFolder: string; // folder-picker button
   // settings
   settingsTitle: string;
   quality: string;
@@ -81,6 +83,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · 업로드 없이 브라우저에서 바로 압축',
     addMore: '이미지 추가',
     invalidType: '이미지 파일만 추가할 수 있습니다.',
+    pasteHint: '클립보드에서 붙여넣기(Ctrl+V)도 됩니다',
+    selectFolder: '폴더 선택',
     settingsTitle: '압축 설정',
     quality: '품질',
     presetHigh: '고화질',
@@ -142,6 +146,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · compressed in your browser, never uploaded',
     addMore: 'Add images',
     invalidType: 'Only image files can be added.',
+    pasteHint: 'or paste from your clipboard (Ctrl+V)',
+    selectFolder: 'Select a folder',
     settingsTitle: 'Compression settings',
     quality: 'Quality',
     presetHigh: 'High quality',
@@ -203,6 +209,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · se comprime en tu navegador, sin subir nada',
     addMore: 'Añadir imágenes',
     invalidType: 'Solo se pueden añadir archivos de imagen.',
+    pasteHint: 'o pega desde el portapapeles (Ctrl+V)',
+    selectFolder: 'Seleccionar una carpeta',
     settingsTitle: 'Ajustes de compresión',
     quality: 'Calidad',
     presetHigh: 'Alta calidad',
@@ -264,6 +272,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · comprimido no seu navegador, sem enviar nada',
     addMore: 'Adicionar imagens',
     invalidType: 'Só é possível adicionar arquivos de imagem.',
+    pasteHint: 'ou cole da área de transferência (Ctrl+V)',
+    selectFolder: 'Selecionar uma pasta',
     settingsTitle: 'Configurações de compressão',
     quality: 'Qualidade',
     presetHigh: 'Alta qualidade',
@@ -325,6 +335,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · アップロードせずブラウザ内で圧縮',
     addMore: '画像を追加',
     invalidType: '画像ファイルのみ追加できます。',
+    pasteHint: 'クリップボードから貼り付け（Ctrl+V）も可能',
+    selectFolder: 'フォルダーを選択',
     settingsTitle: '圧縮設定',
     quality: '画質',
     presetHigh: '高画質',
@@ -386,6 +398,8 @@ export const LABELS: Record<Locale, LabelSet> = {
     dropHint: 'JPG · PNG · WebP · im Browser komprimiert, kein Upload',
     addMore: 'Bilder hinzufügen',
     invalidType: 'Es können nur Bilddateien hinzugefügt werden.',
+    pasteHint: 'oder aus der Zwischenablage einfügen (Strg+V)',
+    selectFolder: 'Ordner auswählen',
     settingsTitle: 'Komprimierungseinstellungen',
     quality: 'Qualität',
     presetHigh: 'Hohe Qualität',

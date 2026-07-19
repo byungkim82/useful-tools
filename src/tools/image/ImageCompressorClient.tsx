@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ToolProps } from '@/tools/registry';
 import type { Locale } from '@/i18n/config';
 import { LABELS } from './labels';
@@ -62,6 +62,32 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
     const { rejected } = addFiles(files);
     setNotice(rejected > 0 ? labels.skipped.replace('{n}', String(rejected)) : null);
   };
+
+  // Paste images from the clipboard (Ctrl/Cmd+V) — the screenshot workflow. A ref keeps the always-fresh
+  // handler so the document listener is attached once and never goes stale.
+  const onFilesRef = useRef(onFiles);
+  useEffect(() => {
+    onFilesRef.current = onFiles; // sync in an effect, not during render
+  });
+  useEffect(() => {
+    const onPaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      const files: File[] = [];
+      for (const it of items) {
+        if (it.kind === 'file' && it.type.startsWith('image/')) {
+          const f = it.getAsFile();
+          if (f) files.push(f);
+        }
+      }
+      if (files.length) {
+        e.preventDefault();
+        onFilesRef.current(files);
+      }
+    };
+    document.addEventListener('paste', onPaste);
+    return () => document.removeEventListener('paste', onPaste);
+  }, []);
   const onCompress = () => {
     const ids = jobs.filter((j) => j.status === 'pending').map((j) => j.id);
     compressAll(resolve);

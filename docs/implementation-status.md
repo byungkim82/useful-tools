@@ -95,6 +95,11 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
   소스 사각형을 `drawImage`로 샘플(타깃 경로도 crop 유지). 프리셋 데이터·`Settings` 타입은 `compress-math.ts`로 이동해
   순수 테스트 가능(hook은 재export). 유닛테스트 6개(planCrop 3·applyUsePreset 3) + **실 UI E2E**(ID사진 칩→413×531
   jpeg 130KB·WhatsApp→99,968B≤100KB).
+- **④ Ctrl+V / 폴더 업로드 (라이브)** — 클라이언트가 **document 레벨 `paste` 리스너**(ref로 최신 핸들러 고정, 한 번만
+  구독)로 클립보드 이미지(`clipboardData.items` 중 `image/*`)를 File로 추출해 기존 `addFiles`로 투입(스크린샷 워크플로).
+  DropZone에 **`webkitdirectory` 폴더 인풋**(속성은 ref로 명령형 설정 — React prop 타입에 없음) + "폴더 선택" 버튼 +
+  붙여넣기 힌트. 비이미지는 기존 필터가 걸러냄. **실 UI E2E**: 합성 ClipboardEvent 붙여넣기 → pasted.png 큐 행 추가·
+  폴더 인풋 `webkitdirectory` 확인.
 
 ---
 
@@ -124,6 +129,8 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 6. 검증 로그 (verify, don't claim)
 최신 배포(이미지 압축기) 기준 실제 실행·확인:
+- ✅ **[v1.1 ④ Ctrl+V / 폴더 업로드]** test 102·lint·build·check-i18n 클린 · **CDP 실 UI E2E**: 합성 ClipboardEvent
+  붙여넣기 → "pasted.png" 큐 행 추가 확인 · 폴더 인풋에 `webkitdirectory` 설정됨(파일/폴더 인풋 2개) 확인.
 - ✅ **[v1.1 ③ 유스케이스 프리셋]** test 102(+6: planCrop·applyUsePreset)·lint·build·check-i18n 클린 · 워커 번들에
   crop 로직 포함 · **CDP 실 UI E2E**: ID사진 칩 클릭 → 패널이 exactCrop·413×531·jpeg·타깃 200KB 반영 확인 + 페이지에서
   실제 encode 모듈 import → **크롭 출력 정확히 413×531 jpeg(130KB)**·WhatsApp 프리셋 **99,968B≤100KB**.
@@ -155,7 +162,7 @@ slug: `image-compressor`(primary·자동 포맷) · `compress-jpg` · `compress-
 
 ## 8. 미구현 / 다음 (What's next)
 - **이미지 압축기 v1.1** (순서대로 진행 중): ✅ **① 타깃 파일 크기** · ✅ **② 이미지별 오버라이드** · ✅ **③ 유스케이스
-  프리셋**(셋 다 완료·라이브, §1.3) → ④ Ctrl+V/폴더 → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력(jSquash 지연 +
+  프리셋** · ✅ **④ Ctrl+V/폴더**(넷 다 완료·라이브, §1.3) → ⑤ 비교 슬라이더. **v1.5**: AVIF 출력(jSquash 지연 +
   `wasm-unsafe-eval`) · PNG 출력 + oxipng (+`compress-png` slug) · PWA/오프라인. → `image-compressor-plan-ko.md` 스코프 표.
 - **로드맵 도구**(미착수, `tool-roadmap.md` 순서): HEIC 변환 → PDF 합치기/분할 → 이미지↔PDF → PDF 압축 →
   배경 제거 → (KO 특화) 평↔㎡·만나이 → 개발자용(JWT·hash·base64·JSON·UUID).

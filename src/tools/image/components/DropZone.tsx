@@ -1,11 +1,12 @@
 // No 'use client' here: this presentational component is only ever imported by ImageCompressorClient
 // (which is the client boundary), so it's already in the client bundle. Omitting the directive keeps it
 // from being treated as a client entry, which would otherwise flag its function props as non-serializable.
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { LabelSet } from '../labels';
 
-// Drag-and-drop + file-picker input. The `name="img-source"` on the input is the DOM-only ssr:false
-// marker verified absent from the static HTML (a dict prop string would be a false positive).
+// Drag-and-drop + file-picker + folder-picker input. The `name="img-source"` on the input is the
+// DOM-only ssr:false marker verified absent from the static HTML (a dict prop string would be a false
+// positive). Clipboard paste (Ctrl/Cmd+V) is wired at the document level in ImageCompressorClient.
 export default function DropZone({
   labels,
   onFiles,
@@ -16,7 +17,17 @@ export default function DropZone({
   hasJobs: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const folderRef = useRef<HTMLInputElement>(null);
   const [over, setOver] = useState(false);
+
+  // webkitdirectory / directory aren't in the React input prop types, so set them imperatively.
+  useEffect(() => {
+    const el = folderRef.current;
+    if (el) {
+      el.setAttribute('webkitdirectory', '');
+      el.setAttribute('directory', '');
+    }
+  }, []);
 
   const pick = (list: FileList | null) => {
     if (list && list.length) onFiles(Array.from(list));
@@ -48,7 +59,19 @@ export default function DropZone({
         </span>
         <span className="text-sm font-medium">{hasJobs ? labels.addMore : labels.dropTitle}</span>
         <span className="text-xs text-neutral-500">{labels.dropHint}</span>
+        <span className="text-xs text-neutral-400">{labels.pasteHint}</span>
       </button>
+
+      <div className="mt-2 flex justify-center">
+        <button
+          type="button"
+          onClick={() => folderRef.current?.click()}
+          className="text-xs text-neutral-500 underline underline-offset-2 transition hover:text-neutral-800 dark:hover:text-neutral-200"
+        >
+          📁 {labels.selectFolder}
+        </button>
+      </div>
+
       <input
         ref={inputRef}
         type="file"
@@ -59,6 +82,17 @@ export default function DropZone({
         onChange={(e) => {
           pick(e.target.files);
           e.target.value = ''; // allow re-selecting the same file
+        }}
+      />
+      <input
+        ref={folderRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="sr-only"
+        onChange={(e) => {
+          pick(e.target.files);
+          e.target.value = '';
         }}
       />
     </div>
