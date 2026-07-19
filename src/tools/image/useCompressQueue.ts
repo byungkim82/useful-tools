@@ -38,6 +38,10 @@ export type Settings = {
   target: TargetSettings;
 };
 
+// Resolves the effective settings for one job — the client returns a per-image override when present,
+// otherwise the global settings. Kept as a function so per-image overrides don't leak into the hook.
+export type SettingsResolver = (id: string) => Settings;
+
 // Render data lives entirely in the reducer Job (incl. the object URLs), so the view is just the jobs.
 export type ViewJob = Job;
 
@@ -69,7 +73,7 @@ export function useCompressQueue() {
   const urlsRef = useRef(new Set<string>());
   const jobsRef = useRef<Job[]>([]);
   const startedRef = useRef(new Set<string>());
-  const settingsRef = useRef<Settings | null>(null);
+  const resolveRef = useRef<SettingsResolver | null>(null);
   const runnerRef = useRef<CompressRunner | null>(null);
   const hintsRef = useRef<DeviceHints>({});
   const seqRef = useRef(0);
@@ -110,7 +114,7 @@ export function useCompressQueue() {
   const startJob = useCallback((id: string) => {
     if (startedRef.current.has(id)) return;
     const file = filesRef.current.get(id);
-    const settings = settingsRef.current;
+    const settings = resolveRef.current?.(id);
     if (!file || !settings) return;
     startedRef.current.add(id);
     dispatch({ type: 'start', id });
@@ -158,8 +162,7 @@ export function useCompressQueue() {
     for (const id of nextRunnable(state, concurrency)) startJob(id);
   }, [state, startJob]);
 
-  const addFiles = useCallback((files: File[], settings: Settings) => {
-    settingsRef.current = settings;
+  const addFiles = useCallback((files: File[]) => {
     const accepted = files.filter((f) => f.type.startsWith('image/'));
     if (accepted.length === 0) return { rejected: files.length };
     const newFiles = accepted.map((file) => {
@@ -171,22 +174,28 @@ export function useCompressQueue() {
     return { rejected: files.length - accepted.length };
   }, []);
 
-  // Submit all pending jobs for compression with the current settings (the "Compress" button).
-  const compressAll = useCallback((settings: Settings) => {
-    settingsRef.current = settings;
+  // Submit all pending jobs for compression (the "Compress" button). `resolve` maps each job id to its
+  // effective settings (global, or a per-image override).
+  const compressAll = useCallback((resolve: SettingsResolver) => {
+    resolveRef.current = resolve;
     dispatch({ type: 'startAll' });
   }, []);
 
-  const recompressAll = useCallback((settings: Settings) => {
-    settingsRef.current = settings;
-    const ids = jobsRef.current.filter((j) => j.status !== 'queued').map((j) => j.id);
-    if (ids.length === 0) return;
-    for (const id of ids) {
+  // Re-run the given jobs (default: everything already finished) with fresh settings from `resolve`.
+  const recompress = useCallback((resolve: SettingsResolver, ids?: string[]) => {
+    resolveRef.current = resolve;
+    const candidates = ids ?? jobsRef.current.filter((j) => j.status !== 'queued' && j.status !== 'pending').map((j) => j.id);
+    const actual = candidates.filter((id) => {
+      const j = jobsRef.current.find((x) => x.id === id);
+      return j !== undefined && j.status !== 'queued'; // never re-requeue an already-queued job
+    });
+    if (actual.length === 0) return;
+    for (const id of actual) {
       startedRef.current.delete(id);
       blobsRef.current.delete(id);
       drop(jobsRef.current.find((j) => j.id === id)?.outputUrl);
     }
-    dispatch({ type: 'requeue', ids });
+    dispatch({ type: 'requeue', ids: actual });
   }, []);
 
   const remove = useCallback((id: string) => {
@@ -234,7 +243,7 @@ export function useCompressQueue() {
   const jobs: ViewJob[] = state.jobs;
   const stats = queueStats(state);
 
-  return { jobs, stats, addFiles, compressAll, recompressAll, remove, clear, cancelAll, downloadZip, downloadOne };
+  return { jobs, stats, addFiles, compressAll, recompress, remove, clear, cancelAll, downloadZip, downloadOne };
 }
 
 function triggerDownload(href: string, filename: string) {

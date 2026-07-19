@@ -17,10 +17,14 @@ export default function SettingsPanel({
   settings,
   onChange,
   labels,
+  showTitle = true,
+  bare = false,
 }: {
   settings: Settings;
   onChange: (s: Settings) => void;
   labels: LabelSet;
+  showTitle?: boolean; // hide the panel heading in the compact per-image editor
+  bare?: boolean; // drop the card border/padding when embedded inside a queue row
 }) {
   const quality = presetQuality(settings.preset, settings.quality);
   const { resize, target } = settings;
@@ -29,8 +33,8 @@ export default function SettingsPanel({
   const targetOn = target.enabled; // target size drives quality, so the manual quality controls step aside
 
   return (
-    <div className="space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
-      <h2 className="text-sm font-semibold">{labels.settingsTitle}</h2>
+    <div className={bare ? 'space-y-4' : 'space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-800'}>
+      {showTitle && <h2 className="text-sm font-semibold">{labels.settingsTitle}</h2>}
 
       {/* Target file size — when on, the encoder searches quality (and downscales) to fit. */}
       <div>

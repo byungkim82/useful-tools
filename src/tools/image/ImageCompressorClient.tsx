@@ -25,11 +25,16 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
     target: { enabled: false, kb: 200 },
   };
   const [settings, setSettings] = useState<Settings>(initial);
-  const [applied, setApplied] = useState<Settings>(initial);
+  // Per-image overrides: a full Settings snapshot for any image the user customised (absent → use global).
+  const [overrides, setOverrides] = useState<Record<string, Settings>>({});
+  // The settings that produced each finished job's current output — used to detect which are now stale.
+  const [appliedFor, setAppliedFor] = useState<Record<string, Settings>>({});
   const [notice, setNotice] = useState<string | null>(null);
 
-  const { jobs, stats, addFiles, compressAll, recompressAll, remove, clear, downloadZip, downloadOne } =
+  const { jobs, stats, addFiles, compressAll, recompress, remove, clear, downloadZip, downloadOne } =
     useCompressQueue();
+
+  const resolve = (id: string): Settings => overrides[id] ?? settings;
 
   const c = { pending: 0, queued: 0, processing: 0, done: 0, error: 0, canceled: 0 };
   for (const j of jobs) c[j.status]++;
@@ -38,28 +43,63 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
   const finished = c.done + c.error;
   const runTotal = finished + inFlight;
   const hasJobs = jobs.length > 0;
-  const dirty = c.done > 0 && !isProcessing && c.pending === 0 && JSON.stringify(settings) !== JSON.stringify(applied);
+  // A done job is dirty when its effective settings no longer match the ones that produced its output.
+  const dirtyIds = jobs
+    .filter((j) => j.status === 'done' && appliedFor[j.id] !== undefined)
+    .filter((j) => JSON.stringify(resolve(j.id)) !== JSON.stringify(appliedFor[j.id]))
+    .map((j) => j.id);
+  const canRecompress = !isProcessing && c.pending === 0 && dirtyIds.length > 0;
   const totalPct = stats.originalBytes > 0 ? percentSaved(stats.originalBytes, stats.outputBytes) : 0;
 
+  const recordApplied = (ids: string[]) =>
+    setAppliedFor((prev) => {
+      const next = { ...prev };
+      for (const id of ids) next[id] = resolve(id);
+      return next;
+    });
+
   const onFiles = (files: File[]) => {
-    const { rejected } = addFiles(files, settings);
+    const { rejected } = addFiles(files);
     setNotice(rejected > 0 ? labels.skipped.replace('{n}', String(rejected)) : null);
   };
   const onCompress = () => {
-    compressAll(settings);
-    setApplied(settings);
+    const ids = jobs.filter((j) => j.status === 'pending').map((j) => j.id);
+    compressAll(resolve);
+    recordApplied(ids);
     setNotice(null);
   };
-  const onRecompress = () => {
-    recompressAll(settings);
-    setApplied(settings);
+  const onRecompress = (ids: string[]) => {
+    recompress(resolve, ids);
+    recordApplied(ids);
   };
 
-  // The single primary action: Compress pending → Re-compress after a change → progress while running.
+  const setOverride = (id: string, s: Settings) => setOverrides((prev) => ({ ...prev, [id]: s }));
+  const clearOverride = (id: string) =>
+    setOverrides((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  const onRemove = (id: string) => {
+    remove(id);
+    clearOverride(id);
+    setAppliedFor((prev) => {
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  };
+  const onClear = () => {
+    clear();
+    setOverrides({});
+    setAppliedFor({});
+  };
+
+  // The single primary action: Compress pending → Re-compress stale → progress while running.
   let primary: { label: string; onClick?: () => void; disabled?: boolean } | null = null;
   if (isProcessing) primary = { label: `${labels.compressing} ${c.done}/${runTotal}`, disabled: true };
   else if (c.pending > 0) primary = { label: `${labels.compress} (${c.pending})`, onClick: onCompress };
-  else if (dirty) primary = { label: labels.recompress, onClick: onRecompress };
+  else if (canRecompress) primary = { label: `${labels.recompress} (${dirtyIds.length})`, onClick: () => onRecompress(dirtyIds) };
 
   return (
     <div className="space-y-6">
@@ -79,7 +119,20 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
               <h2 className="text-sm font-semibold">{labels.results}</h2>
               <ul className="mt-1 divide-y divide-neutral-200 dark:divide-neutral-800">
                 {jobs.map((job) => (
-                  <QueueItem key={job.id} job={job} labels={labels} onDownload={downloadOne} onRemove={remove} />
+                  <QueueItem
+                    key={job.id}
+                    job={job}
+                    labels={labels}
+                    settings={resolve(job.id)}
+                    overridden={overrides[job.id] !== undefined}
+                    dirty={dirtyIds.includes(job.id)}
+                    busy={isProcessing}
+                    onDownload={downloadOne}
+                    onRemove={onRemove}
+                    onOverride={(s) => setOverride(job.id, s)}
+                    onResetOverride={() => clearOverride(job.id)}
+                    onRecompress={() => onRecompress([job.id])}
+                  />
                 ))}
               </ul>
             </>
@@ -130,7 +183,7 @@ export default function ImageCompressorClient({ slug, locale }: ToolProps) {
                 <button type="button" onClick={downloadZip} className="btn-primary">
                   {labels.downloadZip}
                 </button>
-                <button type="button" onClick={clear} className="btn-secondary">
+                <button type="button" onClick={onClear} className="btn-secondary">
                   {labels.clearAll}
                 </button>
               </div>

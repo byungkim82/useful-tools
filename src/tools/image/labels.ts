@@ -34,6 +34,12 @@ export type LabelSet = {
   targetSize: string; // "Target file size" toggle
   targetSizeHint: string; // note that quality is auto-adjusted when target is on
   targetMissed: string; // badge when the target couldn't be reached
+  // per-image overrides
+  editSettings: string; // ⚙ button label / tooltip
+  perImageSettings: string; // heading of the per-image editor
+  customSettings: string; // badge on an overridden image
+  resetToDefault: string; // clear an override
+  settingsChanged: string; // hint that a done image's settings changed since it was compressed
   apply: string;
   compress: string; // primary "Compress" button (a count is appended in the UI)
   recompress: string; // re-run all after a settings change
@@ -88,6 +94,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: '목표 파일 크기',
     targetSizeHint: '품질을 자동으로 조절해 목표 용량에 맞춥니다.',
     targetMissed: '목표보다 작게 만들지 못함 (가장 근접한 결과)',
+    editSettings: '이 이미지 설정 편집',
+    perImageSettings: '이 이미지만 적용',
+    customSettings: '개별 설정',
+    resetToDefault: '기본값으로',
+    settingsChanged: '설정 변경됨',
     apply: '설정 적용',
     compress: '압축 시작',
     recompress: '다시 압축',
@@ -137,6 +148,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: 'Target file size',
     targetSizeHint: 'Quality is adjusted automatically to hit the target.',
     targetMissed: 'couldn’t reach target — closest result',
+    editSettings: 'Edit this image’s settings',
+    perImageSettings: 'This image only',
+    customSettings: 'custom',
+    resetToDefault: 'Reset to default',
+    settingsChanged: 'settings changed',
     apply: 'Apply settings',
     compress: 'Compress',
     recompress: 'Re-compress',
@@ -186,6 +202,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: 'Tamaño de archivo objetivo',
     targetSizeHint: 'La calidad se ajusta automáticamente para alcanzarlo.',
     targetMissed: 'no se alcanzó el objetivo — resultado más cercano',
+    editSettings: 'Editar los ajustes de esta imagen',
+    perImageSettings: 'Solo esta imagen',
+    customSettings: 'personalizado',
+    resetToDefault: 'Restablecer',
+    settingsChanged: 'ajustes cambiados',
     apply: 'Aplicar ajustes',
     compress: 'Comprimir',
     recompress: 'Volver a comprimir',
@@ -235,6 +256,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: 'Tamanho de arquivo alvo',
     targetSizeHint: 'A qualidade é ajustada automaticamente para atingir o alvo.',
     targetMissed: 'não atingiu o alvo — resultado mais próximo',
+    editSettings: 'Editar as configurações desta imagem',
+    perImageSettings: 'Somente esta imagem',
+    customSettings: 'personalizado',
+    resetToDefault: 'Restaurar padrão',
+    settingsChanged: 'configurações alteradas',
     apply: 'Aplicar configurações',
     compress: 'Comprimir',
     recompress: 'Comprimir novamente',
@@ -284,6 +310,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: '目標ファイルサイズ',
     targetSizeHint: '画質を自動調整して目標サイズに合わせます。',
     targetMissed: '目標に届きませんでした（最も近い結果）',
+    editSettings: 'この画像の設定を編集',
+    perImageSettings: 'この画像のみ',
+    customSettings: '個別設定',
+    resetToDefault: '既定に戻す',
+    settingsChanged: '設定が変更されました',
     apply: '設定を適用',
     compress: '圧縮する',
     recompress: '再圧縮',
@@ -333,6 +364,11 @@ export const LABELS: Record<Locale, LabelSet> = {
     targetSize: 'Ziel-Dateigröße',
     targetSizeHint: 'Die Qualität wird automatisch an die Zielgröße angepasst.',
     targetMissed: 'Ziel nicht erreicht — nächstgelegenes Ergebnis',
+    editSettings: 'Einstellungen dieses Bildes bearbeiten',
+    perImageSettings: 'Nur dieses Bild',
+    customSettings: 'individuell',
+    resetToDefault: 'Zurücksetzen',
+    settingsChanged: 'Einstellungen geändert',
     apply: 'Einstellungen anwenden',
     compress: 'Komprimieren',
     recompress: 'Erneut komprimieren',
